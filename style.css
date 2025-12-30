@@ -8,14 +8,15 @@
 html, body {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(6, 206, 199);
+    background-color: rgb(6, 206, 199); /* Resim yüklenene kadar yedek renk */
 }
 
-/* Arka planı tam ekran yapan ana taşıyıcı */
+/* Tüm içeriği kapsayan ana yapı */
 .wrapper { 
     min-height: 100vh; 
     display: flex; 
     flex-direction: column; 
+    /* Arka plan resmini tam ekran yapma */
     background: url('buldum.jpeg') no-repeat center center fixed;
     background-size: cover;
 }
@@ -26,19 +27,20 @@ html, body {
     justify-content: space-between; 
     align-items: center;
     padding: 0 40px; 
-    background: rgba(0, 0, 0, 0.85); 
+    background: rgba(0, 0, 0, 0.8); /* Biraz daha şeffaf yaptık */
     position: fixed; 
     top: 0; 
     left: 0; 
     width: 100%; 
     z-index: 1000;
-    height: 60px; /* Header yüksekliği sabit */
+    height: 60px;
 }
 
 .sol { 
     font-size: 1.8rem; 
     font-weight: bold; 
     cursor: pointer; 
+    letter-spacing: 1px;
     color: white;
 }
 
@@ -46,122 +48,174 @@ html, body {
     display: flex; 
     list-style: none; 
     gap: 12px; 
+    align-items: center;
 }
 
 .dropdown button {
+    min-width: 110px;
+    text-align: center;
     padding: 8px 15px; 
+    border: none; 
     border-radius: 20px;
-    border: none;
     background: white; 
     color: #333;
+    font-size: 0.85rem; 
     font-weight: bold; 
     cursor: pointer; 
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
-/* Yazı Alanı - Header ile boşluğu kapattık */
+.dropdown button:hover { 
+    background: #ddd; 
+    transform: translateY(-2px); 
+}
+
+/* Başlık ve Paragraf Alanı */
 .paragraf { 
-    padding-top: 60px; /* Header 60px olduğu için tam altına yapışır */
-    padding-bottom: 10px;
+    padding-top: 120px; /* Header'ın altında kalmaması için */
+    padding-bottom: 20px;
     text-align: center; 
-    background: rgba(0, 0, 0, 0.4); /* Yazıların okunması için hafif gölge */
+    background: rgba(0, 0, 0, 0.3); /* Arka planı biraz karartarak yazıyı okunur kıldık */
     color: white;
 }
 
-.paragraf h1 {
-    margin-top: 10px; /* Yazıyı en üste yaklaştırdık */
-    font-size: 2.2rem;
-}
-
-/* Kartlar Bölümü - Ekranın kalanını doldurur */
+/* Kartlar Bölümü - Ekranın ortasında toplanması için */
 .cards {
-    flex: 1; 
+    flex: 1; /* Kalan tüm boşluğu doldurur */
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px; 
-    padding: 20px 40px;
-    align-content: center; /* Kartları dikeyde merkeze alır */
+    gap: 30px; 
+    padding: 40px;
+    align-content: center; /* Kartları dikeyde ortalar */
 }
 
 /* Kart Tasarımı */
 .card {
     position: relative; 
-    height: 360px; 
+    height: 350px; 
     border-radius: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     overflow: hidden; 
-    transition: 0.4s;
-    background: rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.2); /* Boşken siyah görünmesin */
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(1.03); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); 
 }
 
 .card-header {
     position: absolute; 
-    top: 0; width: 100%;
-    padding: 15px; 
-    z-index: 10;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    top: 0; left: 0; width: 100%;
+    padding: 15px 20px; 
+    z-index: 15;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
 }
 
-.slider-container, .slide, .slide img {
-    width: 100%; 
-    height: 100%; 
+.card-header h2 {
+    font-size: 1.4rem;
+    color: white;
+}
+
+.slider-container { 
+    position: absolute; 
+    top: 0; left: 0; width: 100%; height: 100%; 
+}
+
+.slide { 
+    position: absolute; 
+    width: 100%; height: 100%; 
+    opacity: 0; 
+    transition: opacity 0.5s; 
+}
+
+.slide.active { opacity: 1; }
+
+.slide img {
+    width: 100%; height: 100%;
     object-fit: cover;
 }
-
-.slide { position: absolute; opacity: 0; transition: 0.5s; }
-.slide.active { opacity: 1; }
 
 .slide-label {
     position: absolute; 
     bottom: 20px; left: 20px;
     background: rgba(0, 0, 0, 0.7); 
-    padding: 5px 12px; 
-    border-radius: 5px;
+    color: white;
+    padding: 6px 15px; 
+    border-radius: 8px; 
 }
 
-/* Oklar */
+/* Slider Okları */
 .prev, .next {
-    position: absolute; top: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    color: white; border: none;
-    width: 35px; height: 35px; border-radius: 50%;
-    cursor: pointer; z-index: 20;
+    position: absolute; 
+    top: 50%; transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15); 
+    color: white; 
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 35px; height: 35px; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    z-index: 20;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s;
 }
-.prev { left: 10px; } .next { right: 10px; }
 
-/* Modal */
+.prev:hover, .next:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.prev { left: 10px; } 
+.next { right: 10px; }
+
+/* Modal Tasarımı */
 .modal {
-    display: none; position: fixed; z-index: 2000;
+    display: none; 
+    position: fixed; 
+    z-index: 2000;
     left: 0; top: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.85); 
 }
+
 .modal-content {
-    background: white; margin: 10% auto; padding: 25px;
-    border-radius: 15px; width: 90%; max-width: 400px;
-    text-align: center; color: #333;
+    background: white; 
+    margin: 10% auto; 
+    padding: 25px;
+    border-radius: 15px; 
+    width: 90%;
+    max-width: 400px; 
+    text-align: center; 
+    color: #333 !important;
+    position: relative;
 }
 
 .map-btn {
-    display: inline-block; margin-top: 15px; padding: 10px 20px;
-    background: #000; color: white; text-decoration: none;
-    border-radius: 25px; font-weight: bold;
+    display: inline-block; 
+    margin-top: 15px; 
+    padding: 12px 25px;
+    background: #000; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.2s;
 }
 
-/* Footer - Sayfa ilk açıldığında görünmez, kaydırınca gelir */
+.map-btn:hover { transform: scale(1.05); }
+
+/* Footer - Sadece kaydırınca görünür */
 .footer { 
     background: white; 
     color: #333; 
-    padding: 25px; 
+    padding: 30px 20px; 
     text-align: center;
+    width: 100%;
 }
 
-@media (max-width: 768px) {
-    .header { height: auto; position: relative; }
-    .paragraf { padding-top: 20px; }
-    .wrapper { background-attachment: scroll; } /* Mobilde performans için */
+/* Mobil Uyumluluk */
+@media (max-width: 768px) { 
+    .header { height: auto; flex-direction: column; padding: 10px; }
+    .sag { flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+    .paragraf { padding-top: 160px; }
 }
