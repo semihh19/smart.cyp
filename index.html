@@ -27,41 +27,31 @@
             <div class="card">
                 <div class="card-header"><h2>CAFELER</h2></div>
                 <div class="slider-container">
-                    <div class="slide active" onclick="openInfo('Corner Kafe', 'Lefke merkezde, tarihi doku içinde huzurlu bir mekan.', 'https://www.google.com/maps?q=Lefke+Corner+Kafe')">
+                    <div class="slide active" onclick="openInfo('Corner Kafe', 'Lefke merkezde huzurlu bir mekan.', 'https://www.google.com/maps?q=Lefke+Corner+Cafe')">
                         <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000">
                         <div class="slide-label">Corner Kafe</div>
                     </div>
-                    <div class="slide" onclick="openInfo('Villa Veranda', 'Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme.', 'https://www.google.com/maps?q=Lefke+Villa+Veranda')">
-                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000">
-                        <div class="slide-label">Villa Veranda</div>
-                    </div>
                 </div>
-                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
-                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
             </div>
 
             <div class="card">
                 <div class="card-header"><h2>TARİHİ YERLER</h2></div>
                 <div class="slider-container">
-                    <div class="slide active" onclick="openInfo('Soli Antik Kenti', 'Kuğu Mozaiği ile ünlü antik liman kenti.', 'https://www.google.com/maps?q=Soli+Antik+Kenti')">
+                    <div class="slide active" onclick="openInfo('Soli Antik Kenti', 'Meşhur mozaikleriyle antik kent.', 'https://www.google.com/maps?q=Soli+Antik+Kenti')">
                         <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000">
                         <div class="slide-label">Soli Antik Kenti</div>
                     </div>
                 </div>
-                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
-                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
             </div>
 
             <div class="card">
-                <div class="card-header"><h2>OTELLER</h2></div>
+                <div class="card-header"><h2>OKULLAR</h2></div>
                 <div class="slider-container">
-                    <div class="slide active" onclick="openInfo('Lefke Gardens Hotel', 'Geleneksel mimariyle restore edilmiş butik otel.', 'https://www.google.com/maps?q=Lefke+Gardens+Hotel')">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000">
-                        <div class="slide-label">Lefke Gardens</div>
+                    <div class="slide active" onclick="openInfo('L.A.Ü.', 'Lefke Avrupa Üniversitesi kampüsü.', 'https://www.google.com/maps?q=Lefke+Avrupa+Universitesi')">
+                        <img src="https://cyprus-faq.com/site/assets/files/37228/european-university-of-lefke.800x0-is.webp">
+                        <div class="slide-label">L.A.Ü.</div>
                     </div>
                 </div>
-                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
-                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
             </div>
         </section>
 
@@ -69,45 +59,21 @@
             <div class="modal-content">
                 <span class="close" onclick="closeInfo()">×</span>
                 <h2 id="modalTitle">Mekan Adı</h2>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-                <p id="modalDesc"></p>
+                <p id="modalDesc" style="margin: 20px 0; color: #333;"></p>
                 <a id="modalMap" href="#" target="_blank" class="map-btn">📍 Haritada Gör</a>
             </div>
         </div>
-
-        <footer class="footer">
-            <p>© 2025 Cyprus.Travel.com</p>
-        </footer>
     </div>
 
     <script>
         function openInfo(title, desc, mapLink) {
-            if (event) event.stopPropagation();
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalDesc').innerText = desc;
             document.getElementById('modalMap').href = mapLink;
             document.getElementById('infoModal').style.display = "block";
         }
-
-        function closeInfo() {
-            document.getElementById('infoModal').style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            let modal = document.getElementById('infoModal');
-            if (event.target == modal) closeInfo();
-        }
-
-        function changeSlide(event, btn, direction) {
-            event.stopPropagation();
-            const card = btn.closest('.card');
-            const slides = card.querySelectorAll('.slide');
-            if (slides.length <= 1) return;
-            let activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
-            slides[activeIndex].classList.remove('active');
-            let nextIndex = (activeIndex + direction + slides.length) % slides.length;
-            slides[nextIndex].classList.add('active');
-        }
+        function closeInfo() { document.getElementById('infoModal').style.display = "none"; }
+        window.onclick = function(event) { if (event.target == document.getElementById('infoModal')) closeInfo(); }
     </script>
 </body>
 </html>
