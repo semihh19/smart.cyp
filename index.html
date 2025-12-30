@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KIBRIS - Lefke</title>
-    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="wrapper">
         <header class="header">
-            <div class="sol" onclick="window.location.href='index.html'">LEFKE</div>
+            <div class="sol" onclick="location.href='index.html'">LEFKE</div>
             <ul class="sag">
-                <li><button class="dropbtn" onclick="window.location.href='index.html'">ANA SAYFA</button></li>
-                <li><button class="dropbtn" onclick="window.location.href='magusa.html'">MAGUSA</button></li>
-                <li><button class="dropbtn" onclick="window.location.href='girne.html'">GİRNE</button></li>
-                <li><button class="dropbtn" onclick="window.location.href='lefkosa.html'">LEFKOSA</button></li>
+                <li><button class="dropbtn" onclick="location.href='index.html'">ANA SAYFA</button></li>
+                <li><button class="dropbtn" onclick="location.href='magusa.html'">MAGUSA</button></li>
+                <li><button class="dropbtn" onclick="location.href='girne.html'">GİRNE</button></li>
+                <li><button class="dropbtn" onclick="location.href='lefkosa.html'">LEFKOSA</button></li>
             </ul>
         </header>
 
@@ -24,18 +24,18 @@
         </section>
 
         <section class="cards">
-            <div class="card" onclick="openModal('Corner Kafe', 'Lefke merkezde tarihi bir mekan.', 'https://www.google.com/maps/search/?api=1&query=35.1147,32.8514')">
+            <div class="card" onclick="openModal('Corner Kafe', 'Lefke merkezde tarihi bir mekan.', 'https://www.google.com/maps?q=Corner+Kafe+Lefke')">
                 <div class="card-header"><h2>CAFELER</h2></div>
                 <div class="slider-container">
-                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000" class="slide-img">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000" style="width:100%; height:100%; object-fit:cover;">
                     <div class="slide-label">Corner Kafe</div>
                 </div>
             </div>
 
-            <div class="card" onclick="openModal('Soli Antik Kenti', 'Kuğu Mozaiği ile ünlü antik kent.', 'https://www.google.com/maps/search/?api=1&query=35.1411,32.8122')">
+            <div class="card" onclick="openModal('Soli Antik Kenti', 'Kuğu Mozaiği ile ünlü antik kent.', 'https://www.google.com/maps?q=Soli+Antik+Kenti')">
                 <div class="card-header"><h2>TARİHİ YERLER</h2></div>
                 <div class="slider-container">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000" class="slide-img">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000" style="width:100%; height:100%; object-fit:cover;">
                     <div class="slide-label">Soli Antik Kenti</div>
                 </div>
             </div>
@@ -43,9 +43,9 @@
 
         <div id="infoModal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="closeModal()">×</span>
+                <span class="close" onclick="closeModal()">&times;</span>
                 <h2 id="modalTitle">Mekan Adı</h2>
-                <p id="modalDesc" style="margin: 20px 0; color: #333;"></p>
+                <p id="modalDesc" style="margin: 15px 0; color: #333;"></p>
                 <a id="modalMap" href="" target="_blank" class="map-btn">📍 Haritada Gör</a>
             </div>
         </div>
@@ -57,8 +57,8 @@
 
     <script>
         function openModal(title, desc, mapLink) {
-            // Tıklamanın yayılmasını engelle
-            if (event) event.stopPropagation();
+            // Fonksiyonun çalışıp çalışmadığını anlamak için bir uyarı ekleyelim
+            console.log("Modal açılıyor: " + title);
             
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalDesc').innerText = desc;
@@ -70,8 +70,12 @@
             document.getElementById('infoModal').style.display = "none";
         }
 
+        // Modal dışına tıklayınca kapatma
         window.onclick = function(event) {
-            if (event.target == document.getElementById('infoModal')) closeModal();
+            var modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
     </script>
 </body>
