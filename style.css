@@ -7,7 +7,6 @@
 html, body {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* Resim yolu aynı klasörde olacak şekilde sadeleştirildi */
     background: url('buldum.jpeg') no-repeat center center fixed;
     background-size: cover;
     color: white;
@@ -167,6 +166,13 @@ html, body {
     max-width: 380px; 
     text-align: center; 
     color: #333 !important;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .map-btn {
