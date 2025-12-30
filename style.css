@@ -1,29 +1,231 @@
-/* Slider Kontrolleri */
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
+/* GENEL AYARLAR */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
 }
-.prev { left: 10px; }
-.next { right: 10px; }
 
-.slide {
-    display: none;
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('buldum.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    background-color: rgb(6, 206, 199); /* Resim yüklenmezse arka plan rengi */
+}
+
+.wrapper { 
+    padding-top: 80px; 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* HEADER (ÜST MENÜ) */
+.header {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 40px; 
+    background: rgba(0, 0, 0, 0.85); 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 1000;
+    height: 70px;
+}
+
+.sol { 
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    cursor: pointer; 
+    letter-spacing: 1px;
+}
+
+.sag { 
+    display: flex; 
+    list-style: none; 
+    gap: 15px; 
+    align-items: center;
+}
+
+.dropbtn {
+    min-width: 100px;
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 25px;
+    background: white; 
+    color: #333;
+    font-size: 0.85rem; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+}
+
+.dropbtn:hover { 
+    background: #ddd; 
+    transform: translateY(-2px); 
+}
+
+/* PARAGRAF BÖLÜMÜ */
+.paragraf { 
+    padding: 40px 20px; 
+    text-align: center; 
+    background: rgba(0, 0, 0, 0.5); 
+    margin-bottom: 20px;
+}
+
+/* KARTLARIN DİZİLİMİ */
+.cards {
+    flex: 1; 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; 
+    padding: 20px 40px;
+}
+
+.card {
+    position: relative; 
+    height: 400px; 
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden; 
+    background: #000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-header {
+    position: absolute; 
+    top: 0; left: 0; width: 100%;
+    padding: 20px; 
+    z-index: 20;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
+
+/* SLIDER AYARLARI */
+.slider-container { 
+    position: relative;
     width: 100%;
     height: 100%;
 }
-.slide.active {
-    display: block;
+
+.slide { 
+    display: none; /* Varsayılan olarak gizli */
+    width: 100%; 
+    height: 100%; 
 }
+
+.slide.active { 
+    display: block; /* Sadece active olan görünür */
+}
+
 .slide img {
-    width: 100%;
+    width: 100%; 
     height: 100%;
     object-fit: cover;
+    opacity: 0.8;
+}
+
+.slide-label {
+    position: absolute; 
+    bottom: 20px; 
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7); 
+    padding: 8px 15px; 
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* OKLAR (PREV - NEXT) */
+.prev, .next {
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3); 
+    color: white; 
+    border: none;
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    z-index: 30;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.prev:hover, .next:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.prev { left: 15px; } 
+.next { right: 15px; }
+
+/* MODAL (BİLGİ PENCERESİ) */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000;
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.9); 
+}
+
+.modal-content {
+    background: white; 
+    margin: 10% auto; 
+    padding: 30px;
+    border-radius: 20px; 
+    width: 90%;
+    max-width: 450px; 
+    text-align: center; 
+    color: #333;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.map-btn {
+    display: inline-block; 
+    margin-top: 20px; 
+    padding: 12px 25px;
+    background: #000; 
+    color: #fff; 
+    text-decoration: none; 
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+/* FOOTER */
+.footer { 
+    background: white; 
+    color: #333; 
+    padding: 20px; 
+    text-align: center;
+    margin-top: auto;
+}
+
+/* MOBİL UYUMLULUK */
+@media (max-width: 768px) { 
+    .header { height: auto; flex-direction: column; padding: 15px; gap: 10px; }
+    .sag { flex-wrap: wrap; justify-content: center; }
+    .wrapper { padding-top: 150px; }
+    .cards { padding: 20px; }
 }
