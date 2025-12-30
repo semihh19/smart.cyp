@@ -8,112 +8,60 @@ body {
     color: white;
 }
 
-/* HEADER DÜZENLEME - Sağ Üstteki Sıkışmayı Çözer */
 .header {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    padding: 0 40px; 
-    background: rgba(0, 0, 0, 0.9);
-    position: fixed; 
-    top: 0; 
-    width: 100%; 
-    height: 70px; 
-    z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 20px; background: rgba(0, 0, 0, 0.9);
+    position: fixed; top: 0; width: 100%; height: 70px; z-index: 1000;
 }
 
 .sag { 
     display: flex; 
     list-style: none; 
-    gap: 15px; /* Butonlar arası boşluk arttırıldı */
-    flex-wrap: nowrap;
+    gap: 10px; 
+    flex-wrap: nowrap; /* Butonların kaymasını engeller */
 }
 
 .dropbtn {
-    padding: 10px 18px; 
-    border-radius: 25px; 
-    border: none;
-    background: white; 
-    color: #333; 
-    font-weight: bold; 
-    cursor: pointer;
-    white-space: nowrap; /* Yazının alt satıra geçmesini önler */
-    transition: 0.3s;
+    padding: 8px 15px; border-radius: 20px; border: none;
+    background: white; color: #333; font-weight: bold; cursor: pointer;
+    white-space: nowrap; /* Yazıların alt satıra geçmesini engeller */
+    font-size: 13px;
 }
 
-.dropbtn:hover { background: #ddd; transform: scale(1.05); }
-
-/* KARTLAR */
 .cards {
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; 
-    padding: 110px 40px 40px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; padding: 100px 40px 40px;
 }
 
 .card {
-    position: relative; 
-    height: 420px; 
-    border-radius: 20px;
-    overflow: hidden; 
-    border: 2px solid rgba(255,255,255,0.2);
-    cursor: pointer; 
-    background: #000;
+    position: relative; height: 400px; border-radius: 20px;
+    overflow: hidden; border: 2px solid rgba(255,255,255,0.2);
+    cursor: pointer; background: #000;
 }
 
-.card-header {
-    position: absolute;
-    top: 0; width: 100%;
-    padding: 15px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
-    z-index: 5;
-}
-
-.slider-container { width: 100%; height: 100%; position: absolute; }
-.slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease; }
-.slide.active { opacity: 1; z-index: 2; }
+.slider-container, .slide { width: 100%; height: 100%; position: absolute; }
+.slide { opacity: 0; transition: opacity 0.5s; }
+.slide.active { opacity: 1; z-index: 1; }
 .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
 
-.slide-label {
-    position: absolute; bottom: 20px; left: 20px;
-    background: rgba(0,0,0,0.7); padding: 5px 12px; border-radius: 8px;
-}
-
-/* OKLARIN GÖRÜNMESİ VE ÇALIŞMASI İÇİN */
 .prev, .next {
-    position: absolute; 
-    top: 50%; 
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.3); 
-    color: white; 
-    border: 1px solid white;
-    width: 40px; 
-    height: 40px; 
-    cursor: pointer; 
-    z-index: 20; /* Slide'ın üstünde olması için */
-    border-radius: 50%;
-    font-size: 18px;
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.5); color: white; border: 1px solid white;
+    width: 35px; height: 35px; cursor: pointer; z-index: 10; border-radius: 50%;
 }
-.prev { left: 10px; } 
-.next { right: 10px; }
-.prev:hover, .next:hover { background: rgba(255,255,255,0.6); color: black; }
+.prev { left: 10px; } .next { right: 10px; }
 
-/* MODAL */
 .modal {
     display: none; position: fixed; z-index: 2000;
-    top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+    top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8);
 }
 
 .modal-content {
     background: white; color: #333; margin: 15% auto;
-    padding: 25px; border-radius: 20px; max-width: 400px; text-align: center;
+    padding: 30px; border-radius: 20px; max-width: 400px; text-align: center;
 }
 
 .map-btn {
-    display: inline-block; margin-top: 15px; padding: 12px 25px;
-    background: #000; color: white; text-decoration: none; border-radius: 25px;
+    display: inline-block; margin-top: 15px; padding: 10px 25px;
+    background: black; color: white; text-decoration: none; border-radius: 25px;
 }
-
-.close { float: right; font-size: 28px; font-weight: bold; cursor: pointer; color: #666; }
-
-.footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.8); margin-top: 20px; }
