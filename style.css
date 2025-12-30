@@ -8,57 +8,48 @@ body {
     color: white;
 }
 
-/* HEADER - Sağ üstteki menüyü sabitler */
+/* ÜST MENÜ DÜZENLEME */
 .header {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 0 40px; background: rgba(0, 0, 0, 0.9);
+    padding: 0 40px; background: rgba(0, 0, 0, 0.85);
     position: fixed; top: 0; width: 100%; height: 75px; z-index: 1000;
 }
 
+.sol { font-size: 24px; font-weight: bold; cursor: pointer; }
+
 .sag { 
-    display: flex; list-style: none; gap: 15px; 
-    flex-wrap: nowrap; /* Butonların kaymasını engeller */
+    display: flex; list-style: none; gap: 10px; 
+    flex-wrap: nowrap; /* Butonların yan yana kalmasını sağlar */
 }
 
 .dropbtn {
-    padding: 10px 18px; border-radius: 25px; border: none;
+    padding: 8px 15px; border-radius: 20px; border: none;
     background: white; color: #333; font-weight: bold; cursor: pointer;
-    white-space: nowrap; /* Yazıların alt satıra geçmesini engeller */
-    font-size: 13px; transition: 0.3s;
+    white-space: nowrap; /* Yazıların alt satıra kaymasını önler */
+    transition: 0.3s; font-size: 13px;
 }
 
 .dropbtn:hover { background: #ddd; transform: translateY(-2px); }
 
-/* KARTLAR VE SLIDER */
+/* KARTLAR */
 .cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px; padding: 120px 40px 40px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; padding: 110px 40px 40px;
 }
 
 .card {
-    position: relative; height: 420px; border-radius: 20px;
+    position: relative; height: 380px; border-radius: 20px;
     overflow: hidden; border: 2px solid rgba(255,255,255,0.2);
-    background: #000; cursor: pointer;
+    cursor: pointer; background: #000;
 }
 
 .slider-container, .slide { width: 100%; height: 100%; position: absolute; }
-.slide { opacity: 0; transition: 0.6s ease-in-out; }
-.slide.active { opacity: 1; z-index: 2; }
 .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
 
 .slide-label {
     position: absolute; bottom: 20px; left: 20px;
-    background: rgba(0,0,0,0.8); padding: 8px 15px; border-radius: 10px; z-index: 10;
+    background: rgba(0,0,0,0.7); padding: 5px 12px; border-radius: 8px;
 }
-
-/* SLIDER OKLARI */
-.prev, .next {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(255,255,255,0.2); color: white; border: 1px solid white;
-    width: 40px; height: 40px; cursor: pointer; z-index: 30; border-radius: 50%;
-}
-.prev { left: 10px; } .next { right: 10px; }
-.prev:hover, .next:hover { background: rgba(255,255,255,0.5); }
 
 /* MODAL */
 .modal {
@@ -67,15 +58,13 @@ body {
 }
 
 .modal-content {
-    background: white; color: #333; margin: 12% auto;
-    padding: 30px; border-radius: 20px; max-width: 450px; text-align: center;
+    background: white; color: #333; margin: 15% auto;
+    padding: 30px; border-radius: 20px; max-width: 400px; text-align: center;
 }
 
 .map-btn {
     display: inline-block; margin-top: 15px; padding: 12px 25px;
-    background: black; color: white; text-decoration: none; border-radius: 30px; font-weight: bold;
+    background: black; color: white; text-decoration: none; border-radius: 25px;
 }
 
-.close { float: right; font-size: 30px; cursor: pointer; color: #888; }
-
-.footer { padding: 30px; text-align: center; background: rgba(0,0,0,0.8); }
+.close { float: right; font-size: 28px; cursor: pointer; color: #999; }
