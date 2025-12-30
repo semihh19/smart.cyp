@@ -11,10 +11,10 @@
         <header class="header">
             <div class="sol" onclick="window.location.href='index.html'">LEFKE</div>
             <ul class="sag">
-                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='index.html'">ANA SAYFA</button></li>
-                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='magusa.html'">MAGUSA</button></li>
-                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='girne.html'">GİRNE</button></li>
-                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='lefkosa.html'">LEFKOSA</button></li>
+                <li><button class="dropbtn" onclick="window.location.href='index.html'">ANA SAYFA</button></li>
+                <li><button class="dropbtn" onclick="window.location.href='magusa.html'">MAGUSA</button></li>
+                <li><button class="dropbtn" onclick="window.location.href='girne.html'">GİRNE</button></li>
+                <li><button class="dropbtn" onclick="window.location.href='lefkosa.html'">LEFKOSA</button></li>
             </ul>
         </header>
 
@@ -27,12 +27,12 @@
             <div class="card">
                 <div class="card-header"><h2>CAFELER</h2></div>
                 <div class="slider-container">
-                    <div class="slide active" onclick="openInfo('Corner Kafe', 'Lefke merkezde huzurlu bir mekan.', 'https://www.google.com/maps/search/Corner+Kafe+Lefke')">
-                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop">
+                    <div class="slide active" onclick="openInfo('Corner Kafe', 'Lefke merkezde, tarihi doku içinde huzurlu bir mekan.', 'https://www.google.com/maps/search/Lefke+Corner+Kafe')">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000">
                         <div class="slide-label">Corner Kafe</div>
                     </div>
-                    <div class="slide" onclick="openInfo('Villa Veranda', 'Bahçesi ve tatlılarıyla ünlü işletme.', 'https://www.google.com/maps/search/Villa+Veranda+Lefke')">
-                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop">
+                    <div class="slide" onclick="openInfo('Villa Veranda', 'Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme.', 'https://www.google.com/maps/search/Lefke+Villa+Veranda')">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000">
                         <div class="slide-label">Villa Veranda</div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="card-header"><h2>TARİHİ YERLER</h2></div>
                 <div class="slider-container">
                     <div class="slide active" onclick="openInfo('Soli Antik Kenti', 'Kuğu Mozaiği ile ünlü antik liman kenti.', 'https://www.google.com/maps/search/Soli+Antik+Kenti+Lefke')">
-                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000">
                         <div class="slide-label">Soli Antik Kenti</div>
                     </div>
                 </div>
@@ -55,8 +55,8 @@
             <div class="card">
                 <div class="card-header"><h2>OTELLER</h2></div>
                 <div class="slider-container">
-                    <div class="slide active" onclick="openInfo('Lefke Gardens Hotel', 'Geleneksel mimariyle butik otel.', 'https://www.google.com/maps/search/Lefke+Gardens+Hotel')">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop">
+                    <div class="slide active" onclick="openInfo('Lefke Gardens Hotel', 'Geleneksel mimariyle restore edilmiş butik otel.', 'https://www.google.com/maps/search/Lefke+Gardens+Hotel')">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000">
                         <div class="slide-label">Lefke Gardens</div>
                     </div>
                 </div>
@@ -82,52 +82,47 @@
                 <span class="close" onclick="closeInfo()">×</span>
                 <h2 id="modalTitle">Mekan Adı</h2>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-                <p id="modalDesc">Bilgi içeriği.</p>
+                <p id="modalDesc"></p>
                 <a id="modalMap" href="#" target="_blank" class="map-btn">📍 Haritada Gör</a>
             </div>
         </div>
 
         <footer class="footer">
-            <div class="footer-container">
-                <div class="footer-column">
-                    <h4>Bizi Keşfedin</h4>
-                    <ul style="list-style:none; padding:0;">
-                        <li><a href="#" style="color:#333; text-decoration:none;">Hakkımızda</a></li>
-                        <li><a href="https://www.instagram.com/semihh.19/" style="color:#333; text-decoration:none;">Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom" style="margin-top:20px;">
-                <p>© 2025 Cyprus.Travel.com</p>
-            </div>
+            <p>© 2025 Cyprus.Travel.com</p>
         </footer>
     </div>
 
     <script>
+        // Bilgi Penceresini Açma
         function openInfo(title, desc, mapLink) {
-            if (event) event.stopPropagation();
+            if (event) event.stopPropagation(); 
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalDesc').innerText = desc;
             document.getElementById('modalMap').href = mapLink;
             document.getElementById('infoModal').style.display = "block";
         }
 
+        // Bilgi Penceresini Kapatma
         function closeInfo() {
             document.getElementById('infoModal').style.display = "none";
         }
 
-        window.onclick = function (event) {
+        // Dışarı tıklayınca kapatma
+        window.onclick = function(event) {
             let modal = document.getElementById('infoModal');
-            if (event.target == modal) modal.style.display = "none";
+            if (event.target == modal) closeInfo();
         }
 
+        // Kaydırma (Slider) Fonksiyonu
         function changeSlide(event, btn, direction) {
             event.stopPropagation();
             const card = btn.closest('.card');
             const slides = card.querySelectorAll('.slide');
             if (slides.length <= 1) return;
+
             let activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
             slides[activeIndex].classList.remove('active');
+
             let nextIndex = (activeIndex + direction + slides.length) % slides.length;
             slides[nextIndex].classList.add('active');
         }
