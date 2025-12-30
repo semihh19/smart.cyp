@@ -105,40 +105,50 @@
         </footer>
     </div>
 
-    <script>
-        function openInfo(title, desc, mapLink) {
-            // Tıklama olayının (event) yayılmasını durdurarak slider'ın tetiklenmesini engelleriz
-            if (window.event) window.event.stopPropagation();
-            
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDesc').innerText = desc;
-            document.getElementById('modalMap').href = mapLink;
-            document.getElementById('infoModal').style.display = "block";
+   <script>
+    function openInfo(title, desc, mapLink) {
+        // Tıklama olayının yayılmasını durdur
+        if (window.event) window.event.stopPropagation();
+        
+        const modal = document.getElementById('infoModal');
+        const mapBtn = document.getElementById('modalMap');
+        
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalDesc').innerText = desc;
+        
+        // Linki set et ve manuel olarak target ayarla
+        mapBtn.setAttribute('href', mapLink);
+        mapBtn.setAttribute('target', '_blank');
+        mapBtn.setAttribute('rel', 'noopener noreferrer'); // Güvenlik ve doğru yönlendirme için
+        
+        modal.style.display = "block";
+    }
+
+    function closeInfo() {
+        document.getElementById('infoModal').style.display = "none";
+    }
+
+    // Modal dışına tıklandığında kapat
+    window.onclick = function (event) {
+        let modal = document.getElementById('infoModal');
+        if (event.target == modal) {
+            closeInfo();
         }
+    }
 
-        function closeInfo() {
-            document.getElementById('infoModal').style.display = "none";
-        }
+    function changeSlide(e, btn, direction) {
+        if (e) e.stopPropagation();
+        const card = btn.closest('.card');
+        const slides = card.querySelectorAll('.slide');
+        if (slides.length <= 1) return;
 
-        window.onclick = function (event) {
-            let modal = document.getElementById('infoModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        let activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
+        slides[activeIndex].classList.remove('active');
 
-        function changeSlide(event, btn, direction) {
-            event.stopPropagation();
-            const card = btn.closest('.card');
-            const slides = card.querySelectorAll('.slide');
-            if (slides.length <= 1) return;
-
-            let activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
-            slides[activeIndex].classList.remove('active');
-
-            let nextIndex = (activeIndex + direction + slides.length) % slides.length;
-            slides[nextIndex].classList.add('active');
-        }
-    </script>
+        let nextIndex = (activeIndex + direction + slides.length) % slides.length;
+        slides[nextIndex].classList.add('active');
+    }
+</script>
 </body>
 </html>
+
