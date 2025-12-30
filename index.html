@@ -1,64 +1,113 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIBRIS - Lefke</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="sol" onclick="window.location.href='index.html'">LEFKE</div>
+            <ul class="sag">
+                <li><button class="dropbtn" onclick="window.location.href='index.html'">ANA SAYFA</button></li>
+                <li><button class="dropbtn" onclick="window.location.href='magusa.html'">MAGUSA</button></li>
+                <li><button class="dropbtn" onclick="window.location.href='girne.html'">GİRNE</button></li>
+                <li><button class="dropbtn" onclick="window.location.href='lefkosa.html'">LEFKOSA</button></li>
+            </ul>
+        </header>
 
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: url('buldum.jpeg') no-repeat center center fixed;
-    background-size: cover;
-    background-color: #06cec7;
-}
+        <section class="paragraf">
+            <h1>Lefke Hakkında Bilmeniz Gerekenler</h1>
+            <p>Lefke, Kıbrıs’ın batısında yer alan sakin ve doğa ile iç içe bir bölgedir. Narenciye bahçeleri ve tarihi dokusuyla huzur arayanların adresidir.</p>
+        </section>
 
-.header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 20px; background: rgba(0, 0, 0, 0.9);
-    position: fixed; top: 0; width: 100%; height: 70px; z-index: 1000;
-}
+        <section class="cards">
+            <div class="card">
+                <div class="card-header"><h2>CAFELER</h2></div>
+                <div class="slider-container">
+                    <div class="slide active" onclick="openInfo('Corner Kafe', 'Lefke merkezde, tarihi doku içinde huzurlu bir mekan.', 'https://www.google.com/maps?q=Lefke+Corner+Kafe')">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000">
+                        <div class="slide-label">Corner Kafe</div>
+                    </div>
+                    <div class="slide" onclick="openInfo('Villa Veranda', 'Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme.', 'https://www.google.com/maps?q=Lefke+Villa+Veranda')">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000">
+                        <div class="slide-label">Villa Veranda</div>
+                    </div>
+                </div>
+                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
+                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
+            </div>
 
-.sag { 
-    display: flex; list-style: none; gap: 10px; 
-    flex-wrap: nowrap; /* Butonların birbirinin üzerine binmesini engeller */
-}
+            <div class="card">
+                <div class="card-header"><h2>TARİHİ YERLER</h2></div>
+                <div class="slider-container">
+                    <div class="slide active" onclick="openInfo('Soli Antik Kenti', 'Kuğu Mozaiği ile ünlü antik liman kenti.', 'https://www.google.com/maps?q=Soli+Antik+Kenti')">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000">
+                        <div class="slide-label">Soli Antik Kenti</div>
+                    </div>
+                </div>
+                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
+                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
+            </div>
 
-.dropbtn {
-    padding: 8px 12px; border-radius: 20px; border: none;
-    background: white; color: #333; font-weight: bold; cursor: pointer;
-    white-space: nowrap; /* Yazıların tek satırda kalmasını sağlar */
-    font-size: 12px;
-}
+            <div class="card">
+                <div class="card-header"><h2>OTELLER</h2></div>
+                <div class="slider-container">
+                    <div class="slide active" onclick="openInfo('Lefke Gardens Hotel', 'Geleneksel mimariyle restore edilmiş butik otel.', 'https://www.google.com/maps?q=Lefke+Gardens+Hotel')">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000">
+                        <div class="slide-label">Lefke Gardens</div>
+                    </div>
+                </div>
+                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
+                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
+            </div>
+        </section>
 
-.cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px; padding: 100px 40px 40px;
-}
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeInfo()">×</span>
+                <h2 id="modalTitle">Mekan Adı</h2>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                <p id="modalDesc"></p>
+                <a id="modalMap" href="#" target="_blank" class="map-btn">📍 Haritada Gör</a>
+            </div>
+        </div>
 
-.card {
-    position: relative; height: 400px; border-radius: 20px;
-    overflow: hidden; border: 2px solid rgba(255,255,255,0.2);
-    cursor: pointer; background: #000;
-}
+        <footer class="footer">
+            <p>© 2025 Cyprus.Travel.com</p>
+        </footer>
+    </div>
 
-.slider-container, .slide { width: 100%; height: 100%; position: absolute; }
-.slide { opacity: 0; transition: 0.5s; }
-.slide.active { opacity: 1; z-index: 1; }
-.slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+    <script>
+        function openInfo(title, desc, mapLink) {
+            if (event) event.stopPropagation();
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalMap').href = mapLink;
+            document.getElementById('infoModal').style.display = "block";
+        }
 
-.prev, .next {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(0,0,0,0.5); color: white; border: 1px solid white;
-    width: 35px; height: 35px; cursor: pointer; z-index: 10; border-radius: 50%;
-}
-.prev { left: 10px; } .next { right: 10px; }
+        function closeInfo() {
+            document.getElementById('infoModal').style.display = "none";
+        }
 
-.modal {
-    display: none; position: fixed; z-index: 2000;
-    top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8);
-}
+        window.onclick = function(event) {
+            let modal = document.getElementById('infoModal');
+            if (event.target == modal) closeInfo();
+        }
 
-.modal-content {
-    background: white; color: #333; margin: 15% auto;
-    padding: 30px; border-radius: 20px; max-width: 400px; text-align: center;
-}
-
-.map-btn {
-    display: inline-block; margin-top: 15px; padding: 10px 25px;
-    background: black; color: white; text-decoration: none; border-radius: 25px;
-}
+        function changeSlide(event, btn, direction) {
+            event.stopPropagation();
+            const card = btn.closest('.card');
+            const slides = card.querySelectorAll('.slide');
+            if (slides.length <= 1) return;
+            let activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
+            slides[activeIndex].classList.remove('active');
+            let nextIndex = (activeIndex + direction + slides.length) % slides.length;
+            slides[nextIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>
