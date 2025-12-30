@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIBRIS - Lefke</title>
+    <link rel="stylesheet" href="css/lefke.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="sol" onclick="window.location.href='index.html'">LEFKE</div>
+            <ul class="sag">
+                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='index.html'">ANA SAYFA</button></li>
+                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='magusa.html'">MAGUSA</button></li>
+                <li class="dropdown"><button class="dropbtn active-page" onclick="window.location.href='lefke.html'">LEFKE</button></li>
+                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='girne.html'">GİRNE</button></li>
+                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='lefkosa.html'">LEFKOSA</button></li>
+            </ul>
+        </header>
+
+        <section class="paragraf">
+            <h1>Lefke Hakkında Bilmeniz Gerekenler</h1>
+            <p>Lefke, Kıbrıs’ın batısında yer alan sakin ve doğa ile iç içe bir bölgedir. Narenciye bahçeleri ve tarihi dokusuyla huzur arayanların adresidir.</p>
+        </section>
+
+        <section class="cards">
+            <div class="card">
+                <div class="card-header"><h2>CAFELER</h2></div>
+                <div class="slider-container">
+                    <div class="slide active" onclick="openInfo('Corner Kafe', 'Lefke merkezde, tarihi doku içinde huzurlu bir mekan.', 'https://maps.google.com/?q=Corner+Kafe+Lefke')">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop">
+                        <div class="slide-label">Corner Kafe</div>
+                    </div>
+                    <div class="slide" onclick="openInfo('Villa Veranda', 'Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme.', 'https://maps.google.com/?q=Villa+Veranda+Lefke')">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop">
+                        <div class="slide-label">Villa Veranda</div>
+                    </div>
+                </div>
+                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
+                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h2>TARİHİ YERLER</h2></div>
+                <div class="slider-container">
+                    <div class="slide active" onclick="openInfo('Soli Antik Kenti', 'Kuğu Mozaiği ile ünlü antik liman kenti.', 'https://maps.google.com/?q=Soli+Antik+Kenti')">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop">
+                        <div class="slide-label">Soli Antik Kenti</div>
+                    </div>
+                    <div class="slide" onclick="openInfo('Piri Paşa Camii', 'Osmanlı döneminden kalma tarihi yapı.', 'https://maps.google.com/?q=Piri+Pasa+Camii+Lefke')">
+                        <img src="https://images.unsplash.com/photo-1590076215667-873d3143c3f8?q=80&w=1000&auto=format&fit=crop">
+                        <div class="slide-label">Piri Paşa Camii</div>
+                    </div>
+                </div>
+                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
+                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h2>OTELLER</h2></div>
+                <div class="slider-container">
+                    <div class="slide active" onclick="openInfo('Lefke Gardens Hotel', 'Geleneksel mimariyle restore edilmiş butik otel.', 'https://maps.google.com/?q=Lefke+Gardens+Hotel')">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop">
+                        <div class="slide-label">Lefke Gardens</div>
+                    </div>
+                </div>
+                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
+                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h2>OKULLAR</h2></div>
+                <div class="slider-container">
+                    <div class="slide active" onclick="openInfo('Lefke Avrupa Üniversitesi', 'Bölgenin uluslararası eğitim merkezi.', 'https://maps.google.com/?q=European+University+of+Lefke')">
+                        <img src="https://cyprus-faq.com/site/assets/files/37228/european-university-of-lefke.800x0-is.webp">
+                        <div class="slide-label">L.A.Ü.</div>
+                    </div>
+                </div>
+                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
+                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
+            </div>
+        </section>
+
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeInfo()">×</span>
+                <h2 id="modalTitle">Mekan Adı</h2>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                <p id="modalDesc">Bilgi içeriği.</p>
+                <a id="modalMap" href="#" target="_blank" class="map-btn">📍 Haritada Gör</a>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Bizi Keşfedin</h4>
+                    <ul>
+                        <li><a href="#">Hakkımızda</a></li>
+                        <li><a href="https://www.instagram.com/semihh.19/">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Cyprus.Travel.com</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function openInfo(title, desc, mapLink) {
+            if (event) event.stopPropagation();
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalMap').href = mapLink;
+            document.getElementById('infoModal').style.display = "block";
+        }
+
+        function closeInfo() {
+            document.getElementById('infoModal').style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            let modal = document.getElementById('infoModal');
+            if (event.target == modal) modal.style.display = "none";
+        }
+
+        function changeSlide(event, btn, direction) {
+            event.stopPropagation();
+            const card = btn.closest('.card');
+            const slides = card.querySelectorAll('.slide');
+            if (slides.length <= 1) return;
+            let activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
+            slides[activeIndex].classList.remove('active');
+            let nextIndex = (activeIndex + direction + slides.length) % slides.length;
+            slides[nextIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>
