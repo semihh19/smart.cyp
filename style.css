@@ -11,9 +11,9 @@ html, body {
     background-color: rgb(6, 206, 199);
 }
 
-/* Arka planı tam ekran yapan ana taşıyıcı */
+/* Arka planı tam ekran yapan ana yapı */
 .wrapper { 
-    min-height: 100vh; 
+    min-height: 100vh; /* Ekranın %100'ünü kapla */
     display: flex; 
     flex-direction: column; 
     background: url('buldum.jpeg') no-repeat center center fixed;
@@ -26,13 +26,13 @@ html, body {
     justify-content: space-between; 
     align-items: center;
     padding: 0 40px; 
-    background: rgba(0, 0, 0, 0.85); 
+    background: rgba(0, 0, 0, 0.8); 
     position: fixed; 
     top: 0; 
     left: 0; 
     width: 100%; 
     z-index: 1000;
-    height: 60px; /* Header yüksekliği sabit */
+    height: 60px;
 }
 
 .sol { 
@@ -40,6 +40,7 @@ html, body {
     font-weight: bold; 
     cursor: pointer; 
     color: white;
+    letter-spacing: 1px;
 }
 
 .sag { 
@@ -56,47 +57,59 @@ html, body {
     color: #333;
     font-weight: bold; 
     cursor: pointer; 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
-/* Yazı Alanı - Header ile boşluğu kapattık */
+.dropdown button:hover {
+    background: #ddd;
+    transform: translateY(-2px);
+}
+
+/* Lefke Hakkında Yazısı - Header ile boşluğu kapattık */
 .paragraf { 
-    padding-top: 60px; /* Header 60px olduğu için tam altına yapışır */
-    padding-bottom: 10px;
+    padding-top: 70px; /* Header'ın (60px) hemen altına gelmesi için */
+    padding-bottom: 5px;
     text-align: center; 
-    background: rgba(0, 0, 0, 0.4); /* Yazıların okunması için hafif gölge */
     color: white;
+    /* Yazıların manzara üzerinde okunması için hafif gölge */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 .paragraf h1 {
-    margin-top: 10px; /* Yazıyı en üste yaklaştırdık */
     font-size: 2.2rem;
+    margin-bottom: 5px;
 }
 
-/* Kartlar Bölümü - Ekranın kalanını doldurur */
+.paragraf p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Kartlar Bölümü - Ekranın kalanını kaplar */
 .cards {
-    flex: 1; 
+    flex: 1; /* Kalan tüm boşluğu bu alan doldurur */
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; 
     padding: 20px 40px;
-    align-content: center; /* Kartları dikeyde merkeze alır */
+    align-content: center; /* Kartları dikeyde ekranın ortasına çeker */
 }
 
 /* Kart Tasarımı */
 .card {
     position: relative; 
-    height: 360px; 
+    height: 380px; 
     border-radius: 20px;
     border: 2px solid rgba(255, 255, 255, 0.2);
     overflow: hidden; 
-    transition: 0.4s;
+    transition: 0.4s ease;
     background: rgba(0, 0, 0, 0.3);
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
 }
 
 .card-header {
@@ -104,7 +117,7 @@ html, body {
     top: 0; width: 100%;
     padding: 15px; 
     z-index: 10;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
 }
 
 .slider-container, .slide, .slide img {
@@ -119,12 +132,13 @@ html, body {
 .slide-label {
     position: absolute; 
     bottom: 20px; left: 20px;
-    background: rgba(0, 0, 0, 0.7); 
+    background: rgba(0, 0, 0, 0.8); 
     padding: 5px 12px; 
     border-radius: 5px;
+    color: white;
 }
 
-/* Oklar */
+/* Slider Okları */
 .prev, .next {
     position: absolute; top: 50%;
     background: rgba(255, 255, 255, 0.2);
@@ -152,16 +166,19 @@ html, body {
     border-radius: 25px; font-weight: bold;
 }
 
-/* Footer - Sayfa ilk açıldığında görünmez, kaydırınca gelir */
+/* Footer - Sayfanın altına itildi */
 .footer { 
     background: white; 
     color: #333; 
-    padding: 25px; 
+    padding: 30px; 
     text-align: center;
+    width: 100%;
 }
 
+/* Mobil Düzenleme */
 @media (max-width: 768px) {
-    .header { height: auto; position: relative; }
+    .header { height: auto; flex-direction: column; padding: 10px; position: relative; }
     .paragraf { padding-top: 20px; }
-    .wrapper { background-attachment: scroll; } /* Mobilde performans için */
+    .wrapper { background-attachment: scroll; }
+    .cards { padding: 20px; }
 }
