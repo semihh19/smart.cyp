@@ -72,16 +72,17 @@ html, body {
 
 /* Başlık ve Paragraf Alanı */
 .paragraf { 
-    padding-top: 120px; /* Header'ın altında kalmaması için */
+    padding-top: 80px; /* Header ile boşluğu kapattım */
     padding-bottom: 20px;
     text-align: center; 
     background: rgba(0, 0, 0, 0.3); /* Arka planı biraz karartarak yazıyı okunur kıldık */
     color: white;
 }
 
-/* Kartlar Bölümü - Ekranın ortasında toplanması için */
+/* Kartlar Bölümü - BURASI DEĞİŞTİ */
 .cards {
-    flex: 1; /* Kalan tüm boşluğu doldurur */
+    flex: 1; /* Kalan tüm boşluğu doldurarak footer'ı aşağı iter */
+    min-height: calc(100vh - 160px); /* Ekranın tamamını kaplamasını garanti eder */
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px; 
