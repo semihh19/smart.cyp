@@ -1,0 +1,390 @@
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const SUPABASE_URL = "https://tiznedphmqkybivnowzq.supabase.co"
+const SUPABASE_ANON_KEY = "sb_publishable_AkNyZKPVX86WGupmy3MIUQ_m9-DMdQf"
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+const logoutBtn = document.getElementById("logoutBtn")
+const authButtons = document.getElementById("authButtons")
+const userInfo = document.getElementById("userInfo")
+const userEmail = document.getElementById("userEmail")
+
+
+// Mobile Menu Toggle
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
+const navMenu = document.querySelector(".nav-menu")
+
+if (mobileMenuToggle) {
+  mobileMenuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active")
+  })
+}
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault()
+    const target = document.querySelector(this.getAttribute("href"))
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+      // Close mobile menu after click
+      if (navMenu) navMenu.classList.remove("active")
+    }
+  })
+})
+
+// Slider functionality for cards
+function initSliders() {
+  const cards = document.querySelectorAll(".card")
+
+  cards.forEach((card) => {
+    const prevBtn = card.querySelector(".slider-btn.prev")
+    const nextBtn = card.querySelector(".slider-btn.next")
+    const slides = card.querySelectorAll(".slide")
+
+    if (slides.length <= 1) {
+      if (prevBtn) prevBtn.style.display = "none"
+      if (nextBtn) nextBtn.style.display = "none"
+      return
+    }
+
+    let currentSlide = 0
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index)
+      })
+    }
+
+    function nextSlide(e) {
+      e.stopPropagation()
+      currentSlide = (currentSlide + 1) % slides.length
+      showSlide(currentSlide)
+    }
+
+    function prevSlide(e) {
+      e.stopPropagation()
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length
+      showSlide(currentSlide)
+    }
+
+    if (nextBtn) nextBtn.addEventListener("click", nextSlide)
+    if (prevBtn) prevBtn.addEventListener("click", prevSlide)
+  })
+}
+
+// Hero slider functionality
+function initHeroSlider() {
+  const slides = document.querySelectorAll(".hero-slide")
+  const indicators = document.querySelectorAll(".hero-slider-indicators .indicator")
+
+  if (!slides.length || !indicators.length) {
+    return
+  }
+
+  let currentSlide = 0
+  let autoPlayInterval
+
+  function showSlide(index) {
+    slides.forEach((slide) => slide.classList.remove("active"))
+    indicators.forEach((indicator) => indicator.classList.remove("active"))
+
+    slides[index].classList.add("active")
+    indicators[index].classList.add("active")
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length
+    showSlide(currentSlide)
+  }
+
+  function goToSlide(index) {
+    currentSlide = index
+    showSlide(currentSlide)
+    resetAutoPlay()
+  }
+
+  function startAutoPlay() {
+    autoPlayInterval = setInterval(nextSlide, 5000)
+  }
+
+  function stopAutoPlay() {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval)
+    }
+  }
+
+  function resetAutoPlay() {
+    stopAutoPlay()
+    startAutoPlay()
+  }
+
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => goToSlide(index))
+  })
+
+  const heroImage = document.querySelector(".hero-image")
+  if (heroImage) {
+    heroImage.addEventListener("mouseenter", stopAutoPlay)
+    heroImage.addEventListener("mouseleave", startAutoPlay)
+  }
+
+  startAutoPlay()
+}
+
+// Modal functionality
+const modal = document.getElementById("modal")
+const modalTitle = document.getElementById("modal-title")
+const modalDesc = document.getElementById("modal-desc")
+const modalMap = document.getElementById("modal-map")
+const modalClose = document.querySelector(".modal-close")
+const modalBackdrop = document.querySelector(".modal-backdrop")
+
+function openModal(title, description, mapLink) {
+  if (modalTitle) modalTitle.textContent = title
+  if (modalDesc) modalDesc.textContent = description
+  if (modalMap) {
+    modalMap.href = mapLink
+    modalMap.setAttribute("target", "_blank")
+    modalMap.setAttribute("rel", "noopener noreferrer")
+  }
+  if (modal) modal.classList.add("active")
+  document.body.style.overflow = "hidden"
+}
+
+function closeModal() {
+  if (modal) modal.classList.remove("active")
+  document.body.style.overflow = ""
+}
+
+if (modalClose) modalClose.addEventListener("click", closeModal)
+if (modalBackdrop) modalBackdrop.addEventListener("click", closeModal)
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal && modal.classList.contains("active")) {
+    closeModal()
+  }
+})
+
+// Active nav link on scroll
+function updateActiveNavLink() {
+  const sections = document.querySelectorAll(".city-section, .hero")
+  const navLinks = document.querySelectorAll(".nav-link")
+  let current = ""
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop
+    if (window.pageYOffset >= sectionTop - 200) {
+      current = section.getAttribute("id")
+    }
+  })
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active")
+    if (current && link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active")
+    } else if (!current && link.getAttribute("href") === "#") {
+      link.classList.add("active")
+    }
+  })
+}
+
+// Initialize everything on page load
+document.addEventListener("DOMContentLoaded", async () => {
+
+  // 🔐 Kullanıcı oturum kontrolü (ÇOK ÖNEMLİ)
+  await checkUser()
+
+  // 🎞️ Sliderlar
+  initSliders()
+  initHeroSlider()
+
+  // 🧭 Navbar aktif link
+  updateActiveNavLink()
+
+  // 🖼️ Kart slide tıklama → modal aç
+  document.querySelectorAll(".slide").forEach((slide) => {
+    slide.addEventListener("click", () => {
+      if (!slide.classList.contains("active")) return
+
+      const { place, desc, map } = slide.dataset
+      if (place && desc && map) {
+        openModal(place, desc, map)
+      }
+    })
+  })
+
+  // 🗺️ Modal içindeki harita linki
+  if (modalMap) {
+    modalMap.addEventListener("click", (e) => {
+      const href = modalMap.getAttribute("href")
+      if (href && href !== "#") {
+        window.open(href, "_blank", "noopener,noreferrer")
+        e.preventDefault()
+      }
+    })
+  }
+
+})
+
+
+
+
+
+// OTURUM KONTROL
+async function checkUser() {
+  const { data } = await supabase.auth.getUser()
+
+  if (data?.user) {
+    authButtons.style.display = "none"
+    userInfo.style.display = "flex"
+
+    document.getElementById("welcomeText").style.display = "block"
+    document.getElementById("welcomeEmail").textContent = data.user.email
+  } else {
+    authButtons.style.display = "flex"
+    userInfo.style.display = "none"
+
+    document.getElementById("welcomeText").style.display = "none"
+  }
+}
+
+
+
+
+
+
+
+supabase.auth.onAuthStateChange(() => {
+  checkUser()
+})
+
+let isLogin = true
+
+const authModal = document.getElementById("authModal")
+const authTitle = document.getElementById("authTitle")
+const authSubmit = document.getElementById("authSubmit")
+const authSwitch = document.getElementById("authSwitch")
+const emailInput = document.getElementById("authEmail")
+const passInput = document.getElementById("authPassword")
+
+document.getElementById("openLogin").onclick = () => openAuth(true)
+document.getElementById("openRegister").onclick = () => openAuth(false)
+document.getElementById("closeAuth").onclick = closeAuth
+document.querySelector(".auth-backdrop").onclick = closeAuth
+
+function openAuth(login) {
+  isLogin = login
+  authTitle.textContent = login ? "Giriş Yap" : "Kayıt Ol"
+  authSubmit.textContent = login ? "Giriş Yap" : "Kayıt Ol"
+  authSwitch.innerHTML = login
+    ? `Hesabın yok mu? <span>Kayıt Ol</span>`
+    : `Zaten hesabın var mı? <span>Giriş Yap</span>`
+  authModal.classList.add("active")
+}
+const toast = document.getElementById("toast")
+
+function showToast(message, type = "success") {
+  toast.textContent = message
+
+  toast.classList.remove("success", "error", "warning")
+  toast.classList.add("show", type)
+
+  setTimeout(() => {
+    toast.classList.remove("show", type)
+  }, 2500)
+}
+
+
+authSwitch.onclick = () => openAuth(!isLogin)
+
+authSubmit.onclick = async () => {
+  const email = emailInput.value.trim()
+  const password = passInput.value.trim()
+
+  if (!email || !password) {
+    showToast("Email ve şifre giriniz", "error")
+    return
+  }
+
+  if (isLogin) {
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+
+    if (error) {
+      if (error.message.includes("Email not confirmed")) {
+        showToast("📩 Lütfen email adresini doğrula", "error")
+      } else {
+        showToast(error.message, "error")
+      }
+      return
+    }
+
+    showToast("Giriş başarılı 🎉")
+    closeAuth()
+    await checkUser()
+
+  } else {
+  const { error } = await supabase.auth.signUp({ email, password })
+
+  if (error) {
+    showToast(error.message, "error")
+    return
+  }
+
+  // 🔔 Bilgi mesajı
+  document.getElementById("authInfo").style.display = "block"
+
+  // ⛔ Formu kilitle
+  emailInput.disabled = true
+  passInput.disabled = true
+
+  // ⛔ Butonları gizle
+  authSubmit.style.display = "none"
+  authSwitch.style.display = "none"
+
+  // 🧠 Başlık değiştir
+  authTitle.textContent = "Email Doğrulama Gerekli"
+
+  showToast("📩 Doğrulama linki email adresine gönderildi")
+}
+
+}
+
+
+
+
+function closeAuth() {
+  authModal.classList.remove("active")
+
+  emailInput.value = ""
+  passInput.value = ""
+
+  emailInput.disabled = false
+  passInput.disabled = false
+
+  authSubmit.style.display = "block"
+  authSwitch.style.display = "block"
+
+  const info = document.getElementById("authInfo")
+  if (info) info.style.display = "none"
+}
+if (logoutBtn) {
+  logoutBtn.onclick = async () => {
+    const { error } = await supabase.auth.signOut()
+
+    if (error) {
+      showToast("Çıkış yapılamadı", "error")
+      return
+    }
+
+    showToast("👋 Çıkış yapıldı")
+  }
+}
+
+
+
+
+window.addEventListener("scroll", updateActiveNavLink)
