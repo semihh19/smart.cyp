@@ -4,149 +4,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIBRIS - Lefke</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Cyprus Travel - Kıbrıs'ı Keşfedin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <div class="wrapper">
-        <header class="header">
-            <div class="sol" onclick="window.location.href='index.html'">LEFKE</div>
-            <ul class="sag">
-                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='index.html'">ANA SAYFA</button></li>
-                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='magusa.html'">MAGUSA</button></li>
-                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='girne.html'">GİRNE</button></li>
-                <li class="dropdown"><button class="dropbtn" onclick="window.location.href='lefkosa.html'">LEFKOSA</button></li>
+    <header id="ust-kisim">
+    </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+
+                <h1>Cyprus Travel</h1>
+
+
+                <div class="welcome-text" id="welcomeText" style="display:none;">
+                    Hoş geldin, <strong id="welcomeEmail"></strong>
+                </div>
+            </div>
+
+            <ul class="nav-menu">
+
+                <li><a href="#ust-kisim" class="nav-link active">Ana Sayfa</a></li>
+                <li><a href="#lefke" class="nav-link">Lefke</a></li>
+                <li><a href="#magusa" class="nav-link">Mağusa</a></li>
+                <li><a href="#girne" class="nav-link">Girne</a></li>
+                <li><a href="#lefkosa" class="nav-link">Lefkoşa</a></li>
             </ul>
-        </header>
-
-        <section class="paragraf">
-            <h1>Lefke Hakkında Bilmeniz Gerekenler</h1>
-            <p>Lefke, Kıbrıs’ın batısında yer alan sakin ve doğa ile iç içe bir bölgedir. Narenciye bahçeleri ve tarihi dokusuyla huzur arayanların adresidir.</p>
-        </section>
-
-        <section class="cards">
-            <div class="card">
-                <div class="card-header"><h2>CAFELER</h2></div>
-                <div class="slider-container">
-                    <div class="slide active" onclick="openInfo('Corner Kafe', 'Lefke merkezde, tarihi doku içinde huzurlu bir mekan.', 'https://www.google.com/maps/search/?api=1&query=Corner+Kafe+Lefke')">
-                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop">
-                        <div class="slide-label">Corner Kafe</div>
-                    </div>
-                    <div class="slide" onclick="openInfo('Villa Veranda', 'Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme.', 'https://www.google.com/maps/search/?api=1&query=Villa+Veranda+Lefke')">
-                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop">
-                        <div class="slide-label">Villa Veranda</div>
-                    </div>
-                </div>
-                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
-                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
+            <div class="auth-area" id="authButtons">
+                <button class="auth-btn login" id="openLogin">Giriş Yap</button>
+                <button class="auth-btn register" id="openRegister">Kayıt Ol</button>
             </div>
 
-            <div class="card">
-                <div class="card-header"><h2>TARİHİ YERLER</h2></div>
-                <div class="slider-container">
-                    <div class="slide active" onclick="openInfo('Soli Antik Kenti', 'Kuğu Mozaiği ile ünlü antik liman kenti.', 'https://www.google.com/maps/search/?api=1&query=Soli+Ancient+City+Lefke')">
-                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop">
-                        <div class="slide-label">Soli Antik Kenti</div>
-                    </div>
-                </div>
-                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
-                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
-            </div>
+            <div class="user-info" id="userInfo" style="display:none;">
 
-            <div class="card">
-                <div class="card-header"><h2>OTELLER</h2></div>
-                <div class="slider-container">
-                    <div class="slide active" onclick="openInfo('Lefke Gardens Hotel', 'Geleneksel mimariyle restore edilmiş butik otel.', 'https://www.google.com/maps/search/?api=1&query=Lefke+Gardens+Hotel')">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop">
-                        <div class="slide-label">Lefke Gardens</div>
-                    </div>
-                </div>
-                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
-                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
+                <button class="auth-btn logout" id="logoutBtn">Çıkış</button>
             </div>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
-            <div class="card">
-                <div class="card-header"><h2>OKULLAR</h2></div>
-                <div class="slider-container">
-                    <div class="slide active" onclick="openInfo('Lefke Avrupa Üniversitesi', 'Bölgenin uluslararası eğitim merkezi.', 'https://www.google.com/maps/search/?api=1&query=Lefke+Avrupa+Üniversitesi')">
-                        <img src="https://cyprus-faq.com/site/assets/files/37228/european-university-of-lefke.800x0-is.webp">
-                        <div class="slide-label">L.A.Ü.</div>
-                    </div>
-                </div>
-                <button class="prev" onclick="changeSlide(event, this, -1)">❮</button>
-                <button class="next" onclick="changeSlide(event, this, 1)">❯</button>
-            </div>
-        </section>
-
-        <div id="infoModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeInfo()" style="cursor:pointer; float:right; font-size:28px; font-weight:bold;">&times;</span>
-                <h2 id="modalTitle">Mekan Adı</h2>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-                <p id="modalDesc">Bilgi içeriği.</p>
-                <a id="modalMap" href="" target="_blank" rel="noopener noreferrer" class="map-btn">📍 Haritada Gör</a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Kıbrıs Turları 2025</span>
+            <h2 class="hero-title">Akdeniz'in İncisini<br>Keşfedin</h2>
+            <p class="hero-subtitle">Tarihi, kültürü ve doğal güzellikleriyle Kıbrıs'ın en özel yerlerini keşfedin</p>
+            <div class="hero-cta">
+                <a href="#lefke" class="btn btn-primary">Keşfet</a>
+                <a href="#" class="btn btn-secondary">Daha Fazla Bilgi</a>
             </div>
         </div>
+        <!-- Converting single image to auto-playing slider with 5 Cyprus images -->
+        <div class="hero-image">
+            <div class="hero-slider">
+                <div class="hero-slide active">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1200&auto=format&fit=crop"
+                        alt="Girne Kalesi">
+                    <div class="hero-slide-caption">Girne Kalesi</div>
+                </div>
+                <div class="hero-slide">
+                    <img src="https://images.unsplash.com/photo-1601439678777-b2b3c56fa627?q=80&w=1200&auto=format&fit=crop"
+                        alt="Salamis Antik Kenti">
+                    <div class="hero-slide-caption">Salamis Antik Kenti</div>
+                </div>
+                <div class="hero-slide">
+                    <img src="https://images.unsplash.com/photo-1549144511-f099e773c147?q=80&w=1200&auto=format&fit=crop"
+                        alt="Bellapais Manastırı">
+                    <div class="hero-slide-caption">Bellapais Manastırı</div>
+                </div>
+                <div class="hero-slide">
+                    <img src="https://images.unsplash.com/photo-1549144511-f099e773c147?q=80&w=1200&auto=format&fit=crop"
+                        alt="Mağusa Surları">
+                    <div class="hero-slide-caption">Mağusa Surları</div>
+                </div>
+                <div class="hero-slide">
+                    <img src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?q=80&w=1200&auto=format&fit=crop"
+                        alt="Lefkoşa">
+                    <div class="hero-slide-caption">Lefkoşa Panorama</div>
+                </div>
+            </div>
+            <!-- Adding slider indicators for manual navigation -->
+            <div class="hero-slider-indicators">
+                <button class="indicator active" data-slide="0" aria-label="Slide 1"></button>
+                <button class="indicator" data-slide="1" aria-label="Slide 2"></button>
+                <button class="indicator" data-slide="2" aria-label="Slide 3"></button>
+                <button class="indicator" data-slide="3" aria-label="Slide 4"></button>
+                <button class="indicator" data-slide="4" aria-label="Slide 5"></button>
+            </div>
+        </div>
+    </section>
 
-        <footer class="footer">
-            <div class="footer-container">
-                <div class="footer-column">
-                    <h4>Bizi Keşfedin</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li><a href="#" style="text-decoration: none; color: #333;">Hakkımızda</a></li>
-                        <li><a href="https://www.instagram.com/semihh.19/" target="_blank" style="text-decoration: none; color: #333;">Instagram</a></li>
-                    </ul>
+    <!-- City Section - Lefke -->
+    <section id="lefke" class="city-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Şehir Rehberi</span>
+                <h2 class="section-title">Lefke</h2>
+                <p class="section-desc">Kıbrıs'ın batısında yer alan sakin ve doğa ile iç içe bir bölge. Narenciye
+                    bahçeleri ve tarihi dokusuyla huzur arayanların adresi.</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Card 1: Cafes -->
+                <div class="card">
+                    <div class="card-badge">Kafeler</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+                            <div class="slide active" data-place="Corner Kafe"
+                                data-desc="Lefke merkezde, tarihi doku içinde huzurlu bir mekan."
+                                data-map="https://maps.google.com/?q=Corner+Kafe+Lefke">
+                                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Corner Kafe">
+                                <div class="slide-overlay">
+                                    <h3>Corner Kafe</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Villa Veranda"
+                                data-desc="Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme."
+                                data-map="https://maps.google.com/?q=Villa+Veranda+Lefke">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Villa Veranda">
+                                <div class="slide-overlay">
+                                    <h3>Villa Veranda</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="slider-btn next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Historical Places -->
+                <div class="card">
+                    <div class="card-badge">Tarihi Yerler</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+                            <div class="slide active" data-place="Soli Antik Kenti"
+                                data-desc="Kuğu Mozaiği ile ünlü antik liman kenti."
+                                data-map="https://maps.google.com/?q=Soli+Antik+Kenti">
+                                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Soli Antik Kenti">
+                                <div class="slide-overlay">
+                                    <h3>Soli Antik Kenti</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Piri Paşa Camii"
+                                data-desc="Osmanlı döneminden kalma tarihi yapı."
+                                data-map="https://maps.google.com/?q=Piri+Pasa+Camii+Lefke">
+                                <img src="https://images.unsplash.com/photo-1590076215667-873d3143c3f8?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Piri Paşa Camii">
+                                <div class="slide-overlay">
+                                    <h3>Piri Paşa Camii</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="slider-btn next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Hotels -->
+                <div class="card">
+                    <div class="card-badge">Oteller</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+                            <div class="slide active" data-place="Lefke Gardens Hotel"
+                                data-desc="Geleneksel mimariyle restore edilmiş butik otel."
+                                data-map="https://maps.google.com/?q=Lefke+Gardens+Hotel">
+                                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Lefke Gardens Hotel">
+                                <div class="slide-overlay">
+                                    <h3>Lefke Gardens</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="slider-btn next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 4: Schools -->
+                <div class="card">
+                    <div class="card-badge">Okullar</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+                            <div class="slide active" data-place="Lefke Avrupa Üniversitesi"
+                                data-desc="Bölgenin uluslararası eğitim merkezi."
+                                data-map="https://maps.google.com/?q=European+University+of+Lefke">
+                                <img src="https://cyprus-faq.com/site/assets/files/37228/european-university-of-lefke.800x0-is.webp"
+                                    alt="Lefke Avrupa Üniversitesi">
+                                <div class="slide-overlay">
+                                    <h3>L.A.Ü.</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="slider-btn next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Cities Placeholder -->
+    <section id="magusa" class="city-section city-placeholder">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Yakında</span>
+                <h2 class="section-title">Mağusa</h2>
+                <p class="section-desc">Tarihi surları ve antik limanıyla Kıbrıs'ın en önemli şehirlerinden biri.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="girne" class="city-section city-placeholder">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Yakında</span>
+                <h2 class="section-title">Girne</h2>
+                <p class="section-desc">Muhteşem kalesi ve limanıyla Akdeniz'in göz bebeği.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="lefkosa" class="city-section city-placeholder">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Yakında</span>
+                <h2 class="section-title">Lefkoşa</h2>
+                <p class="section-desc">Kıbrıs'ın başkenti, kültür ve tarihin buluşma noktası.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h2 id="modal-title">Başlık</h2>
+            <p id="modal-desc">Açıklama</p>
+            <a id="modal-map" href="#" target="_blank" class="btn btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Haritada Gör
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Cyprus Travel</h3>
+                    <p>Kıbrıs'ın güzelliklerini keşfedin</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Keşfet</h4>
+                        <ul>
+                            <li><a href="#lefke">Lefke</a></li>
+                            <li><a href="#magusa">Mağusa</a></li>
+                            <li><a href="#girne">Girne</a></li>
+                            <li><a href="#lefkosa">Lefkoşa</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Sosyal Medya</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/semihh.19/" target="_blank">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>İletişim</h4>
+                        <ul>
+                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a href="#">İletişim</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 Cyprus.Travel.com</p>
+                <p>&copy; 2025 Cyprus Travel. Tüm hakları saklıdır.</p>
             </div>
-        </footer>
+        </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+    <div class="auth-modal" id="authModal">
+        <div class="auth-backdrop"></div>
+
+        <div class="auth-box">
+            <p class="auth-info" id="authInfo" style="display:none;">
+                📩 Email adresine doğrulama linki gönderdik.<br />
+                Lütfen mailini kontrol et.
+            </p>
+
+            <button class="auth-close" id="closeAuth">&times;</button>
+
+            <h2 id="authTitle">Giriş Yap</h2>
+
+            <input type="email" id="authEmail" placeholder="Email adresiniz">
+            <input type="password" id="authPassword" placeholder="Şifreniz">
+
+            <button class="auth-submit" id="authSubmit">Devam Et</button>
+
+            <p class="auth-switch" id="authSwitch">
+                Hesabın yok mu? <span>Kayıt Ol</span>
+            </p>
+        </div>
     </div>
+    <div class="toast" id="toast"></div>
 
-    <script>
-        function openInfo(title, desc, mapLink) {
-            // Tıklamanın diğer elementlere yayılmasını durdurur
-            if (window.event) window.event.stopPropagation();
-            
-            const modal = document.getElementById('infoModal');
-            const mapBtn = document.getElementById('modalMap');
-            
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDesc').innerText = desc;
-            
-            // Linki butona ata
-            mapBtn.href = mapLink;
-            
-            // Modalı görünür yap
-            modal.style.display = "block";
-        }
-
-        function closeInfo() {
-            document.getElementById('infoModal').style.display = "none";
-        }
-
-        // Modal dışına tıklandığında kapatma
-        window.onclick = function (event) {
-            const modal = document.getElementById('infoModal');
-            if (event.target == modal) {
-                closeInfo();
-            }
-        }
-
-        function changeSlide(event, btn, direction) {
-            if (event) event.stopPropagation();
-            const card = btn.closest('.card');
-            const slides = card.querySelectorAll('.slide');
-            if (slides.length <= 1) return;
-
-            let activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
-            slides[activeIndex].classList.remove('active');
-
-            let nextIndex = (activeIndex + direction + slides.length) % slides.length;
-            slides[nextIndex].classList.add('active');
-        }
-    </script>
 </body>
+
 </html>
