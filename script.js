@@ -10,31 +10,49 @@ const userInfo = document.getElementById("userInfo")
 const userEmail = document.getElementById("userEmail")
 
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle - GÜNCELLENMİŞ
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
 const navMenu = document.querySelector(".nav-menu")
 
 if (mobileMenuToggle) {
-  mobileMenuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("active")
-  })
+  // Ortak fonksiyon: Hem dokunma hem tıklama için
+  const handleMenu = (e) => {
+    // Tıklamanın veya dokunmanın sayfa yenilemesini/zıplamasını engelle
+    e.preventDefault();
+    e.stopPropagation(); 
+    
+    navMenu.classList.toggle("active");
+    mobileMenuToggle.classList.toggle("open"); // Buton animasyonu için
+    
+    console.log("Menü durumu:", navMenu.classList.contains("active"));
+  };
+//mobile menu toggle
+  // Bilgisayar için
+  mobileMenuToggle.addEventListener("click", handleMenu);
+  // Telefonlar için (Daha hızlı tepki verir)
+  mobileMenuToggle.addEventListener("touchend", handleMenu);
 }
 
-// Smooth scroll for navigation links
+// Smooth scroll kısmında küçük bir düzeltme
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
-    e.preventDefault()
-    const target = document.querySelector(this.getAttribute("href"))
+    const targetId = this.getAttribute("href");
+    if (targetId === "#") return; // Eğer sadece # ise bir şey yapma
+
+    const target = document.querySelector(targetId);
     if (target) {
+      e.preventDefault();
       target.scrollIntoView({
         behavior: "smooth",
         block: "start",
-      })
-      // Close mobile menu after click
-      if (navMenu) navMenu.classList.remove("active")
+      });
+      
+      // Menüyü kapat ve hamburger ikonunu eski haline getir
+      if (navMenu) navMenu.classList.remove("active");
+      if (mobileMenuToggle) mobileMenuToggle.classList.remove("open");
     }
-  })
-})
+  });
+});
 
 // Slider functionality for cards
 function initSliders() {
