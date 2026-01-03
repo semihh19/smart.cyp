@@ -7,6 +7,47 @@
   box-sizing: border-box;
 }
 
+/* Genel Buton Yapısı (Daha narin hali) */
+.btn, .auth-btn, .auth-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;      /* Yüksekliği azalttık, genişliği dengeli tuttuk */
+    font-size: 14px;         /* Yazı boyutunu hafif küçülttük */
+    font-weight: 500;        /* Çok kalın olmayan, orta sertlikte bir yazı */
+    border-radius: 8px;      /* Tam yuvarlak yerine hafif köşeli (modern durur) */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    width: auto;             /* Butonun tüm satırı kaplamasını engeller */
+    min-width: 120px;        /* Çok küçük kalmaması için alt sınır */
+}
+
+/* Giriş/Kayıt Modalındaki Submit Butonu İçin Özel Ayar */
+.auth-submit {
+    width: 100%;             /* Sadece form içindekiler tam genişlikte kalsın ama... */
+    padding: 12px;           /* ...yüksekliği narin olsun */
+    margin-top: 10px;
+}
+
+/* Renk Geçişleri ve Hover Efektleri */
+.btn-primary, .auth-btn.register, .auth-submit {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-light);
+    transform: translateY(-1px); /* Çok hafif bir yükselme efekti */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-secondary, .auth-btn.login {
+    background: transparent;
+    border: 1.5px solid var(--color-primary); /* Çizgiyi incelttik */
+    color: var(--color-primary);
+}
 :root {
   /* Colors */
   --color-primary: #1e3a5f;
@@ -121,14 +162,29 @@ body {
   color: white;
 }
 
+/* Mobil Butonun Kök Ayarı */
 .mobile-menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: var(--spacing-xs);
+    display: none; /* Masaüstünde kapalı */
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 15px; /* Tıklama alanını narin ama geniş yaptık */
+    position: relative;
+    z-index: 10001 !important; /* Her şeyin üstünde olmalı */
+    touch-action: manipulation; /* Mobilde gecikmeyi önler */
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex !important; /* Mobilde mutlaka görünür yap */
+    }
+    
+    .nav-menu {
+        display: none;
+        z-index: 10000 !important; /* Menü butonun bir tık altında olmalı */
+    }
 }
 
 .mobile-menu-toggle span {
@@ -293,19 +349,7 @@ body {
 /* ============================================
    BUTTONS
    ============================================ */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: 0.875rem 1.75rem;
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: var(--radius-full);
-  transition: all 0.2s ease;
-  cursor: pointer;
-  border: none;
-}
+
 
 .btn-primary {
   background: var(--color-primary);
@@ -760,15 +804,6 @@ body {
   gap: 12px;
 }
 
-.auth-btn {
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all 0.25s ease;
-}
 
 .auth-btn.login {
   background: transparent;
@@ -848,16 +883,7 @@ body {
   font-size: 14px;
 }
 
-.auth-submit {
-  width: 100%;
-  padding: 12px;
-  background: var(--color-primary);
-  color: white;
-  border-radius: 999px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
+
 
 .auth-submit:hover {
   background: var(--color-primary-light);
@@ -962,3 +988,82 @@ body {
   gap: 14px;
 }
 
+/* Telefonlar için özel ayarlar */
+@media (max-width: 480px) {
+    .auth-card {
+        width: 90%; /* Kartın ekranın dışına taşmasını engeller */
+        padding: 20px; /* İç boşluğu azaltır */
+        margin: 10px;
+    }
+
+    h2 {
+        font-size: 20px; /* Başlığı küçültür */
+    }
+
+    input, button {
+        padding: 15px; /* Parmakla basmayı kolaylaştırmak için butonları büyütür (UX) */
+        font-size: 16px; /* Mobilde inputlara tıklandığında zoom yapmasını engeller */
+    }
+    .button-group {
+    display: flex;
+    flex-direction: row; /* Masaüstünde yan yana */
+}
+
+@media (max-width: 480px) {
+    .button-group {
+        flex-direction: column; /* Mobilde alt alta */
+    }
+}
+}
+/* ============================================
+   MOBILE MENU FIX (EKLEME)
+   ============================================ */
+@media (max-width: 768px) {
+  /* Menünün mobil hali */
+  .nav-menu {
+    display: none; /* Varsayılan olarak kapalı */
+    position: absolute;
+    top: 70px; /* Navbar yüksekliği kadar aşağıda */
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    gap: var(--spacing-sm);
+    z-index: 999;
+  }
+
+  /* JavaScript ile .active eklendiğinde menüyü göster */
+  .nav-menu.active {
+    display: flex !important;
+  }
+
+  /* Mobil linklerin stili */
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+  }
+
+  /* Navbar içindeki actions (login/register) mobilde gizle veya menü içine al */
+  .nav-actions {
+    display: none;
+  }
+}
+
+/* Hamburger Menü Buton Animasyonu (İsteğe Bağlı) */
+.mobile-menu-toggle.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.mobile-menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-menu-toggle.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+.mobile-menu-toggle span {
+    pointer-events: none; /* Çizgiler tıklamayı engellemesin, buton algılasın */
+}
