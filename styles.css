@@ -6,9 +6,43 @@
   padding: 0;
   box-sizing: border-box;
 }
+.auth-area {
+    display: flex;
+    align-items: center; /* Dikeyde tam orta */
+    gap: 15px; /* Elemanlar arası boşluk */
+}
 
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Alt çizgiyi kaldırır */
+    gap: 12px;
+}
+
+.nav-logo {
+    height: 45px; /* Navbar yüksekliğine göre ayarlayabilirsin */
+    width: auto;
+    border-radius: 8px; /* Köşeleri hafif yuvarlatır */
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #003366; /* Senin mevcut koyu mavine göre ayarla */
+}
+#registerFields {
+    display: flex;
+    gap: 10px;
+}
+#registerFields input {
+    flex: 1; /* Kutuları eşit genişlikte yapar */
+    width: 50%;
+}
 /* Genel Buton Yapısı (Daha narin hali) */
 .btn, .auth-btn, .auth-submit {
+    text-decoration: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -170,7 +204,7 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 15px; /* Tıklama alanını narin ama geniş yaptık */
+    padding: 10px; /* Tıklama alanını narin ama geniş yaptık */
     position: relative;
     z-index: 10001 !important; /* Her şeyin üstünde olmalı */
     touch-action: manipulation; /* Mobilde gecikmeyi önler */
@@ -817,13 +851,16 @@ body {
 }
 
 .auth-btn.register {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.auth-btn.register:hover {
   background: var(--color-primary);
   color: #fff;
 }
 
-.auth-btn.register:hover {
-  background: var(--color-primary-light);
-}
 
 .auth-btn.logout {
   background: #ef4444;
@@ -1026,7 +1063,8 @@ body {
     top: 70px; /* Navbar yüksekliği kadar aşağıda */
     left: 0;
     width: 100%;
-    background: white;
+    background-color: rgba(255, 255, 255, 0.8); /* Beyaz ama arkası görünüyor */
+    backdrop-filter: blur(10px); /* Arkadaki içeriği bulanıklaştırır (cam efekti) */
     flex-direction: column;
     padding: var(--spacing-lg);
     border-bottom: 1px solid var(--color-border);
