@@ -8,7 +8,9 @@ const logoutBtn = document.getElementById("logoutBtn")
 const authButtons = document.getElementById("authButtons")
 const userInfo = document.getElementById("userInfo")
 const userEmail = document.getElementById("userEmail")
-
+const nameInput = document.getElementById("authName")
+const surnameInput = document.getElementById("authSurname")
+const registerFields = document.getElementById("registerFields")
 
 // Mobile Menu Toggle - GÜNCELLENMİŞ
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
@@ -126,7 +128,7 @@ function initHeroSlider() {
   }
 
   function startAutoPlay() {
-    autoPlayInterval = setInterval(nextSlide, 5000)
+    autoPlayInterval = setInterval(nextSlide, 2000)
   }
 
   function stopAutoPlay() {
@@ -260,16 +262,27 @@ async function checkUser() {
     authButtons.style.display = "none"
     userInfo.style.display = "flex"
 
+    // Metadata'dan isim çekme
+    // checkUser fonksiyonunun içindeki ilgili kısmı şöyle güncelle:
+const firstName = data.user.user_metadata?.first_name || "";
+const lastName = data.user.user_metadata?.last_name || "";
+
+// Baş harfleri büyüten fonksiyon
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+const fullName = firstName && lastName 
+    ? `${capitalize(firstName)} ${capitalize(lastName)}` 
+    : data.user.email;
+
+document.getElementById("welcomeEmail").textContent = fullName;
+    
     document.getElementById("welcomeText").style.display = "block"
-    document.getElementById("welcomeEmail").textContent = data.user.email
   } else {
     authButtons.style.display = "flex"
     userInfo.style.display = "none"
-
     document.getElementById("welcomeText").style.display = "none"
   }
 }
-
 
 
 
@@ -301,6 +314,12 @@ function openAuth(login) {
   authSwitch.innerHTML = login
     ? `Hesabın yok mu? <span>Kayıt Ol</span>`
     : `Zaten hesabın var mı? <span>Giriş Yap</span>`
+    
+  // YENİ: Kayıt alanlarını göster/gizle
+  if (registerFields) {
+    registerFields.style.display = login ? "none" : "flex"
+  }
+  
   authModal.classList.add("active")
 }
 const toast = document.getElementById("toast")
@@ -320,57 +339,97 @@ function showToast(message, type = "success") {
 authSwitch.onclick = () => openAuth(!isLogin)
 
 authSubmit.onclick = async () => {
-  const email = emailInput.value.trim()
-  const password = passInput.value.trim()
+    const email = emailInput.value.trim();
+    const password = passInput.value.trim();
 
-  if (!email || !password) {
-    showToast("Email ve şifre giriniz", "error")
-    return
-  }
-
-  if (isLogin) {
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-
-    if (error) {
-      if (error.message.includes("Email not confirmed")) {
-        showToast("📩 Lütfen email adresini doğrula", "error")
-      } else {
-        showToast(error.message, "error")
-      }
-      return
+    // 1. Temel Kontrol
+    if (!email || !password) {
+        showToast("Email ve şifre giriniz", "error");
+        return;
     }
 
-    showToast("Giriş başarılı 🎉")
-    closeAuth()
-    await checkUser()
+    if (isLogin) {
+        // --- GİRİŞ YAPMA MANTIĞI ---
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-  } else {
-  const { error } = await supabase.auth.signUp({ email, password })
+        if (error) {
+            if (error.message.includes("Email not confirmed")) {
+                showToast("📩 Lütfen email adresini doğrula", "error");
+            } else {
+                showToast(error.message, "error");
+            }
+            return;
+        }
 
-  if (error) {
-    showToast(error.message, "error")
-    return
-  }
+        showToast("Giriş başarılı 🎉");
+        closeAuth();
+        await checkUser();
 
-  // 🔔 Bilgi mesajı
-  document.getElementById("authInfo").style.display = "block"
+    } else {
+        // --- KAYIT OLMA MANTIĞI ---
+        const name = nameInput.value.trim();
+        const surname = surnameInput.value.trim();
+        const phoneInput = document.getElementById("authPhone"); // Telefon inputunu yakala
+        const phone = phoneInput ? phoneInput.value.trim() : "";
 
-  // ⛔ Formu kilitle
-  emailInput.disabled = true
-  passInput.disabled = true
+        // İsim, soyisim ve telefon kontrolü
+        if (!name || !surname) {
+            showToast("Lütfen adınızı ve soyadınızı giriniz", "error");
+            return;
+        }
+        
+        if (phone.length < 10) {
+            showToast("Lütfen geçerli bir telefon numarası giriniz", "error");
+            return;
+        }
 
-  // ⛔ Butonları gizle
-  authSubmit.style.display = "none"
-  authSwitch.style.display = "none"
+        // Baş harfleri büyüterek kaydetme (Data temizliği)
+        const cleanName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+        const cleanSurname = surname.charAt(0).toUpperCase() + surname.slice(1).toLowerCase();
 
-  // 🧠 Başlık değiştir
-  authTitle.textContent = "Email Doğrulama Gerekli"
+        const { error } = await supabase.auth.signUp({ 
+            email, 
+            password,
+            options: {
+                data: {
+                    first_name: cleanName,
+                    last_name: cleanSurname,
+                    phone_number: phone // Telefonu veritabanına gönderiyoruz
+                }
+            }
+        })
 
-  showToast("📩 Doğrulama linki email adresine gönderildi")
+        if (error) {
+            showToast(error.message, "error");
+            return;
+        }
+
+        // 🔔 Başarılı Kayıt Sonrası Arayüzü Kilitle
+        document.getElementById("authInfo").style.display = "block";
+        
+        emailInput.disabled = true;
+        passInput.disabled = true;
+        if (nameInput) nameInput.disabled = true;
+        if (surnameInput) surnameInput.disabled = true;
+        if (phoneInput) phoneInput.disabled = true; // Telefonu da kilitle
+
+        authSubmit.style.display = "none";
+        authSwitch.style.display = "none";
+        authTitle.textContent = "Email Doğrulama Gerekli";
+
+        showToast("📩 Doğrulama linki gönderildi");
+    }
 }
 
-}
-
+// Enter tuşu ile giriş yapma özelliğini de ekleyelim:
+[emailInput, passInput].forEach(input => {
+    input.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            authSubmit.click();
+        }
+    });
+});
 
 
 
@@ -397,6 +456,8 @@ if (logoutBtn) {
       showToast("Çıkış yapılamadı", "error")
       return
     }
+    if(nameInput) nameInput.disabled = false
+  if(surnameInput) surnameInput.disabled = false
 
     showToast("👋 Çıkış yapıldı")
   }
