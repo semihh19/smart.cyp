@@ -20,7 +20,10 @@
         <div class="nav-container">
             <div class="nav-brand">
 
-                <h1>Cyprus Travel</h1>
+                <a href="#" class="logo-container">
+                    <img src="cyprus.travel logo.png" alt="Cyprus Travel Logo" class="nav-logo">
+                    <span class="logo-text">Cyprus Travel</span>
+                </a>
 
 
                 <div class="welcome-text" id="welcomeText" style="display:none;">
@@ -61,7 +64,7 @@
             <p class="hero-subtitle">Tarihi, kültürü ve doğal güzellikleriyle Kıbrıs'ın en özel yerlerini keşfedin</p>
             <div class="hero-cta">
                 <a href="#lefke" class="btn btn-primary">Keşfet</a>
-                <a href="#" class="btn btn-secondary">Daha Fazla Bilgi</a>
+                <a href="#footer" class="btn btn-secondary">Daha Fazla Bilgi</a>
             </div>
         </div>
         <!-- Converting single image to auto-playing slider with 5 Cyprus images -->
@@ -88,9 +91,13 @@
                     <div class="hero-slide-caption">Girne Kapısı</div>
                 </div>
                 <div class="hero-slide">
-                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/1c/b4/42/cyprus-museum.jpg?w=1600&h=600&s=1"
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/7a/66/ed/machairas-monastery.jpg?w=600&h=600&s=1"
                         alt="Lefkoşa">
                     <div class="hero-slide-caption">Lefkoşa Panorama</div>
+                </div>
+                <div class="hero-slide">
+                    <img src="öyküü.jpeg" alt="HAYATIM">
+                    <div class="hero-slide-caption">HAYATIM</div>
                 </div>
             </div>
             <!-- Adding slider indicators for manual navigation -->
@@ -100,6 +107,7 @@
                 <button class="indicator" data-slide="2" aria-label="Slide 3"></button>
                 <button class="indicator" data-slide="3" aria-label="Slide 4"></button>
                 <button class="indicator" data-slide="4" aria-label="Slide 5"></button>
+                <button class="indicator" data-slide="5" aria-label="Slide 6"></button>
             </div>
         </div>
     </section>
@@ -109,7 +117,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Şehir Rehberi</span>
-                <h2 class="section-title">Lefke</h2>
+                <h2 class="section-title">Lefke 🍊</h2>
                 <p class="section-desc">Kıbrıs'ın batısında yer alan sakin ve doğa ile iç içe bir bölge. Narenciye
                     bahçeleri ve tarihi dokusuyla huzur arayanların adresi.</p>
             </div>
@@ -237,13 +245,105 @@
                     <div class="card-badge">Okullar</div>
                     <div class="card-slider">
                         <div class="slider-track">
-                            <div class="slide active" data-place="Lefke Avrupa Üniversitesi"
-                                data-desc="Bölgenin uluslararası eğitim merkezi."
+                            <div class="slide active" data-place="Lefke Avrupa Üniversitesi" data-desc="Bölgenin uluslararası eğitim merkezi.
+                                Detaylı Bilgi: https://www.eul.edu.tr/tr/"
                                 data-map="https://maps.google.com/?q=European+University+of+Lefke">
                                 <img src="https://cyprus-faq.com/site/assets/files/37228/european-university-of-lefke.800x0-is.webp"
                                     alt="Lefke Avrupa Üniversitesi">
                                 <div class="slide-overlay">
                                     <h3>L.A.Ü.</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="slider-btn next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- Card 5: köyler -->
+                <div class="card">
+                    <div class="card-badge">Köyler</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+                            <div class="slide active" data-place="BağlıKöy"
+                                data-desc="Ekolojik yaşamın merkezi olan bu köy, kerpiç evleri ve huzurlu doğasıyla ziyaretçilerine otantik bir Kıbrıs deneyimi sunuyor."
+                                data-map=https://maps.app.goo.gl/9VNj8kfwMuzWg1tF8>
+                                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
+                                    alt="BağlıKöy">
+                                <div class="slide-overlay">
+                                    <h3>BağlıKöy</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Çamlıköy"
+                                data-desc="Lefke'nin girişinde yer alan, çam ağaçlarının gölgesinde serinleyebileceğiniz ve vadi manzarasının tadını çıkarabileceğiniz sakin bir durak."
+                                data-map="https://maps.app.goo.gl/S2ETmDY2SKrBwwiH9">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Çamlıköy">
+                                <div class="slide-overlay">
+                                    <h3>Çamlıköy</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Gaziveren"
+                                data-desc="Muhteşem gün batımı manzaraları ve geniş kumsallarıyla tanınan, son yıllarda sahil turizminin parlayan yıldızı haline gelen kıyı köyü."
+                                data-map="https://maps.app.goo.gl/nCDevTnDwvHv1tfu7">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Gaziveren">
+                                <div class="slide-overlay">
+                                    <h3>Gaziveren</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Gemikonağı"
+                                data-desc="Lefke Avrupa Üniversitesi'ne ev sahipliği yapan, limanı, kafeleri ve sahil yürüyüş yoluyla bölgenin en hareketli ve dinamik noktası."
+                                data-map="https://maps.app.goo.gl/noXghRBdxfs6ogkv6">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Gemikonağı">
+                                <div class="slide-overlay">
+                                    <h3>Gemikonağı</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place=" Yeşilırmak"
+                                data-desc="Kıbrıs'ın en lezzetli çileklerinin yetiştiği, denize nazır bahçeleri ve temiz havasıyla doğa tutkunlarının vazgeçilmez adresi."
+                                data-map="https://maps.app.goo.gl/3x9QfB2FuWyJfNCLA ">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+                                    alt=" Yeşilırmak">
+                                <div class="slide-overlay">
+                                    <h3> Yeşilırmak</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Yeşilyurt"
+                                data-desc="Narenciye bahçelerinin içinde kaybolacağınız, bölgenin tarım kültürünü en iyi yansıtan, yeşilin her tonuna sahip huzurlu bir yerleşim."
+                                data-map="https://maps.app.goo.gl/f1ZLEcJCSfRP4uLS7">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Yeşilyurt">
+                                <div class="slide-overlay">
+                                    <h3>Yeşilyurt</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place=" Doğancı"
+                                data-desc="Geleneksel dokusunu koruyan, verimli toprakları ve samimi köy kahveleriyle Kıbrıs kültürünü derinden hissedebileceğiniz bir köy."
+                                data-map="https://maps.app.goo.gl/SgEMzjNKMRGjD6898">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+                                    alt=" Doğancı">
+                                <div class="slide-overlay">
+                                    <h3> Doğancı</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Taşpınar"
+                                data-desc="Lefke'nin yükseklerinde yer alan, tarihi geçmişi ve muazzam manzarasıyla keşfedilmeyi bekleyen sessiz bir dağ köyü."
+                                data-map="https://maps.app.goo.gl/c8CVCFCEv3JWs7dMA">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Taşpınar">
+                                <div class="slide-overlay">
+                                    <h3>Taşpınar</h3>
                                 </div>
                             </div>
                         </div>
@@ -336,7 +436,7 @@
                             <li><a href="#lefkosa">Lefkoşa</a></li>
                         </ul>
                     </div>
-                    <div class="footer-column">
+                    <div class="footer-column" id="footer">
                         <h4>Sosyal Medya</h4>
                         <ul>
                             <li><a href="https://www.instagram.com/semihh.19/" target="_blank">Instagram</a></li>
@@ -367,12 +467,22 @@
             <p class="auth-info" id="authInfo" style="display:none;">
                 📩 Email adresine doğrulama linki gönderdik.<br />
                 Lütfen mailini kontrol et.
-                Emaili onayladıktan sonra sayfayı yenile ve giriş yap.
             </p>
 
-            <button class="auth-close" id="closeAuth">&times;</button>
+            <button class="auth-close" id="closeAuth">×</button>
 
             <h2 id="authTitle">Giriş Yap</h2>
+
+            <div id="registerFields" style="display: none; flex-direction: column; gap: 10px; margin-bottom: 10px;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="authName" placeholder="Adınız">
+                    <input type="text" id="authSurname" placeholder="Soyadınız">
+                </div>
+
+                <input type="tel" id="authPhone" placeholder="Telefon (05xx...)" maxlength="11"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <small style="color: #7f8c8d; font-size: 0.7rem; margin-top: -5px;"></small>
+            </div>
 
             <input type="email" id="authEmail" placeholder="Email adresiniz">
             <input type="password" id="authPassword" placeholder="Şifreniz">
@@ -383,8 +493,7 @@
                 Hesabın yok mu? <span>Kayıt Ol</span>
             </p>
         </div>
-    </div>
-    <div class="toast" id="toast"></div>
+        <div class="toast" id="toast"></div>
 
 </body>
 
