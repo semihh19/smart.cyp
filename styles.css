@@ -207,8 +207,9 @@ body {
 .weatherwidget-io {
   display: block;
   width: 100%;
-  max-width: 500px;
+  max-width: 100%;
   margin: 0 auto;
+  max-height: 100px;
 }
 
 /* ============================================
@@ -996,7 +997,7 @@ body {
     height: 50px;
     min-height: 50px;
     max-height: 50px;
-    overflow: hidden;
+    
     display: block;
   }
 
@@ -1011,8 +1012,6 @@ body {
 
   .havadurumu iframe {
     width: 100% !important;
-    height: 50px !important;
-    max-height: 50px !important;
     transform: none !important;
     border: none !important;
     margin: 0 !important;
@@ -1251,17 +1250,6 @@ body {
 
   .nav-logo {
     height: 34px;
-  }
-
-  .havadurumu {
-    height: 45px;
-    min-height: 45px;
-    max-height: 45px;
-  }
-
-  .havadurumu iframe {
-    height: 45px !important;
-    max-height: 45px !important;
   }
 
   .hero-title {
