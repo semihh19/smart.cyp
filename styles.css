@@ -1198,3 +1198,24 @@ body {
     font-size: 13px;
   }
 }
+@media (max-width: 768px) {
+
+  /* NAV MENU AÇILIR PANEL */
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 0;
+    display: none;
+    z-index: 9998;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+}
