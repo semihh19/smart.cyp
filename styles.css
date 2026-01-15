@@ -309,6 +309,56 @@ body {
     .nav-menu {
         display: none;
         z-index: 10000 !important; /* Menü butonun bir tık altında olmalı */
+        /* ======================================================
+   📱 MOBİL İYİLEŞTİRMELER (LOGO VE BOŞLUK DÜZENLEME)
+   ====================================================== */
+
+@media (max-width: 768px) {
+    /* Logo Yazısının Taşmasını Engelle ve Küçült */
+    .logo-text {
+        font-size: 14px !important; /* Yazıyı biraz küçülttük */
+        line-height: 1.2;
+        white-space: normal;
+        max-width: 180px; /* Yazının aşırı yayılmasını önler */
+        display: block;
+    }
+
+    .nav-logo {
+        height: 35px !important; /* Logoyu mobilde biraz daha ufak yapalım */
+    }
+
+    /* BÖLÜMLER ARASI BOŞLUKLARI AZALTALIM */
+    
+    /* Ana başlık kapsayıcılarındaki (Lefke'yi Keşfedin vb.) boşluklar */
+    .ara-baslik-kapsayici {
+        padding: 30px 0 15px 0 !important; /* 60px olan boşluğu 30px'e çektik */
+    }
+
+    /* Başlıkların altındaki boşluklar */
+    .ara-baslik {
+        font-size: 1.8rem !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* Bölümlerin (section) genel dikey boşlukları */
+    section, .city-section, .cittaslow-bilgi-karti {
+        margin-top: 15px !important;
+        margin-bottom: 15px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    /* Video kapsayıcısının boşluğunu azalt */
+    .video-kapsayici {
+        margin: 15px auto !important;
+    }
+
+    /* Eğer Cittaslow kartı çok yer kaplıyorsa */
+    .cittaslow-bilgi-karti {
+        margin: 15px !important;
+        padding: 15px !important;
+    }
+}
     }
 }
 
