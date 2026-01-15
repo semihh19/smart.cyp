@@ -7,70 +7,6 @@
   box-sizing: border-box;
 }
 
-
-/* Başlık Kapsayıcı Alanı */
-.ara-baslik-kapsayici {
-    text-align: center;
-    padding: 30px 0 20px 0; /* Üstten 60px, alttan 40px boşluk */
-    background-color: #ffffff;
-}
-
-/* Başlık Yazı Tipi ve Stili */
-.ara-baslik {
-    font-family: 'Inter', sans-serif; /* Sitedeki diğer yazılarla uyumlu */
-    font-size: 2.5rem;
-    font-weight: 800;
-   color: #003366 !important;
-   
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
-
-/* Başlığın altındaki şık ince çizgi */
-.ara-baslik-cizgi {
-    width: 80px;
-    height: 4px;
-    background-color: #003366;
-    margin: 0 auto;
-    border-radius: 2px;
-}
-
-
-
-/* Menü linklerinin ana stili */
-.nav-menu li {
-    list-style: none; /* Noktaları kaldırır */
-    display: inline-block;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: #003366 !important; /* Yazı rengi koyu mavi */
-    padding: 8px 16px;
-    border-radius: 20px;
-    transition: all 0.3s ease-離開; /* Yumuşak geçiş efekti */
-    font-weight: 500;
-}
-
-/* ÜZERİNE GELİNCE (YANMA EFEKTİ) */
-.nav-link:hover {
-    background-color: #003366 !important; /* Arka plan koyu mavi olur */
-    color: #ffffff !important; /* Yazı beyaz olur */
-    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3); /* Parlama efekti */
-    transform: translateY(-2px); /* Hafif yukarı zıplar */
-}
-
-/* Aktif olan (seçili) butonun yanık kalması için */
-.nav-link.active {
-    background-color: #003366;
-    color: white !important;
-}
-.auth-area {
-    display: flex;
-    align-items: center; /* Dikeyde tam orta */
-    gap: 15px; /* Elemanlar arası boşluk */
-}
-
 .havadurumu{
   height: 60px;
   margin-top: 80px;
@@ -301,66 +237,6 @@ body {
     touch-action: manipulation; /* Mobilde gecikmeyi önler */
 }
 
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: flex !important; /* Mobilde mutlaka görünür yap */
-    }
-    
-    .nav-menu {
-        display: none;
-        z-index: 10000 !important; /* Menü butonun bir tık altında olmalı */
-        /* ======================================================
-   📱 MOBİL İYİLEŞTİRMELER (LOGO VE BOŞLUK DÜZENLEME)
-   ====================================================== */
-
-@media (max-width: 768px) {
-    /* Logo Yazısının Taşmasını Engelle ve Küçült */
-    .logo-text {
-        font-size: 14px !important; /* Yazıyı biraz küçülttük */
-        line-height: 1.2;
-        white-space: normal;
-        max-width: 180px; /* Yazının aşırı yayılmasını önler */
-        display: block;
-    }
-
-    .nav-logo {
-        height: 35px !important; /* Logoyu mobilde biraz daha ufak yapalım */
-    }
-
-    /* BÖLÜMLER ARASI BOŞLUKLARI AZALTALIM */
-    
-    /* Ana başlık kapsayıcılarındaki (Lefke'yi Keşfedin vb.) boşluklar */
-    .ara-baslik-kapsayici {
-        padding: 30px 0 15px 0 !important; /* 60px olan boşluğu 30px'e çektik */
-    }
-
-    /* Başlıkların altındaki boşluklar */
-    .ara-baslik {
-        font-size: 1.8rem !important;
-        margin-bottom: 5px !important;
-    }
-
-    /* Bölümlerin (section) genel dikey boşlukları */
-    section, .city-section, .cittaslow-bilgi-karti {
-        margin-top: 15px !important;
-        margin-bottom: 15px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-    }
-
-    /* Video kapsayıcısının boşluğunu azalt */
-    .video-kapsayici {
-        margin: 15px auto !important;
-    }
-
-    /* Eğer Cittaslow kartı çok yer kaplıyorsa */
-    .cittaslow-bilgi-karti {
-        margin: 15px !important;
-        padding: 15px !important;
-    }
-}
-    }
-}
 
 .mobile-menu-toggle span {
   width: 24px;
@@ -594,7 +470,7 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     background: #fff;
     margin-bottom: 70px;
-margin-left: 20px;
+
     
 }
 .keşfet{
@@ -906,86 +782,9 @@ margin-left: 20px;
   justify-content: center;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-@media (max-width: 1024px) {
-  .hero {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
-  }
 
-  .hero-image {
-    order: -1;
-  }
 
-  /* Update responsive styles for slider */
-  .hero-slider {
-    height: 400px;
-  }
 
-  .hero-image img {
-    height: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-  }
-
-  .mobile-menu-toggle {
-    display: flex;
-  }
-
-  .hero-title {
-    font-size: var(--font-size-4xl);
-  }
-
-  .hero-subtitle {
-    font-size: var(--font-size-lg);
-  }
-
-  .hero-cta {
-    flex-direction: column;
-  }
-
-  .hero-slider {
-    height: 300px;
-  }
-
-  .hero-slide-caption {
-    font-size: var(--font-size-base);
-    padding: var(--spacing-xs) var(--spacing-md);
-    bottom: var(--spacing-md);
-    left: var(--spacing-md);
-  }
-
-  .hero-slider-indicators {
-    bottom: var(--spacing-md);
-    right: var(--spacing-md);
-  }
-
-  .hero-image img {
-    height: 300px;
-  }
-
-  .section-title {
-    font-size: var(--font-size-3xl);
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-content {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-links {
-    grid-template-columns: 1fr;
-  }
-}
 .auth-area,
 .user-info {
   display: flex;
@@ -1126,27 +925,8 @@ margin-left: 20px;
   margin-top: 12px;
 }
 
-.toast {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #16a34a; /* success */
-  color: white;
-  padding: 12px 18px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: var(--shadow-lg);
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-  z-index: 4000;
-}
 
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+
 
 /* 🔴 HATA */
 .toast.error {
@@ -1191,536 +971,6 @@ margin-left: 20px;
   gap: 14px;
 }
 
-/* Telefonlar için özel ayarlar */
-@media (max-width: 480px) {
-    .auth-card {
-        width: 90%; /* Kartın ekranın dışına taşmasını engeller */
-        padding: 20px; /* İç boşluğu azaltır */
-        margin: 10px;
-    }
-
-    h2 {
-        font-size: 20px; /* Başlığı küçültür */
-    }
-
-    input, button {
-        padding: 15px; /* Parmakla basmayı kolaylaştırmak için butonları büyütür (UX) */
-        font-size: 16px; /* Mobilde inputlara tıklandığında zoom yapmasını engeller */
-    }
-    .button-group {
-    display: flex;
-    flex-direction: row; /* Masaüstünde yan yana */
-}
-
-@media (max-width: 480px) {
-    .button-group {
-        flex-direction: column; /* Mobilde alt alta */
-    }
-}
-}
-/* ============================================
-   MOBILE MENU FIX (EKLEME)
-   ============================================ */
-@media (max-width: 768px) {
-  /* Menünün mobil hali */
-  .nav-menu {
-    display: none; /* Varsayılan olarak kapalı */
-    position: absolute;
-    top: 70px; /* Navbar yüksekliği kadar aşağıda */
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8); /* Beyaz ama arkası görünüyor */
-    backdrop-filter: blur(10px); /* Arkadaki içeriği bulanıklaştırır (cam efekti) */
-    flex-direction: column;
-    padding: var(--spacing-lg);
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: var(--shadow-lg);
-    gap: var(--spacing-sm);
-    z-index: 999;
-  }
-
-  /* JavaScript ile .active eklendiğinde menüyü göster */
-  .nav-menu.active {
-    display: flex !important;
-  }
-
-  /* Mobil linklerin stili */
-  .nav-link {
-    width: 100%;
-    text-align: center;
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
-  }
-
-  /* Navbar içindeki actions (login/register) mobilde gizle veya menü içine al */
-  .nav-actions {
-    display: none;
-    
-  }
-}
-/* =========================================================
-   📱 FULL MOBILE RESPONSIVE PACK
-   HTML'e DOKUNMADAN — SADECE CSS MEDIA
-   ========================================================= */
-
-/* =======================
-   TABLET & MOBİL (≤768px)
-   ======================= */
-@media (max-width: 768px) {
-
-  /* GENEL */
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    font-size: 15px;
-    line-height: 1.5;
-    overflow-x: hidden;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  button,
-  a {
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  /* =======================
-     NAVBAR
-     ======================= */
-  .navbar {
-    padding: 0 12px;
-  }
-
-  .nav-brand {
-    gap: 10px;
-  }
-
-  .logo-text {
-    font-size: 14px;
-    line-height: 1.2;
-  }
-
-  .nav-logo {
-    height: 42px;
-  }
-
-  .nav-menu {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    gap: 12px;
-    padding: 20px 0;
-    transform: translateY(-120%);
-    transition: transform 0.3s ease;
-    z-index: 999;
-  }
-
-  .nav-menu.active {
-    transform: translateY(0);
-  }
-
-  .nav-link {
-    width: 100%;
-    text-align: center;
-    font-size: 16px;
-    padding: 12px 0;
-  }
-
-  .mobile-menu-toggle {
-    display: flex;
-  }
-
-  .auth-area,
-  .user-info {
-    display: none;
-  }
-
-  /* =======================
-     HERO SECTION
-     ======================= */
-  .hero {
-    grid-template-columns: 1fr;
-    padding: 40px 16px;
-    min-height: auto;
-    gap: 32px;
-  }
-
-  .hero-content {
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .hero-badge {
-    font-size: 13px;
-  }
-
-  .hero-title {
-    font-size: 26px;
-    line-height: 1.15;
-  }
-
-  .hero-subtitle {
-    font-size: 15px;
-  }
-
-  .hero-cta {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .hero-cta a {
-    width: 100%;
-    text-align: center;
-  }
-
-  /* =======================
-     HERO SLIDER
-     ======================= */
-  .hero-slider,
-  .hero-image img {
-    height: 320px;
-  }
-
-  .hero-slide-caption {
-    font-size: 13px;
-    padding: 6px 14px;
-    bottom: 12px;
-    left: 12px;
-  }
-
-  .hero-slider-indicators {
-    bottom: 10px;
-    right: 10px;
-  }
-
-  /* =======================
-     SECTION TITLES
-     ======================= */
-  .section-title,
-  .ara-baslik {
-    font-size: 22px;
-  }
-
-  /* =======================
-     CARDS / GRID
-     ======================= */
-  .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0 12px;
-  }
-
-  .card {
-    border-radius: 16px;
-  }
-
-  .card-badge {
-    font-size: 13px;
-  }
-
-  .card h3 {
-    font-size: 16px;
-  }
-
-  /* =======================
-     SLIDER BUTTONS
-     ======================= */
-  .slider-btn {
-    width: 40px;
-    height: 40px;
-  }
-
-  /* =======================
-     MODAL
-     ======================= */
-  .modal {
-    width: 95%;
-    max-height: 90vh;
-    padding: 16px;
-    border-radius: 16px;
-  }
-
-  #modal-title {
-    font-size: 18px;
-  }
-
-  #modal-desc {
-    font-size: 14px;
-  }
-
-  /* =======================
-     AUTH MODAL
-     ======================= */
-  .auth-card,
-  .auth-modal {
-    width: 95%;
-    padding: 20px;
-    border-radius: 16px;
-  }
-
-  input,
-  button {
-    font-size: 15px;
-    padding: 14px;
-  }
-
-  /* =======================
-     HABER / INSTAGRAM
-     ======================= */
-  #haber-alani {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 0 12px;
-    margin-left: 20px;
-  }
-
-  .haber-cerceve {
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
-  /* =======================
-     FOOTER
-     ======================= */
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    text-align: center;
-  }
-
-  .footer-links {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-bottom {
-    font-size: 13px;
-  }
-}
-
-/* =======================
-   KÜÇÜK TELEFONLAR (≤480px)
-   ======================= */
-@media (max-width: 480px) {
-
-  .hero-title {
-    font-size: 22px;
-  }
-
-  .hero-subtitle {
-    font-size: 14px;
-  }
-
-  .hero-slider,
-  .hero-image img {
-    height: 260px;
-  }
-
-  .logo-text {
-    font-size: 12px;
-  }
-
-  .nav-logo {
-    height: 36px;
-  }
-
-  .slider-btn {
-    width: 34px;
-    height: 34px;
-  }
-
-  input,
-  button {
-    padding: 12px;
-    font-size: 14px;
-  }
-}
-/* ==============================
-   MOBİL ÜST BAR ÇAKIŞMA FIX
-   ============================== */
-@media (max-width: 768px) {
-
-  .nav-container {
-    align-items: center;
-  }
-
-
-  
-
-  .logo-container {
-    margin-left: 0;
-    gap: 8px;
-    
-  }
-
-  .logo-text {
-    font-size: 13px;
-    line-height: 1.2;
-    white-space: normal;   /* TAŞMAYI BİTİRİR */
-  }
-
-  .nav-logo {
-    height: 38px;
-  }
-
-  /* Giriş / Kayıt mobilde gizle */
-  .auth-area,
-  .user-info {
-    display: none !important;
-  }
-
-  /* Hamburger sağda sabit */
-  .mobile-menu-toggle {
-    margin-left: auto;
-  }
-}
-/* ======================================
-   🌤️ MOBİL HAVA DURUMU FIX
-   ====================================== */
-@media (max-width: 768px) {
-
-  
-
-  /* İçindeki iframe veya widget varsa */
-  .havadurumu iframe,
-  .havadurumu > div {
-    transform: scale(0.85);     /* KÜÇÜLTME */
-    transform-origin: top center;
-  }
-}
-/* ======================================================
-   📱 IPHONE / MOBIL TAM UYUM (KESİN ÇÖZÜM)
-   ====================================================== */
-
-@media (max-width: 768px) {
-  /* 1. Sayfanın sağa taşmasını engelle */
-  html, body {
-    overflow-x: hidden;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* 2. KEŞFET (Lefke & Cittaslow) BÖLÜMÜNÜ ORTALA */
-  .ara-baslik-kapsayici {
-    width: 100% !important;
-    padding: 30px 15px !important;
-    text-align: center !important;
-  }
-
-  .cittaslow-bilgi-karti {
-    width: calc(100% - 30px) !important; /* Kenarlardan eşit pay bırakır */
-    margin: 15px auto !important; /* SAĞA KAYMAYI ENGELLER, ORTALAR */
-    left: 0 !important;
-    border-left: 5px solid #003366;
-  }
-
-  /* 3. GÜNCEL HABERLER (INSTAGRAM) ALANINI ORTALA */
-  #haber-alani {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important; /* Kartları merkeze çeker */
-    width: 100% !important;
-    padding: 0 !important;
-  }
-
-  .haber-cerceve {
-    width: 90% !important; /* iPhone'da ekranın %90'ını kaplar */
-    max-width: 350px;
-    margin: 10px auto !important; /* Hem alt-üst boşluk hem otomatik orta */
-  }
-
-  /* 4. FOOTER (ALT BİLGİ) SOLA YATIKLIĞI DÜZELT */
-  .footer-content {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important; 
-    text-align: center !important;
-    width: 100% !important;
-    padding: 20px 0 !important;
-  }
-
-  .footer-section {
-    width: 100% !important;
-    margin: 10px 0 !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Logo ve metinleri ortalar */
-  }
-
-  /* 5. VİDEO ALANINI DÜZENLE */
-  .video-kapsayici {
-    width: 95% !important;
-    margin: 15px auto !important;
-  }
-}
-
-/* ======================================================
-   📱 MOBİL TAM ORTALAMA VE KAYMA FİX (IPHONE UYUMLU)
-   ====================================================== */
-@media (max-width: 768px) {
-    /* Sayfanın sağa kaymasını önle */
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-    }
-
-    /* HABER ALANI VE İÇERİĞİ ORTALA */
-    #haber-alani {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important; /* Kartları merkeze çeker */
-        justify-content: center !important;
-        width: 100% !important;
-        padding: 0 15px !important;
-        margin: 20px 0 !important;
-    }
-
-    .haber-cerceve {
-        width: 100% !important;
-        max-width: 350px !important; /* iPhone genişliği için ideal */
-        margin: 0 auto 20px auto !important; /* TAM ORTALAMA SAĞLAR */
-        float: none !important;
-    }
-
-    /* KEŞFET VE CITTASLOW KARTINI ORTALA */
-    .cittaslow-bilgi-karti {
-        width: calc(100% - 30px) !important;
-        margin: 20px auto !important; /* Sola yatıklığı bitirir */
-        padding: 20px !important;
-        left: 0 !important;
-    }
-
-    /* FOOTER'I ORTALA */
-    .footer-content {
-        text-align: center !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-
-    .footer-section {
-        margin-bottom: 25px !important;
-        width: 100% !important;
-    }
-
-    /* LOGO YAZISINI DÜZENLE */
-    .logo-text {
-        font-size: 14px !important;
-        max-width: 200px !important;
-        display: block !important;
-        text-align: left;
-    }
-}
 
 /* Hamburger Menü Buton Animasyonu (İsteğe Bağlı) */
 .mobile-menu-toggle.open span:nth-child(1) {
@@ -1734,4 +984,178 @@ margin-left: 20px;
 }
 .mobile-menu-toggle span {
     pointer-events: none; /* Çizgiler tıklamayı engellemesin, buton algılasın */
+}
+/* ============================================
+   MOBILE RESPONSIVE DESIGNS (Max-width: 768px)
+   ============================================ */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Navbar & Navigation */
+    .nav-container {
+        padding: 0 var(--spacing-sm);
+        height: 60px;
+    }
+
+    .mobile-menu-toggle {
+        display: flex; /* Hamburger menüyü görünür yapar */
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 60px;
+        left: -100%; /* Başlangıçta ekranın dışında */
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        padding: var(--spacing-xl) 0;
+        transition: 0.4s ease-in-out;
+        box-shadow: var(--shadow-lg);
+        gap: var(--spacing-md);
+        overflow-y: auto;
+    }
+
+    .nav-menu.active {
+        left: 0; /* Menü açıldığında içeri girer */
+    }
+
+    .nav-link {
+        font-size: var(--font-size-lg);
+        width: 80%;
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+
+    .auth-area {
+        display: none; /* Mobilde karmaşayı önlemek için opsiyonel: burger içine taşınabilir */
+    }
+
+    .logo-text {
+        font-size: 1.1rem; /* Mobilde logonun yanındaki metni küçültür */
+    }
+
+    /* 2. Hero Section */
+    .hero {
+        grid-template-columns: 1fr; /* Yan yana olan yapıyı alt alta getirir */
+        text-align: center;
+        padding-top: var(--spacing-xl);
+        gap: var(--spacing-xl);
+        min-height: auto;
+    }
+
+    .hero-content {
+        order: 2; /* Yazıyı görsele göre aşağıya alır */
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: var(--font-size-3xl);
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: var(--font-size-base);
+    }
+
+    .hero-cta {
+        justify-content: center;
+        flex-direction: column; /* Butonları alt alta yapar */
+        gap: var(--spacing-sm);
+    }
+
+    .hero-image {
+        order: 1; /* Görseli üste alır */
+        height: 350px;
+    }
+
+    .hero-slider, .hero-image img {
+        height: 350px;
+    }
+
+    .hero-slide-caption {
+        font-size: var(--font-size-sm);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        text-align: center;
+    }
+
+    /* 3. Section Headers (Haberler ve Keşfet) */
+    .section-title, 
+    .ara-baslik {
+        font-size: 1.6rem; /* Başlıkları mobilde okunabilir boyuta çeker */
+        letter-spacing: 1px;
+    }
+
+    .section-tag {
+        margin-left: 0;
+        display: block;
+        width: fit-content;
+        margin: 0 auto var(--spacing-md) auto;
+    }
+
+    /* 4. Haber Kartları (Instagram Frame) */
+    .haber-cerceve {
+        width: 100%; /* Telefon genişliğine tam yayılır */
+        max-width: 370px;
+        height: 600px; /* Mobilde biraz daha kısa tutulabilir */
+    }
+
+    /* 5. Keşfet Kartlar (Grid) */
+    .cards-grid {
+        grid-template-columns: 1fr; /* Kartları tek sütun yapar */
+        padding: 0 var(--spacing-sm);
+    }
+
+    .card {
+        height: 350px;
+    }
+
+    /* 6. Modallar (Giriş/Kayıt) */
+    .auth-box {
+        width: 95%;
+        padding: 24px;
+        margin: 0 10px;
+    }
+
+    #registerFields {
+        flex-direction: column; /* Kayıt formundaki yan yana kutuları alt alta alır */
+        gap: 0;
+    }
+
+    #registerFields input {
+        width: 100%;
+    }
+
+    /* 7. Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr; /* Footer linklerini tek sütun yapar */
+        gap: var(--spacing-xl);
+    }
+
+    .footer-brand {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    /* 8. Yardımcı Sınıflar */
+    .havadurumu {
+        margin-top: 40px; /* Mobilde boşluğu azaltır */
+    }
+}
+
+/* Küçük telefonlar için ekstra ayar (iPhone SE vb.) */
+@media screen and (max-width: 380px) {
+    .hero-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .btn, .auth-btn {
+        width: 100%; /* Butonları tam genişlik yapar */
+    }
 }
