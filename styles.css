@@ -779,25 +779,6 @@ body {
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
-@media (max-width: 1024px) {
-  .hero {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
-  }
-
-  .hero-image {
-    order: -1;
-  }
-
-  /* Update responsive styles for slider */
-  .hero-slider {
-    height: 400px;
-  }
-
-  .hero-image img {
-    height: 400px;
-  }
-}
 
   .hero-slider {
     height: 300px;
@@ -1040,146 +1021,6 @@ body {
   gap: 14px;
 }
 
-/* Telefonlar için özel ayarlar */
-@media (max-width: 480px) {
-    .auth-card {
-        width: 90%; /* Kartın ekranın dışına taşmasını engeller */
-        padding: 20px; /* İç boşluğu azaltır */
-        margin: 10px;
-    }
-
-    h2 {
-        font-size: 20px; /* Başlığı küçültür */
-    }
-
-    input, button {
-        padding: 15px; /* Parmakla basmayı kolaylaştırmak için butonları büyütür (UX) */
-        font-size: 16px; /* Mobilde inputlara tıklandığında zoom yapmasını engeller */
-    }
-    .button-group {
-    display: flex;
-    flex-direction: row; /* Masaüstünde yan yana */
-}
-
-@media (max-width: 480px) {
-    .button-group {
-        flex-direction: column; /* Mobilde alt alta */
-    }
-}
-}
-/* ============================================
-   MOBILE MENU FIX (EKLEME)
-   ============================================ */
-/* ============================================
-   FULL RESPONSIVE MOBILE OPTIMIZATION (768px)
-   ============================================ */
-/* ============================================
-   SAFARI & MOBİL TAM UYUMLULUK PAKETİ
-   ============================================ */
-@media screen and (max-width: 768px) {
-    
-    /* 1. Header & Logo Çakışma Fix */
-    .nav-container {
-        height: 70px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        padding: 0 10px !important;
-    }
-
-    .logo-container {
-        gap: 8px !important;
-        max-width: 70% !important; /* Butonlara yer açar */
-    }
-
-    .logo-text {
-        font-size: 1rem !important; /* Yazı taşmasını önler */
-        white-space: nowrap;
-    }
-
-    /* 2. Safari Üç Çizgi Butonu (Hamburger) */
-    .mobile-menu-toggle {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 4px !important;
-        z-index: 9999 !important;
-        background: none !important;
-        border: none !important;
-        padding: 5px !important;
-        min-width: 30px;
-    }
-
-    .mobile-menu-toggle span {
-        display: block !important;
-        width: 25px !important;
-        height: 3px !important;
-        background-color: #003366 !important; /* Görünür koyu mavi */
-    }
-
-    /* 3. Hava Durumu: Tam Genişlik & Safari Fix */
-    .havadurumu {
-        margin-top: 70px !important;
-        width: 100% !important;
-        height: auto !important;
-        min-height: 150px !important; /* İçeriğin sığması için */
-        position: relative !important;
-        left: 0 !important;
-        padding: 0 !important;
-        background: #1e3a5f !important; /* Görseldeki koyu mavi tonu */
-        display: block !important;
-        overflow: hidden !important;
-    }
-
-    /* Hava durumu içindeki widget'ın Safari'de taşmasını önler */
-    .havadurumu iframe, 
-    .havadurumu div {
-        width: 100% !important;
-    }
-
-    /* 4. Hero & Slider (Görsel ve Yazı Arası Boşluk) */
-    .hero {
-        margin-top: 20px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 20px !important;
-        padding: 0 15px !important;
-    }
-
-    .hero-image, .hero-slider {
-        height: 250px !important;
-        width: 100% !important;
-        border-radius: 15px !important;
-    }
-
-    .hero-title {
-        font-size: 1.5rem !important;
-        text-align: center !important;
-        margin-top: 15px !important;
-    }
-
-    /* 5. Giriş/Kayıt Butonlarını Mobilde Gizle (Menü İçine Alınmalı) */
-    .auth-area {
-        display: none !important; /* Üst üste binmeyi önlemek için mobilde gizlenir */
-    }
-}
-
-  /* JavaScript ile .active eklendiğinde menüyü göster */
-  .nav-menu.active {
-    display: flex !important;
-  }
-
-  /* Mobil linklerin stili */
-  .nav-link {
-    width: 100%;
-    text-align: center;
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
-  }
-
-  /* Navbar içindeki actions (login/register) mobilde gizle veya menü içine al */
-  .nav-actions {
-    display: none;
-  }
 
 /* Safari ve Chrome Arasındaki Görünmezlik Sorunu İçin */
 .mobile-menu-toggle {
@@ -1215,4 +1056,145 @@ body {
 }
 .mobile-menu-toggle span {
     pointer-events: none; /* Çizgiler tıklamayı engellemesin, buton algılasın */
+}
+/* ===================================================
+   🔥 TEK PARÇA – FULL RESPONSIVE MEDIA QUERY PAKETİ
+   iPhone Safari + Chrome + Android UYUMLU
+   =================================================== */
+
+/* =====================
+   TABLET (≤1024px)
+   ===================== */
+@media (max-width: 1024px) {
+
+  .nav-container {
+    padding: 0 16px;
+  }
+
+  .hero-slider,
+  .hero-image img {
+    height: 420px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================
+   MOBİL (≤768px)
+   ===================== */
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    display: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    z-index: 9999;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+  }
+
+  /* HERO */
+  .hero-slider,
+  .hero-image img {
+    height: 300px;
+  }
+
+  .hero-slide-caption {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  /* CARDS */
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    height: 340px;
+  }
+
+  /* MODAL */
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+
+  /* FOOTER */
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================
+   KÜÇÜK TELEFON (≤480px)
+   iPhone Safari ÖZEL
+   ===================== */
+@media (max-width: 480px) {
+
+  /* iOS input zoom engelle */
+  input,
+  textarea,
+  button {
+    font-size: 16px;
+  }
+
+  .nav-logo {
+    height: 40px;
+  }
+
+  .hero-slider,
+  .hero-image img {
+    height: 240px;
+  }
+
+  .section-title,
+  .ara-baslik {
+    font-size: 1.8rem;
+  }
+
+  .card {
+    height: 300px;
+  }
+
+  .slider-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .slider-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .footer {
+    padding: 40px 16px;
+  }
+
+  .footer-bottom {
+    font-size: 13px;
+  }
 }
