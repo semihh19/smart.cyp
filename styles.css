@@ -991,104 +991,64 @@ body {
 /* ============================================
    MOBİL İYİLEŞTİRMELERİ (Hizalama ve Çakışma Çözümü)
    ============================================ */
+/* Mevcut kodlarının bittiği yerin hemen altına bunu yapıştır */
+
 @media screen and (max-width: 768px) {
-    
-    /* 1. Hava Durumu Widget Ayarı */
-    /* Ekran görüntüsünde Navbar'ın altında çok bitişik duruyor, boşluk veriyoruz */
+    /* 1. Üst üste binmeyi engellemek için ana taşıyıcılar */
     .havadurumu {
-        height: auto; 
-        margin-top: 75px; /* Navbar yüksekliğine göre ayarlandı */
-        margin-bottom: 15px;
-        display: flex;
-        justify-content: center;
-        padding: 0 10px;
+        margin-top: 80px !important; /* Navbar'dan aşağı iter */
+        height: auto !important;
+        display: block !important;
+        position: relative !important;
     }
 
-    /* 2. Hero Section (Üst Üste Binme Sorunu Çözümü) */
     .hero {
-        margin-top: 0; /* Hava durumu zaten boşluk bırakıyor */
-        padding: var(--spacing-lg) var(--spacing-sm);
-        display: flex;
-        flex-direction: column; /* Görsel ve yazıyı alt alta dizer */
-        min-height: auto;
-        gap: 25px;
+        margin-top: 20px !important; 
+        display: flex !important;
+        flex-direction: column !important; /* Her şeyi alt alta dizer */
+        padding: 10px !important;
+        height: auto !important;
+        min-height: unset !important;
     }
 
-    /* 3. Hero Slider & Görsel Boyutu */
-    .hero-image, .hero-slider, .hero-image img {
-        height: 280px; /* Mobilde çok yer kaplamaması için ideal yükseklik */
-        width: 100%;
-        border-radius: var(--radius-md);
+    /* 2. Slider/Görsel Ayarı */
+    .hero-image, 
+    .hero-slider, 
+    .hero-image img {
+        height: 250px !important; /* Görseli küçültür ki yazı yukarı çıksın */
+        width: 100% !important;
+        position: relative !important;
     }
 
-    .hero-slide-caption {
-        font-size: 0.9rem;
-        padding: 8px 15px;
-        bottom: 15px;
-        left: 15px;
-    }
-
-    /* 4. Hero Yazı Alanı */
+    /* 3. Yazıların çakışmasını engelle */
     .hero-content {
-        text-align: center;
-        width: 100%;
+        width: 100% !important;
+        text-align: center !important;
+        order: 2 !important; /* Yazıyı görselin altına zorla */
     }
 
     .hero-title {
-        font-size: 1.8rem; /* Mobilde taşma yapmaması için küçültüldü */
-        margin-bottom: 15px;
-        line-height: 1.3;
+        font-size: 1.6rem !important;
+        margin-top: 20px !important;
+        line-height: 1.2 !important;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 25px;
+        font-size: 0.9rem !important;
+        margin-bottom: 20px !important;
     }
 
+    /* 4. Butonları düzelt */
     .hero-cta {
-        flex-direction: column; /* Butonlar dar ekranda alt alta gelmeli */
-        align-items: center;
-        gap: 12px;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        align-items: center !important;
     }
 
-    .hero-cta .btn {
-        width: 100%; /* Butonlar parmakla kolay tıklanması için tam genişlik */
-        max-width: 300px;
-    }
-
-    /* 5. Navigasyon & Logo */
-    .nav-container {
-        height: 70px;
-        padding: 0 15px;
-    }
-
-    .logo-text {
-        font-size: 1.1rem; /* Logo yazısının sığması için */
-        white-space: nowrap;
-    }
-
-    .nav-logo {
-        height: 40px;
-    }
-
-    /* 6. Modallar ve Formlar */
-    #registerFields {
-        flex-direction: column;
-    }
-
-    #registerFields input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    /* 7. Başlıklar ve Çizgiler */
-    .section-title, .ara-baslik {
-        font-size: 1.5rem;
-        margin-top: 30px;
-    }
-
-    .title-underline, .ara-baslik-cizgi {
-        margin-bottom: 30px;
+    .btn, .btn-primary, .btn-secondary {
+        width: 90% !important;
+        padding: 12px !important;
     }
 }
 
@@ -1102,5 +1062,6 @@ body {
         width: 100%; /* Butonları tam genişlik yapar */
     }
 }
+
 
 
