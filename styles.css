@@ -882,7 +882,8 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px)   {
+  
   .nav-menu {
     display: none;
   }
@@ -938,6 +939,28 @@ body {
   .footer-links {
     grid-template-columns: 1fr;
   }
+  @media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 16px;
+    transform: translateY(-120%);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+  }
+}
+
 }
 .auth-area,
 .user-info {
@@ -979,6 +1002,12 @@ body {
   background: var(--color-primary);
   color: #fff;
 }
+@media (min-width: 769px) {
+  .mobile-auth {
+    display: none;
+  }
+}
+
 
 
 .auth-btn.logout {
@@ -1292,10 +1321,7 @@ body {
     display: flex;
   }
 
-  .auth-area,
-  .user-info {
-    display: none;
-  }
+  
 
   /* =======================
      HERO SECTION
@@ -1507,10 +1533,10 @@ body {
 
   /* Logo + yazıyı dikey yap */
   .nav-brand {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     gap: 4px;
-    max-width: 70%;
+    max-width: 75%;
   }
 
   .logo-container {
@@ -1561,6 +1587,9 @@ body {
     transform-origin: top center;
   }
 }
+.nav-menu.active {
+    transform: translateY(0);
+  }
 
 /* Hamburger Menü Buton Animasyonu (İsteğe Bağlı) */
 .mobile-menu-toggle.open span:nth-child(1) {
