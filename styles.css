@@ -988,164 +988,107 @@ body {
 /* ============================================
    MOBILE RESPONSIVE DESIGNS (Max-width: 768px)
    ============================================ */
+/* ============================================
+   MOBİL İYİLEŞTİRMELERİ (Hizalama ve Çakışma Çözümü)
+   ============================================ */
 @media screen and (max-width: 768px) {
     
-    /* 1. Navbar & Navigation */
-    .nav-container {
-        padding: 0 var(--spacing-sm);
-        height: 60px;
-    }
-
-    .mobile-menu-toggle {
-        display: flex; /* Hamburger menüyü görünür yapar */
-    }
-
-    .nav-menu {
-        position: fixed;
-        top: 60px;
-        left: -100%; /* Başlangıçta ekranın dışında */
-        width: 100%;
-        height: calc(100vh - 60px);
-        background: white;
-        flex-direction: column;
-        align-items: center;
-        padding: var(--spacing-xl) 0;
-        transition: 0.4s ease-in-out;
-        box-shadow: var(--shadow-lg);
-        gap: var(--spacing-md);
-        overflow-y: auto;
-    }
-
-    .nav-menu.active {
-        left: 0; /* Menü açıldığında içeri girer */
-    }
-
-    .nav-link {
-        font-size: var(--font-size-lg);
-        width: 80%;
-        text-align: center;
-        padding: var(--spacing-md);
-    }
-
-    .auth-area {
-        display: none; /* Mobilde karmaşayı önlemek için opsiyonel: burger içine taşınabilir */
-    }
-
-    .logo-text {
-        font-size: 1.1rem; /* Mobilde logonun yanındaki metni küçültür */
-    }
-
-    /* 2. Hero Section */
-    .hero {
-        grid-template-columns: 1fr; /* Yan yana olan yapıyı alt alta getirir */
-        text-align: center;
-        padding-top: var(--spacing-xl);
-        gap: var(--spacing-xl);
-        min-height: auto;
-    }
-
-    .hero-content {
-        order: 2; /* Yazıyı görsele göre aşağıya alır */
-        max-width: 100%;
-    }
-
-    .hero-title {
-        font-size: var(--font-size-3xl);
-        line-height: 1.2;
-    }
-
-    .hero-subtitle {
-        font-size: var(--font-size-base);
-    }
-
-    .hero-cta {
+    /* 1. Hava Durumu Widget Ayarı */
+    /* Ekran görüntüsünde Navbar'ın altında çok bitişik duruyor, boşluk veriyoruz */
+    .havadurumu {
+        height: auto; 
+        margin-top: 75px; /* Navbar yüksekliğine göre ayarlandı */
+        margin-bottom: 15px;
+        display: flex;
         justify-content: center;
-        flex-direction: column; /* Butonları alt alta yapar */
-        gap: var(--spacing-sm);
+        padding: 0 10px;
     }
 
-    .hero-image {
-        order: 1; /* Görseli üste alır */
-        height: 350px;
+    /* 2. Hero Section (Üst Üste Binme Sorunu Çözümü) */
+    .hero {
+        margin-top: 0; /* Hava durumu zaten boşluk bırakıyor */
+        padding: var(--spacing-lg) var(--spacing-sm);
+        display: flex;
+        flex-direction: column; /* Görsel ve yazıyı alt alta dizer */
+        min-height: auto;
+        gap: 25px;
     }
 
-    .hero-slider, .hero-image img {
-        height: 350px;
+    /* 3. Hero Slider & Görsel Boyutu */
+    .hero-image, .hero-slider, .hero-image img {
+        height: 280px; /* Mobilde çok yer kaplamaması için ideal yükseklik */
+        width: 100%;
+        border-radius: var(--radius-md);
     }
 
     .hero-slide-caption {
-        font-size: var(--font-size-sm);
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        bottom: 15px;
+        left: 15px;
+    }
+
+    /* 4. Hero Yazı Alanı */
+    .hero-content {
         text-align: center;
+        width: 100%;
     }
 
-    /* 3. Section Headers (Haberler ve Keşfet) */
-    .section-title, 
-    .ara-baslik {
-        font-size: 1.6rem; /* Başlıkları mobilde okunabilir boyuta çeker */
-        letter-spacing: 1px;
+    .hero-title {
+        font-size: 1.8rem; /* Mobilde taşma yapmaması için küçültüldü */
+        margin-bottom: 15px;
+        line-height: 1.3;
     }
 
-    .section-tag {
-        margin-left: 0;
-        display: block;
-        width: fit-content;
-        margin: 0 auto var(--spacing-md) auto;
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 25px;
     }
 
-    /* 4. Haber Kartları (Instagram Frame) */
-    .haber-cerceve {
-        width: 100%; /* Telefon genişliğine tam yayılır */
-        max-width: 370px;
-        height: 600px; /* Mobilde biraz daha kısa tutulabilir */
+    .hero-cta {
+        flex-direction: column; /* Butonlar dar ekranda alt alta gelmeli */
+        align-items: center;
+        gap: 12px;
     }
 
-    /* 5. Keşfet Kartlar (Grid) */
-    .cards-grid {
-        grid-template-columns: 1fr; /* Kartları tek sütun yapar */
-        padding: 0 var(--spacing-sm);
+    .hero-cta .btn {
+        width: 100%; /* Butonlar parmakla kolay tıklanması için tam genişlik */
+        max-width: 300px;
     }
 
-    .card {
-        height: 350px;
+    /* 5. Navigasyon & Logo */
+    .nav-container {
+        height: 70px;
+        padding: 0 15px;
     }
 
-    /* 6. Modallar (Giriş/Kayıt) */
-    .auth-box {
-        width: 95%;
-        padding: 24px;
-        margin: 0 10px;
+    .logo-text {
+        font-size: 1.1rem; /* Logo yazısının sığması için */
+        white-space: nowrap;
     }
 
+    .nav-logo {
+        height: 40px;
+    }
+
+    /* 6. Modallar ve Formlar */
     #registerFields {
-        flex-direction: column; /* Kayıt formundaki yan yana kutuları alt alta alır */
-        gap: 0;
+        flex-direction: column;
     }
 
     #registerFields input {
         width: 100%;
+        margin-bottom: 10px;
     }
 
-    /* 7. Footer */
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
+    /* 7. Başlıklar ve Çizgiler */
+    .section-title, .ara-baslik {
+        font-size: 1.5rem;
+        margin-top: 30px;
     }
 
-    .footer-links {
-        grid-template-columns: 1fr; /* Footer linklerini tek sütun yapar */
-        gap: var(--spacing-xl);
-    }
-
-    .footer-brand {
-        margin-bottom: var(--spacing-lg);
-    }
-
-    /* 8. Yardımcı Sınıflar */
-    .havadurumu {
-        margin-top: 40px; /* Mobilde boşluğu azaltır */
+    .title-underline, .ara-baslik-cizgi {
+        margin-bottom: 30px;
     }
 }
 
@@ -1159,3 +1102,5 @@ body {
         width: 100%; /* Butonları tam genişlik yapar */
     }
 }
+
+
