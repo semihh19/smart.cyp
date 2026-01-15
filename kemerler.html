@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lefke Su Kemerleri | Hayat Veren Miras</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --color-aqua: #007b83;
+            /* Su ve bakır pası tonu */
+            --color-nature: #2d5a27;
+            /* Lefke'nin yeşili */
+            --color-sand: #f4f1ea;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-sand);
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* --- ANA SAYFA BUTONU --- */
+        .back-nav {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1000;
+        }
+
+        .home-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 12px 20px;
+            background: rgba(0, 123, 131, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .home-link:hover {
+            background: white;
+            color: var(--color-aqua);
+        }
+
+        /* --- HERO (AQUEDUCT) --- */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url('https://www.lefkebelediyesi.com//media/k2/galleries/19/101694013.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            animation: slideInLeft 1.2s ease-out;
+        }
+
+        /* --- İÇERİK --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .text-box h2 {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            color: var(--color-aqua);
+            margin-bottom: 20px;
+        }
+
+        .image-frame {
+            position: relative;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            transform: rotate(-2deg);
+        }
+
+        .image-frame img {
+            width: 100%;
+            display: block;
+        }
+
+        /* --- DETAY KARTLARI --- */
+        .water-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-bottom: 5px solid var(--color-aqua);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            color: var(--color-aqua);
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+        }
+
+        /* ANIMASYONLAR */
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .split-section {
+                grid-template-columns: 1fr;
+            }
+
+            .home-link span:not(.icon) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="back-nav">
+        <a href="index.html#ara-baslik-kapsayici" class="home-link">
+            <span class="icon">🏠</span>
+            <span>Ana Sayfa</span>
+        </a>
+    </div>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Lefke Su Kemerleri</h1>
+            <p style="letter-spacing: 5px; text-transform: uppercase;">Suyun Tarih Boyunca Yolculuğu</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="split-section">
+            <div class="text-box">
+                <h2>Hayat Veren Kanallar</h2>
+                <p>Lefke’nin narenciye bahçeleriyle ünlü olmasının arkasındaki asıl mimari, asırlardır dağlardan gelen
+                    suyu kente taşıyan tarihi su kemerleridir. Osmanlı döneminde zirveye ulaşan bu mühendislik
+                    harikaları, sadece su taşımakla kalmamış, bölgenin ekolojik dengesini ve tarımsal zenginliğini
+                    bugüne taşımıştır.</p>
+                <p>Kasabanın içinden süzülerek geçen bu kemerler, Lefke'nin her köşesine bereket dağıtan kılcal damarlar
+                    gibidir.</p>
+            </div>
+            <div class="image-frame">
+                <img src="https://www.lefkebelediyesi.com//media/k2/galleries/19/selale.jpg"
+                    alt="Lefke Su Kemerleri Görseli">
+            </div>
+        </section>
+
+        <div class="water-cards">
+            <div class="card">
+                <h3>🌊 Mühendislik Mirası</h3>
+                <p>Eğim ve yerçekimi kullanılarak suyun kilometrelerce taşınmasını sağlayan bu kemerler, dönemin ileri
+                    su mühendisliğinin en somut kanıtıdır.</p>
+            </div>
+            <div class="card">
+                <h3>🍊 Narenciyenin Kaynağı</h3>
+                <p>Bugün yediğiniz ünlü Lefke Yafa portakallarının ve sulu limonlarının varlığı, bu antik kanalların
+                    asırlardır süren nöbetine borçludur.</p>
+            </div>
+            <div class="card">
+                <h3>🏛️ Mimari Zarafet</h3>
+                <p>Kesme taşlardan inşa edilen kemerli yapılar, Lefke sokaklarına estetik bir derinlik katarken tarih
+                    severler için eşsiz bir gezi rotası sunar.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer
+        style="background: var(--color-aqua); color: white; padding: 60px 20px; text-align: center; margin-top: 50px;">
+        <p>Lefke Çevre ve Ekoloji Derneği &copy; 2026</p>
+    </footer>
+
+</body>
+
+</html>
