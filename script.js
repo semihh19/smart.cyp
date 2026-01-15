@@ -163,16 +163,29 @@ const modalMap = document.getElementById("modal-map")
 const modalClose = document.querySelector(".modal-close")
 const modalBackdrop = document.querySelector(".modal-backdrop")
 
-function openModal(title, description, mapLink) {
-  if (modalTitle) modalTitle.textContent = title
-  if (modalDesc) modalDesc.textContent = description
+// içerisindeki modal fonksiyonunu bu şekilde güncelle:
+function openModal(title, description, mapLink, detailLink) {
+  if (modalTitle) modalTitle.textContent = title;
+  if (modalDesc) modalDesc.textContent = description;
   if (modalMap) {
-    modalMap.href = mapLink
-    modalMap.setAttribute("target", "_blank")
-    modalMap.setAttribute("rel", "noopener noreferrer")
+    modalMap.href = mapLink;
+    modalMap.setAttribute("target", "_blank");
+    modalMap.setAttribute("rel", "noopener noreferrer");
   }
-  if (modal) modal.classList.add("active")
-  document.body.style.overflow = "hidden"
+
+  // YENİ EKLEDİĞİMİZ KISIM: Detay Butonu
+  const modalDetails = document.getElementById("modal-details");
+  if (modalDetails) {
+    if (detailLink) {
+      modalDetails.href = detailLink;
+      modalDetails.style.display = "inline-flex"; // Link varsa göster
+    } else {
+      modalDetails.style.display = "none"; // Link yoksa (örn: kafeler) gizle
+    }
+  }
+
+  if (modal) modal.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
 function closeModal() {
@@ -227,17 +240,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateActiveNavLink()
 
   // 🖼️ Kart slide tıklama → modal aç
-  document.querySelectorAll(".slide").forEach((slide) => {
-    slide.addEventListener("click", () => {
-      if (!slide.classList.contains("active")) return
+  // içerisindeki DOMContentLoaded içindeki tıklama olayını güncelle:
+document.querySelectorAll(".slide").forEach((slide) => {
+  slide.addEventListener("click", () => {
+    if (!slide.classList.contains("active")) return;
 
-      const { place, desc, map } = slide.dataset
-      if (place && desc && map) {
-        openModal(place, desc, map)
-      }
-    })
-  })
-
+    // dataset kısmına 'detail' ekledik
+    const { place, desc, map, detail } = slide.dataset;
+    if (place && desc && map) {
+      openModal(place, desc, map, detail); // detail parametresini gönderiyoruz
+    }
+  });
+});
   // 🗺️ Modal içindeki harita linki
   if (modalMap) {
     modalMap.addEventListener("click", (e) => {
@@ -499,11 +513,29 @@ async function haberCek() {
         console.error("Hata:", e);
     }
 }
+const mobileAuthBtn = document.querySelector('.mobile-auth-btn');
+const mobileAuthMenu = document.querySelector('.mobile-auth-menu');
+
+mobileAuthBtn.addEventListener('click', () => {
+  mobileAuthMenu.style.display =
+    mobileAuthMenu.style.display === 'block' ? 'none' : 'block';
+});
+
+// dışarı tıklanınca kapansın
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.mobile-auth')) {
+    mobileAuthMenu.style.display = 'none';
+  }
+});
+
+const bubble = document.getElementById("feedbackBubble");
+const panel = document.getElementById("feedbackPanel");
+
+bubble.addEventListener("click", () => {
+  panel.style.display = panel.style.display === "block" ? "none" : "block";
+});
 
 
 window.addEventListener('load', haberCek);
-
-
-
-
 window.addEventListener("scroll", updateActiveNavLink)
+
