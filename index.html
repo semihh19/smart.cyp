@@ -2,9 +2,12 @@
 <html lang="tr">
 
 <head>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap"
+        rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyprus Travel - Kıbrıs'ı Keşfedin</title>
+    <title>Lefke Çevre ve Ekoloji Derneği- Lefke'yi Keşfedin</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,26 +22,25 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-
-                <a href="#" class="logo-container">
-                    <img src="cyprus.travel logo.png" alt="Cyprus Travel Logo" class="nav-logo">
-                    <span class="logo-text">Cyprus Travel</span>
-                </a>
-
-
                 <div class="welcome-text" id="welcomeText" style="display:none;">
                     Hoş geldin, <strong id="welcomeEmail"></strong>
                 </div>
+                <a href="#" class="logo-container">
+                    <img src="lefkeçevre.jepg.jpg" alt="Cyprus Travel Logo" class="nav-logo">
+                    <span class="logo-text">Lefke Çevre ve Ekoloji Derneği</span>
+                </a>
+
+
+
             </div>
 
             <ul class="nav-menu">
-
-                <li><a href="#ust-kisim" class="nav-link active">Ana Sayfa</a></li>
-                <li><a href="#lefke" class="nav-link">Lefke</a></li>
-                <li><a href="#magusa" class="nav-link">Mağusa</a></li>
-                <li><a href="#girne" class="nav-link">Girne</a></li>
-                <li><a href="#lefkosa" class="nav-link">Lefkoşa</a></li>
+                <li><a href="#" class="nav-link active">Ana Sayfa</a></li>
+                <li><a href="#dernek-haberler" class="nav-link">Haberler</a></li>
+                <li><a href="#ara-baslik-kapsayici" class="nav-link">Keşfet</a></li>
             </ul>
+
+
             <div class="auth-area" id="authButtons">
                 <button class="auth-btn login" id="openLogin">Giriş Yap</button>
                 <button class="auth-btn register" id="openRegister">Kayıt Ol</button>
@@ -55,6 +57,13 @@
             </button>
         </div>
     </nav>
+    <div class="havadurumu">
+        <a class="weatherwidget-io" href="https://forecast7.com/tr/35d1032d84/lefka/" data-label_1="LEFKE"
+            data-label_2="HAVA DURUMU" data-theme="original">LEFKE HAVA DURUMU</a>
+        <script>
+            !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+        </script>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -64,7 +73,7 @@
             <p class="hero-subtitle">Tarihi, kültürü ve doğal güzellikleriyle Kıbrıs'ın en özel yerlerini keşfedin</p>
             <div class="hero-cta">
                 <a href="#lefke" class="btn btn-primary">Keşfet</a>
-                <a href="#footer" class="btn btn-secondary">Daha Fazla Bilgi</a>
+                <a href="cıttaslow.html" class="btn btn-secondary">Cittaslow</a>
             </div>
         </div>
         <!-- Converting single image to auto-playing slider with 5 Cyprus images -->
@@ -99,6 +108,7 @@
                     <img src="öyküü.jpeg" alt="HAYATIM">
                     <div class="hero-slide-caption">HAYATIM</div>
                 </div>
+
             </div>
             <!-- Adding slider indicators for manual navigation -->
             <div class="hero-slider-indicators">
@@ -116,13 +126,32 @@
     <section id="lefke" class="city-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Şehir Rehberi</span>
-                <h2 class="section-title">Lefke 🍊</h2>
+
+                <h2 class="section-title">
+                    Lefke
+                </h2>
                 <p class="section-desc">Kıbrıs'ın batısında yer alan sakin ve doğa ile iç içe bir bölge. Narenciye
                     bahçeleri ve tarihi dokusuyla huzur arayanların adresi.</p>
             </div>
+            <section id="dernek-haberler">
+                <h2 class="section-title">GÜNCEL HABERLER</h2>
+                <div class="title-underline"></div>
 
-            <div class="cards-grid">
+                <div id="haber-alani">
+                </div>
+            </section>
+
+            ...
+            <section id="ara-baslik-kapsayici"></section>
+
+            <div class="ara-baslik-kapsayici ">
+                <h2 class="ara-baslik">Lefke'yi Keşfedin</h2>
+                <div class="ara-baslik-cizgi"></div>
+            </div>
+
+            <script async src="//www.instagram.com/embed.js"></script>
+            <div class="cards-grid" section id="cards-grid">
+
                 <!-- Card 1: Cafes -->
                 <div class="card">
                     <div class="card-badge">Kafeler</div>
@@ -365,36 +394,6 @@
         </div>
     </section>
 
-    <!-- Other Cities Placeholder -->
-    <section id="magusa" class="city-section city-placeholder">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Yakında</span>
-                <h2 class="section-title">Mağusa</h2>
-                <p class="section-desc">Tarihi surları ve antik limanıyla Kıbrıs'ın en önemli şehirlerinden biri.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="girne" class="city-section city-placeholder">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Yakında</span>
-                <h2 class="section-title">Girne</h2>
-                <p class="section-desc">Muhteşem kalesi ve limanıyla Akdeniz'in göz bebeği.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="lefkosa" class="city-section city-placeholder">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Yakında</span>
-                <h2 class="section-title">Lefkoşa</h2>
-                <p class="section-desc">Kıbrıs'ın başkenti, kültür ve tarihin buluşma noktası.</p>
-            </div>
-        </div>
-    </section>
 
     <!-- Modal -->
     <div id="modal" class="modal">
@@ -417,14 +416,14 @@
             </a>
         </div>
     </div>
-
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>Cyprus Travel</h3>
-                    <p>Kıbrıs'ın güzelliklerini keşfedin</p>
+                    <h3>Lefke Çevre ve Ekoloji Derneği</h3>
+                    <p>Lefke'nin güzelliklerini keşfedin.</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -439,7 +438,7 @@
                     <div class="footer-column" id="footer">
                         <h4>Sosyal Medya</h4>
                         <ul>
-                            <li><a href="https://www.instagram.com/semihh.19/" target="_blank">Instagram</a></li>
+                            <li><a href="https://www.instagram.com/lced.2025/" target="_blank">Instagram</a></li>
                             <li><a href="#">Facebook</a></li>
                             <li><a href="#">Twitter</a></li>
                         </ul>
@@ -454,7 +453,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Cyprus Travel. Tüm hakları saklıdır.</p>
+                <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
             </div>
         </div>
     </footer>
