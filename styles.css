@@ -1210,6 +1210,27 @@ body {
     display: none;
   }
 }
+/* Safari ve Chrome Arasındaki Görünmezlik Sorunu İçin */
+.mobile-menu-toggle {
+    display: flex !important; /* Görünürlüğü zorla */
+    position: fixed !important; /* Sayfa kaysa da yerinde kalsın */
+    right: 20px !important; /* Sağdan mesafeyi netleştir */
+    top: 15px !important; /* Yukarıdan mesafeyi netleştir */
+    z-index: 99999 !important; /* Diğer her şeyin (hava durumu, slider vb.) üstünde kalsın */
+    background-color: #ffffff; /* Safari'de fark edilmesi için gerekirse arkasına renk ver */
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Hafif gölge ile belirginleştir */
+}
+
+/* İçindeki çizgilerin Safari'de kaybolmaması için renk ve boyut garantisi */
+.mobile-menu-toggle span {
+    display: block !important;
+    width: 25px !important;
+    height: 3px !important;
+    background-color: #003366 !important; /* Çizgi rengini koyu mavi yap */
+    margin: 4px 0 !important;
+}
 
 /* Hamburger Menü Buton Animasyonu (İsteğe Bağlı) */
 .mobile-menu-toggle.open span:nth-child(1) {
