@@ -1073,129 +1073,93 @@ body {
 /* ============================================
    FULL RESPONSIVE MOBILE OPTIMIZATION (768px)
    ============================================ */
+/* ============================================
+   SAFARI & MOBİL TAM UYUMLULUK PAKETİ
+   ============================================ */
 @media screen and (max-width: 768px) {
     
-    /* 1. Navbar & Safari Buton Fix */
+    /* 1. Header & Logo Çakışma Fix */
     .nav-container {
         height: 70px !important;
-        padding: 0 15px !important;
-        position: relative;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 10px !important;
     }
 
+    .logo-container {
+        gap: 8px !important;
+        max-width: 70% !important; /* Butonlara yer açar */
+    }
+
+    .logo-text {
+        font-size: 1rem !important; /* Yazı taşmasını önler */
+        white-space: nowrap;
+    }
+
+    /* 2. Safari Üç Çizgi Butonu (Hamburger) */
     .mobile-menu-toggle {
-        display: flex !important; /* Görünürlüğü zorla */
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-        position: absolute !important; 
-        right: 15px !important; /* Sağdan mesafe */
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        z-index: 99999 !important; /* En üst katman */
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+        z-index: 9999 !important;
+        background: none !important;
+        border: none !important;
+        padding: 5px !important;
+        min-width: 30px;
     }
 
-    /* Safari'de çizgilerin kaybolmaması için kalınlık ve renk */
     .mobile-menu-toggle span {
         display: block !important;
         width: 25px !important;
         height: 3px !important;
-        background-color: #003366 !important; 
-        border-radius: 2px;
+        background-color: #003366 !important; /* Görünür koyu mavi */
     }
 
-    /* 2. Hava Durumu: Sağa-Sola Tam Sıfır ve Daha İnce */
+    /* 3. Hava Durumu: Tam Genişlik & Safari Fix */
     .havadurumu {
-        margin-top: 70px !important; 
-        height: 50px !important; /* Kısa ve zarif */
-        width: 100vw !important; /* Ekranı tam kapla */
+        margin-top: 70px !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 150px !important; /* İçeriğin sığması için */
         position: relative !important;
-        left: 50% !important;
-        right: 50% !important;
-        margin-left: -50vw !important;
-        margin-right: -50vw !important;
+        left: 0 !important;
         padding: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background: #f1f5f9 !important;
+        background: #1e3a5f !important; /* Görseldeki koyu mavi tonu */
+        display: block !important;
         overflow: hidden !important;
     }
 
-    /* 3. Hero Alanı: Düzenli ve Mesafeli */
+    /* Hava durumu içindeki widget'ın Safari'de taşmasını önler */
+    .havadurumu iframe, 
+    .havadurumu div {
+        width: 100% !important;
+    }
+
+    /* 4. Hero & Slider (Görsel ve Yazı Arası Boşluk) */
     .hero {
-        margin-top: 30px !important; /* Hava durumu ile slider arası boşluk */
+        margin-top: 20px !important;
         display: flex !important;
         flex-direction: column !important;
-        padding: 0 15px !important;
-        min-height: auto !important;
         gap: 20px !important;
+        padding: 0 15px !important;
     }
 
-    /* 4. Slider Boyutu */
-    .hero-image, 
-    .hero-slider, 
-    .hero-image img {
-        height: 240px !important; /* Yazılara yer açmak için ideal */
+    .hero-image, .hero-slider {
+        height: 250px !important;
         width: 100% !important;
-        border-radius: 12px !important;
-        object-fit: cover;
-    }
-
-    /* 5. Yazı ve İçerik */
-    .hero-content {
-        text-align: center !important;
-        width: 100% !important;
-        max-width: 100% !important;
+        border-radius: 15px !important;
     }
 
     .hero-title {
-        font-size: 1.6rem !important;
-        line-height: 1.2 !important;
-        color: #003366 !important;
-        margin-bottom: 10px !important;
+        font-size: 1.5rem !important;
+        text-align: center !important;
+        margin-top: 15px !important;
     }
 
-    .hero-subtitle {
-        font-size: 0.95rem !important;
-        margin-bottom: 20px !important;
-        padding: 0 10px;
-    }
-
-    /* 6. Butonlar: Kolay Tıklanabilir */
-    .hero-cta {
-        flex-direction: column !important;
-        gap: 12px !important;
-        align-items: center !important;
-    }
-
-    .hero-cta .btn {
-        width: 100% !important;
-        max-width: 280px !important;
-        padding: 12px !important;
-        font-size: 15px !important;
-    }
-
-    /* 7. Haber Kartları ve Grid */
-    .haber-cerceve {
-        width: 100% !important;
-        max-width: 350px;
-        height: auto !important;
-        aspect-ratio: 4 / 5;
-        margin: 0 auto 40px auto;
-    }
-
-    .cards-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
-
-    .section-title, .ara-baslik {
-        font-size: 1.6rem !important;
+    /* 5. Giriş/Kayıt Butonlarını Mobilde Gizle (Menü İçine Alınmalı) */
+    .auth-area {
+        display: none !important; /* Üst üste binmeyi önlemek için mobilde gizlenir */
     }
 }
 
