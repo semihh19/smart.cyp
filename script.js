@@ -191,7 +191,8 @@ document.addEventListener("keydown", (e) => {
 
 // Active nav link on scroll
 function updateActiveNavLink() {
-  const sections = document.querySelectorAll(".city-section, .hero")
+  // Buraya yeni ID'leri ekledik: #dernek-haberler ve #cards-grid
+const sections = document.querySelectorAll(".city-section, .hero, #dernek-haberler, #ara-baslik-kapsayici")
   const navLinks = document.querySelectorAll(".nav-link")
   let current = ""
 
@@ -462,6 +463,45 @@ if (logoutBtn) {
     showToast("👋 Çıkış yapıldı")
   }
 }
+async function haberCek() {
+    const tabloID = "10K9Hn0zvmILaz-HOunQAfiO1H3OHcqzYWN5Gn6utcpI";
+    const url = `https://docs.google.com/spreadsheets/d/${tabloID}/gviz/tq?tqx=out:csv`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.text();
+        const satirlar = data.split('\n')
+                             .map(s => s.replace(/"/g, "").trim())
+                             .filter(s => s.includes("instagram.com"));
+
+        const container = document.getElementById('haber-alani');
+        if (container) {
+            container.innerHTML = ""; 
+
+            satirlar.slice(0, 3).forEach(link => {
+                const wrap = document.createElement('div');
+                wrap.className = 'haber-cerceve'; // CSS'te yazdığımız sınıfı ekledik
+
+                // ÖNEMLİ: data-instgrm-captioned eklemiyoruz, böylece alt yazılar gelmez
+                wrap.innerHTML = `
+                    <blockquote class="instagram-media" data-instgrm-version="14" style="width:100%; margin:0;">
+                        <a href="${link}"></a>
+                    </blockquote>
+                `;
+                container.appendChild(wrap);
+            });
+
+            if (window.instgrm) {
+                window.instgrm.Embeds.process();
+            }
+        }
+    } catch (e) {
+        console.error("Hata:", e);
+    }
+}
+
+
+window.addEventListener('load', haberCek);
 
 
 
