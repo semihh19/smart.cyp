@@ -1000,58 +1000,74 @@ body {
         height: auto !important;
         display: block !important;
         position: relative !important;
-    }
-
-    .hero {
-        margin-top: 20px !important; 
+    }/* ============================================
+   MOBİL: HAVA DURUMU VE HERO TAM DÜZENLEME
+   ============================================ */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Hava Durumu: Sağa ve sola tam sıfır, daha ince */
+    .havadurumu {
+        margin-top: 70px !important; /* Navbar'ın hemen bittiği yer */
+        height: 45px !important;    /* Yüksekliği kısalttık */
+        width: 100vw !important;    /* Ekran genişliğine tam yayılması için */
+        margin-left: calc(-50vw + 50%) !important; /* Eğer container içindeyse dışarı taşırıp sıfırlar */
+        margin-right: calc(-50vw + 50%) !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        background: #f8fafc; /* Arka plan rengini netleştirdik */
         display: flex !important;
-        flex-direction: column !important; /* Her şeyi alt alta dizer */
-        padding: 10px !important;
-        height: auto !important;
-        min-height: unset !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
-    /* 2. Slider/Görsel Ayarı */
+    /* 2. Hero Alanı: Hava durumu ile arasını açıyoruz */
+    .hero {
+        margin-top: 40px !important; /* Hava durumu ile slider arasındaki boşluk */
+        padding: 0 15px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important; /* Elemanların kendi arasındaki boşluk */
+        min-height: auto !important;
+    }
+
+    /* 3. Slider: Boyutunu biraz daha küçültelim ki yazılar yukarı çıksın */
     .hero-image, 
     .hero-slider, 
     .hero-image img {
-        height: 250px !important; /* Görseli küçültür ki yazı yukarı çıksın */
+        height: 230px !important; 
+        border-radius: 12px !important;
         width: 100% !important;
-        position: relative !important;
     }
 
-    /* 3. Yazıların çakışmasını engelle */
+    /* 4. İçerik ve Başlık */
     .hero-content {
-        width: 100% !important;
         text-align: center !important;
-        order: 2 !important; /* Yazıyı görselin altına zorla */
+        width: 100% !important;
     }
 
     .hero-title {
-        font-size: 1.6rem !important;
-        margin-top: 20px !important;
-        line-height: 1.2 !important;
+        font-size: 1.5rem !important; /* Taşmayı önleyen ideal boyut */
+        margin-top: 10px !important;
+        color: #003366 !important;
     }
 
     .hero-subtitle {
         font-size: 0.9rem !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 25px !important;
     }
 
-    /* 4. Butonları düzelt */
+    /* 5. Butonlar */
     .hero-cta {
-        display: flex !important;
         flex-direction: column !important;
-        gap: 10px !important;
+        width: 100% !important;
         align-items: center !important;
     }
 
-    .btn, .btn-primary, .btn-secondary {
-        width: 90% !important;
-        padding: 12px !important;
+    .hero-cta .btn {
+        width: 85% !important;
+        padding: 10px !important;
     }
 }
-
 /* Küçük telefonlar için ekstra ayar (iPhone SE vb.) */
 @media screen and (max-width: 380px) {
     .hero-title {
@@ -1062,6 +1078,7 @@ body {
         width: 100%; /* Butonları tam genişlik yapar */
     }
 }
+
 
 
 
