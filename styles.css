@@ -35,12 +35,7 @@
     border-radius: 2px;
 }
 
-/* Mobilde yazının boyutu */
-@media (max-width: 768px) {
-    .ara-baslik {
-        font-size: 1.8rem;
-    }
-}
+
 /* Menü linklerinin ana stili */
 .nav-menu li {
     list-style: none; /* Noktaları kaldırır */
@@ -305,84 +300,6 @@ body {
     touch-action: manipulation; /* Mobilde gecikmeyi önler */
 }
 
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: flex !important; /* Mobilde mutlaka görünür yap */
-    }
-    
-    .nav-menu {
-        display: none;
-        z-index: 10000 !important; /* Menü butonun bir tık altında olmalı */
-    }
-}
-
-.mobile-menu-toggle span {
-  width: 24px;
-  height: 2px;
-  background: var(--color-primary);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-/* ============================================
-   HERO SECTION
-   ============================================ */
-.hero {
-  margin-top: 70px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-2xl);
-  align-items: center;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: var(--spacing-2xl) var(--spacing-lg);
-  min-height: calc(100vh - 70px);
-}
-
-.hero-content {
-  max-width: 600px;
-}
-
-.hero-badge {
-  display: inline-block;
-  padding: var(--spacing-xs) var(--spacing-md);
-  background: var(--color-bg-light);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-md);
-}
-
-.hero-title {
-  font-size: var(--font-size-5xl);
-  font-weight: 800;
-  line-height: 1.1;
-  color: var(--color-dark);
-  margin-bottom: var(--spacing-md);
-  letter-spacing: -0.03em;
-}
-
-.hero-subtitle {
-  font-size: var(--font-size-xl);
-  color: var(--color-text-light);
-  margin-bottom: var(--spacing-xl);
-  line-height: 1.6;
-}
-
-.hero-cta {
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-.hero-image {
-  position: relative;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-xl);
-}
 
 /* Adding slider styles for hero image section */
 .hero-slider {
@@ -882,27 +799,6 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-  }
-
-  .mobile-menu-toggle {
-    display: flex;
-  }
-
-  .hero-title {
-    font-size: var(--font-size-4xl);
-  }
-
-  .hero-subtitle {
-    font-size: var(--font-size-lg);
-  }
-
-  .hero-cta {
-    flex-direction: column;
-  }
-
   .hero-slider {
     height: 300px;
   }
@@ -938,7 +834,7 @@ body {
   .footer-links {
     grid-template-columns: 1fr;
   }
-}
+
 .auth-area,
 .user-info {
   display: flex;
@@ -1174,23 +1070,134 @@ body {
 /* ============================================
    MOBILE MENU FIX (EKLEME)
    ============================================ */
-@media (max-width: 768px) {
-  /* Menünün mobil hali */
-  .nav-menu {
-    display: none; /* Varsayılan olarak kapalı */
-    position: absolute;
-    top: 70px; /* Navbar yüksekliği kadar aşağıda */
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8); /* Beyaz ama arkası görünüyor */
-    backdrop-filter: blur(10px); /* Arkadaki içeriği bulanıklaştırır (cam efekti) */
-    flex-direction: column;
-    padding: var(--spacing-lg);
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: var(--shadow-lg);
-    gap: var(--spacing-sm);
-    z-index: 999;
-  }
+/* ============================================
+   FULL RESPONSIVE MOBILE OPTIMIZATION (768px)
+   ============================================ */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Navbar & Safari Buton Fix */
+    .nav-container {
+        height: 70px !important;
+        padding: 0 15px !important;
+        position: relative;
+    }
+
+    .mobile-menu-toggle {
+        display: flex !important; /* Görünürlüğü zorla */
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        position: absolute !important; 
+        right: 15px !important; /* Sağdan mesafe */
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 99999 !important; /* En üst katman */
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Safari'de çizgilerin kaybolmaması için kalınlık ve renk */
+    .mobile-menu-toggle span {
+        display: block !important;
+        width: 25px !important;
+        height: 3px !important;
+        background-color: #003366 !important; 
+        border-radius: 2px;
+    }
+
+    /* 2. Hava Durumu: Sağa-Sola Tam Sıfır ve Daha İnce */
+    .havadurumu {
+        margin-top: 70px !important; 
+        height: 50px !important; /* Kısa ve zarif */
+        width: 100vw !important; /* Ekranı tam kapla */
+        position: relative !important;
+        left: 50% !important;
+        right: 50% !important;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #f1f5f9 !important;
+        overflow: hidden !important;
+    }
+
+    /* 3. Hero Alanı: Düzenli ve Mesafeli */
+    .hero {
+        margin-top: 30px !important; /* Hava durumu ile slider arası boşluk */
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 15px !important;
+        min-height: auto !important;
+        gap: 20px !important;
+    }
+
+    /* 4. Slider Boyutu */
+    .hero-image, 
+    .hero-slider, 
+    .hero-image img {
+        height: 240px !important; /* Yazılara yer açmak için ideal */
+        width: 100% !important;
+        border-radius: 12px !important;
+        object-fit: cover;
+    }
+
+    /* 5. Yazı ve İçerik */
+    .hero-content {
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .hero-title {
+        font-size: 1.6rem !important;
+        line-height: 1.2 !important;
+        color: #003366 !important;
+        margin-bottom: 10px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem !important;
+        margin-bottom: 20px !important;
+        padding: 0 10px;
+    }
+
+    /* 6. Butonlar: Kolay Tıklanabilir */
+    .hero-cta {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: center !important;
+    }
+
+    .hero-cta .btn {
+        width: 100% !important;
+        max-width: 280px !important;
+        padding: 12px !important;
+        font-size: 15px !important;
+    }
+
+    /* 7. Haber Kartları ve Grid */
+    .haber-cerceve {
+        width: 100% !important;
+        max-width: 350px;
+        height: auto !important;
+        aspect-ratio: 4 / 5;
+        margin: 0 auto 40px auto;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .section-title, .ara-baslik {
+        font-size: 1.6rem !important;
+    }
+}
 
   /* JavaScript ile .active eklendiğinde menüyü göster */
   .nav-menu.active {
@@ -1209,7 +1216,7 @@ body {
   .nav-actions {
     display: none;
   }
-}
+
 /* Safari ve Chrome Arasındaki Görünmezlik Sorunu İçin */
 .mobile-menu-toggle {
     display: flex !important; /* Görünürlüğü zorla */
