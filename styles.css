@@ -1553,13 +1553,8 @@ margin-left: 20px;
     align-items: center;
   }
 
-  /* Logo + yazıyı dikey yap */
-  .nav-brand {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    max-width: 70%;
-  }
+
+  
 
   .logo-container {
     margin-left: 0;
@@ -1593,14 +1588,7 @@ margin-left: 20px;
    ====================================== */
 @media (max-width: 768px) {
 
-  .havadurumu {
-        /* 80px ÇOK FAZLAYDI */
-    height: auto;
-    max-height: 260px;    /* Taşmayı engeller */
-    overflow: hidden;
-    margin-top: 50px;
-    
-  }
+  
 
   /* İçindeki iframe veya widget varsa */
   .havadurumu iframe,
@@ -1676,7 +1664,63 @@ margin-left: 20px;
   }
 }
 
+/* ======================================================
+   📱 MOBİL TAM ORTALAMA VE KAYMA FİX (IPHONE UYUMLU)
+   ====================================================== */
+@media (max-width: 768px) {
+    /* Sayfanın sağa kaymasını önle */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
 
+    /* HABER ALANI VE İÇERİĞİ ORTALA */
+    #haber-alani {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* Kartları merkeze çeker */
+        justify-content: center !important;
+        width: 100% !important;
+        padding: 0 15px !important;
+        margin: 20px 0 !important;
+    }
+
+    .haber-cerceve {
+        width: 100% !important;
+        max-width: 350px !important; /* iPhone genişliği için ideal */
+        margin: 0 auto 20px auto !important; /* TAM ORTALAMA SAĞLAR */
+        float: none !important;
+    }
+
+    /* KEŞFET VE CITTASLOW KARTINI ORTALA */
+    .cittaslow-bilgi-karti {
+        width: calc(100% - 30px) !important;
+        margin: 20px auto !important; /* Sola yatıklığı bitirir */
+        padding: 20px !important;
+        left: 0 !important;
+    }
+
+    /* FOOTER'I ORTALA */
+    .footer-content {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .footer-section {
+        margin-bottom: 25px !important;
+        width: 100% !important;
+    }
+
+    /* LOGO YAZISINI DÜZENLE */
+    .logo-text {
+        font-size: 14px !important;
+        max-width: 200px !important;
+        display: block !important;
+        text-align: left;
+    }
+}
 
 /* Hamburger Menü Buton Animasyonu (İsteğe Bağlı) */
 .mobile-menu-toggle.open span:nth-child(1) {
