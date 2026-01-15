@@ -8,7 +8,67 @@
 }
 
 
+/* Başlık Kapsayıcı Alanı */
+.ara-baslik-kapsayici {
+    text-align: center;
+    padding: 60px 0 40px 0; /* Üstten 60px, alttan 40px boşluk */
+    background-color: #ffffff;
+}
 
+/* Başlık Yazı Tipi ve Stili */
+.ara-baslik {
+    font-family: 'Inter', sans-serif; /* Sitedeki diğer yazılarla uyumlu */
+    font-size: 2.5rem;
+    font-weight: 800;
+   color: #003366 !important;
+   
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+/* Başlığın altındaki şık ince çizgi */
+.ara-baslik-cizgi {
+    width: 80px;
+    height: 4px;
+    background-color: #003366;
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Mobilde yazının boyutu */
+@media (max-width: 768px) {
+    .ara-baslik {
+        font-size: 1.8rem;
+    }
+}
+/* Menü linklerinin ana stili */
+.nav-menu li {
+    list-style: none; /* Noktaları kaldırır */
+    display: inline-block;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #003366 !important; /* Yazı rengi koyu mavi */
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease-離開; /* Yumuşak geçiş efekti */
+    font-weight: 500;
+}
+
+/* ÜZERİNE GELİNCE (YANMA EFEKTİ) */
+.nav-link:hover {
+    background-color: #003366 !important; /* Arka plan koyu mavi olur */
+    color: #ffffff !important; /* Yazı beyaz olur */
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3); /* Parlama efekti */
+    transform: translateY(-2px); /* Hafif yukarı zıplar */
+}
+
+/* Aktif olan (seçili) butonun yanık kalması için */
+.nav-link.active {
+    background-color: #003366;
+    color: white !important;
+}
 .auth-area {
     display: flex;
     align-items: center; /* Dikeyde tam orta */
@@ -253,56 +313,6 @@ body {
     .nav-menu {
         display: none;
         z-index: 10000 !important; /* Menü butonun bir tık altında olmalı */
-        /* ======================================================
-   📱 MOBİL İYİLEŞTİRMELER (LOGO VE BOŞLUK DÜZENLEME)
-   ====================================================== */
-
-@media (max-width: 768px) {
-    /* Logo Yazısının Taşmasını Engelle ve Küçült */
-    .logo-text {
-        font-size: 14px !important; /* Yazıyı biraz küçülttük */
-        line-height: 1.2;
-        white-space: normal;
-        max-width: 180px; /* Yazının aşırı yayılmasını önler */
-        display: block;
-    }
-
-    .nav-logo {
-        height: 35px !important; /* Logoyu mobilde biraz daha ufak yapalım */
-    }
-
-    /* BÖLÜMLER ARASI BOŞLUKLARI AZALTALIM */
-    
-    /* Ana başlık kapsayıcılarındaki (Lefke'yi Keşfedin vb.) boşluklar */
-    .ara-baslik-kapsayici {
-        padding: 30px 0 15px 0 !important; /* 60px olan boşluğu 30px'e çektik */
-    }
-
-    /* Başlıkların altındaki boşluklar */
-    .ara-baslik {
-        font-size: 1.8rem !important;
-        margin-bottom: 5px !important;
-    }
-
-    /* Bölümlerin (section) genel dikey boşlukları */
-    section, .city-section, .cittaslow-bilgi-karti {
-        margin-top: 15px !important;
-        margin-bottom: 15px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-    }
-
-    /* Video kapsayıcısının boşluğunu azalt */
-    .video-kapsayici {
-        margin: 15px auto !important;
-    }
-
-    /* Eğer Cittaslow kartı çok yer kaplıyorsa */
-    .cittaslow-bilgi-karti {
-        margin: 15px !important;
-        padding: 15px !important;
-    }
-}
     }
 }
 
@@ -537,8 +547,7 @@ body {
     border: 1px solid #ddd;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     background: #fff;
-    margin-bottom: 70px;
-
+    margin-bottom: 100px;
     
 }
 .keşfet{
@@ -1070,8 +1079,27 @@ body {
   margin-top: 12px;
 }
 
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #16a34a; /* success */
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 4000;
+}
 
-
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* 🔴 HATA */
 .toast.error {
@@ -1398,6 +1426,15 @@ body {
     padding: 14px;
   }
 
+  /* =======================
+     HABER / INSTAGRAM
+     ======================= */
+  #haber-alani {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 12px;
+  }
 
   .haber-cerceve {
     border-radius: 14px;
@@ -1509,12 +1546,12 @@ body {
 @media (max-width: 768px) {
 
   .havadurumu {
-        /* 80px ÇOK FAZLAYDI */
+    margin-top: 20px;     /* 80px ÇOK FAZLAYDI */
     height: auto;
     max-height: 260px;    /* Taşmayı engeller */
     overflow: hidden;
     margin-top: 50px;
-    
+    justify-content: center;
   }
 
   /* İçindeki iframe veya widget varsa */
@@ -1522,72 +1559,6 @@ body {
   .havadurumu > div {
     transform: scale(0.85);     /* KÜÇÜLTME */
     transform-origin: top center;
-  }
-}
-/* ======================================================
-   📱 IPHONE / MOBIL TAM UYUM (KESİN ÇÖZÜM)
-   ====================================================== */
-
-@media (max-width: 768px) {
-  /* 1. Sayfanın sağa taşmasını engelle */
-  html, body {
-    overflow-x: hidden;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* 2. KEŞFET (Lefke & Cittaslow) BÖLÜMÜNÜ ORTALA */
-  .ara-baslik-kapsayici {
-    width: 100% !important;
-    padding: 30px 15px !important;
-    text-align: center !important;
-  }
-
-  .cittaslow-bilgi-karti {
-    width: calc(100% - 30px) !important; /* Kenarlardan eşit pay bırakır */
-    margin: 15px auto !important; /* SAĞA KAYMAYI ENGELLER, ORTALAR */
-    left: 0 !important;
-    border-left: 5px solid #003366;
-  }
-
-  /* 3. GÜNCEL HABERLER (INSTAGRAM) ALANINI ORTALA */
-  #haber-alani {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important; /* Kartları merkeze çeker */
-    width: 100% !important;
-    padding: 0 !important;
-  }
-
-  .haber-cerceve {
-    width: 90% !important; /* iPhone'da ekranın %90'ını kaplar */
-    max-width: 350px;
-    margin: 10px auto !important; /* Hem alt-üst boşluk hem otomatik orta */
-  }
-
-  /* 4. FOOTER (ALT BİLGİ) SOLA YATIKLIĞI DÜZELT */
-  .footer-content {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important; 
-    text-align: center !important;
-    width: 100% !important;
-    padding: 20px 0 !important;
-  }
-
-  .footer-section {
-    width: 100% !important;
-    margin: 10px 0 !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Logo ve metinleri ortalar */
-  }
-
-  /* 5. VİDEO ALANINI DÜZENLE */
-  .video-kapsayici {
-    width: 95% !important;
-    margin: 15px auto !important;
   }
 }
 
