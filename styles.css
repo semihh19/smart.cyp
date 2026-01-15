@@ -11,7 +11,7 @@
 /* Başlık Kapsayıcı Alanı */
 .ara-baslik-kapsayici {
     text-align: center;
-    padding: 60px 0 40px 0; /* Üstten 60px, alttan 40px boşluk */
+    padding: 30px 0 20px 0; /* Üstten 60px, alttan 40px boşluk */
     background-color: #ffffff;
 }
 
@@ -1592,12 +1592,12 @@ body {
 @media (max-width: 768px) {
 
   .havadurumu {
-    margin-top: 20px;     /* 80px ÇOK FAZLAYDI */
+        /* 80px ÇOK FAZLAYDI */
     height: auto;
     max-height: 260px;    /* Taşmayı engeller */
     overflow: hidden;
     margin-top: 50px;
-    justify-content: center;
+    
   }
 
   /* İçindeki iframe veya widget varsa */
@@ -1605,6 +1605,72 @@ body {
   .havadurumu > div {
     transform: scale(0.85);     /* KÜÇÜLTME */
     transform-origin: top center;
+  }
+}
+/* ======================================================
+   📱 IPHONE / MOBIL TAM UYUM (KESİN ÇÖZÜM)
+   ====================================================== */
+
+@media (max-width: 768px) {
+  /* 1. Sayfanın sağa taşmasını engelle */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 2. KEŞFET (Lefke & Cittaslow) BÖLÜMÜNÜ ORTALA */
+  .ara-baslik-kapsayici {
+    width: 100% !important;
+    padding: 30px 15px !important;
+    text-align: center !important;
+  }
+
+  .cittaslow-bilgi-karti {
+    width: calc(100% - 30px) !important; /* Kenarlardan eşit pay bırakır */
+    margin: 15px auto !important; /* SAĞA KAYMAYI ENGELLER, ORTALAR */
+    left: 0 !important;
+    border-left: 5px solid #003366;
+  }
+
+  /* 3. GÜNCEL HABERLER (INSTAGRAM) ALANINI ORTALA */
+  #haber-alani {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Kartları merkeze çeker */
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .haber-cerceve {
+    width: 90% !important; /* iPhone'da ekranın %90'ını kaplar */
+    max-width: 350px;
+    margin: 10px auto !important; /* Hem alt-üst boşluk hem otomatik orta */
+  }
+
+  /* 4. FOOTER (ALT BİLGİ) SOLA YATIKLIĞI DÜZELT */
+  .footer-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; 
+    text-align: center !important;
+    width: 100% !important;
+    padding: 20px 0 !important;
+  }
+
+  .footer-section {
+    width: 100% !important;
+    margin: 10px 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Logo ve metinleri ortalar */
+  }
+
+  /* 5. VİDEO ALANINI DÜZENLE */
+  .video-kapsayici {
+    width: 95% !important;
+    margin: 15px auto !important;
   }
 }
 
