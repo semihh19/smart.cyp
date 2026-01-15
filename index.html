@@ -16,6 +16,7 @@
 </head>
 
 <body>
+
     <header id="ust-kisim">
     </header>
     <!-- Navigation -->
@@ -38,6 +39,7 @@
                 <li><a href="#" class="nav-link active">Ana Sayfa</a></li>
                 <li><a href="#dernek-haberler" class="nav-link">Haberler</a></li>
                 <li><a href="#ara-baslik-kapsayici" class="nav-link">Keşfet</a></li>
+
             </ul>
 
 
@@ -50,6 +52,14 @@
 
                 <button class="auth-btn logout" id="logoutBtn">Çıkış</button>
             </div>
+            <div class="mobile-auth">
+                <button class="mobile-auth-btn">👤</button>
+                <div class="mobile-auth-menu">
+                    <button class="auth-btn login">Giriş Yap</button>
+                    <button class="auth-btn register">Kayıt Ol</button>
+                </div>
+            </div>
+
             <button class="mobile-menu-toggle" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -68,9 +78,20 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-badge">Kıbrıs Turları 2025</span>
+            <span class="hero-badge">LCED.2025</span>
             <h2 class="hero-title">Akdeniz'in İncisini<br>Keşfedin</h2>
-            <p class="hero-subtitle">Tarihi, kültürü ve doğal güzellikleriyle Kıbrıs'ın en özel yerlerini keşfedin</p>
+            <p class="hero-subtitle">"Akdeniz’in mavisiyle Trodos Dağları’nın yeşilinin kucaklaştığı Lefke,
+                Kıbrıs’ın zamana direnen en saf ve en huzurlu köşesidir. Tarihi Soli Antik Kenti’nden Vuni Sarayı’na
+                uzanan kadim mirasıyla geçmişin izlerini taşıyan şehir, bugün 'Cittaslow' unvanıyla sakin yaşamın
+                dünyadaki
+                seçkin temsilcilerinden biridir. Yafa portakalının kokusuyla yıkanan sokakları, bin yıllık zeytin
+                ağaçları ve
+                misafirperver halkıyla burası, modern dünyanın gürültüsünden uzaklaşmak isteyenler için bir sığınaktır.
+                Doğanın ritmiyle
+                nefes alan Lefke, sadece bir yerleşim yeri değil; korunmuş kültürü ve sürdürülebilir yaşam felsefesiyle
+                bir hayat biçimidir.
+                Burada her gün güneş, adanın en bakir topraklarında doğar ve her köşe başında tarihin derin sessizliği
+                yankılanır."</p>
             <div class="hero-cta">
                 <a href="#lefke" class="btn btn-primary">Keşfet</a>
                 <a href="cıttaslow.html" class="btn btn-secondary">Cittaslow</a>
@@ -122,14 +143,6 @@
     <!-- City Section - Lefke -->
     <section id="lefke" class="city-section">
         <div class="container">
-            <div class="section-header">
-
-                <h2 class="section-title">
-                    Lefke
-                </h2>
-                <p class="section-desc">Kıbrıs'ın batısında yer alan sakin ve doğa ile iç içe bir bölge. Narenciye
-                    bahçeleri ve tarihi dokusuyla huzur arayanların adresi.</p>
-            </div>
             <section id="dernek-haberler">
                 <h2 class="section-title">GÜNCEL HABERLER</h2>
                 <div class="title-underline"></div>
@@ -193,7 +206,7 @@
                     <div class="card-badge">Tarihi Yerler</div>
                     <div class="card-slider">
                         <div class="slider-track">
-                            <div class="slide active" data-place="Soli Antik Kenti"
+                            <div class="slide active" data-place="Soli Antik Kenti" data-detail="soli.html"
                                 data-desc="Kuğu Mozaiği ile ünlü antik liman kenti."
                                 data-map="https://maps.google.com/?q=Soli+Antik+Kenti">
                                 <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/5b/fc/4c/soli-s-amphitheatre-with.jpg?w=600&h=400&s=1"
@@ -202,13 +215,32 @@
                                     <h3>Soli Antik Kenti</h3>
                                 </div>
                             </div>
-                            <div class="slide" data-place="Palace Of Vouni"
+                            <div class="slide" data-place="Palace Of Vouni" data-detail="Vuni.html"
                                 data-desc="Osmanlı döneminden kalma tarihi yapı."
                                 data-map="https://maps.app.goo.gl/rw2fSLfMaEsAHeGg8">
                                 <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/c4/34/5a/teilansicht.jpg?w=1200&h=800&s=1"
                                     alt="Piri Paşa Camii">
                                 <div class="slide-overlay">
                                     <h3>Palace Of Vouni</h3>
+                                </div>
+                            </div>
+                            <div class="slide active" data-place="TARİHİ LEFKE VE OSMANLI KONAKLARI"
+                                data-detail="konaklar.html"
+                                data-desc="Osmanlı mimarisinin nadide örneklerini oluşturan Osmanlı Konakları."
+                                data-map="https://maps.google.com/?q=Soli+Antik+Kenti">
+                                <img src="https://www.lefkebelediyesi.com//media/k2/galleries/18/lefke140a.jpg"
+                                    alt="TARİHİ LEFKE VE OSMANLI KONAKLARI">
+                                <div class="slide-overlay">
+                                    <h3>TARİHİ LEFKE VE OSMANLI KONAKLARI</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="LEFKE SU KEMERLERİ" data-detail="kemerler.html"
+                                data-desc="Osmanlı döneminden kalma tarihi yapı."
+                                data-map="https://maps.app.goo.gl/rw2fSLfMaEsAHeGg8">
+                                <img src="https://www.lefkebelediyesi.com//media/k2/galleries/19/101694013.jpg"
+                                    alt="LEFKE SU KEMERLERİ">
+                                <div class="slide-overlay">
+                                    <h3>LEFKE SU KEMERLERİ</h3>
                                 </div>
                             </div>
                         </div>
@@ -392,7 +424,6 @@
     </section>
 
 
-    <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-backdrop"></div>
         <div class="modal-content">
@@ -404,13 +435,16 @@
             </button>
             <h2 id="modal-title">Başlık</h2>
             <p id="modal-desc">Açıklama</p>
-            <a id="modal-map" href="#" target="_blank" class="btn btn-primary">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                Haritada Gör
-            </a>
+
+            <div class="modal-buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                <a id="modal-map" href="#" target="_blank" class="btn btn-primary">
+                    Haritada Gör
+                </a>
+
+                <a id="modal-details" href="#" class="btn btn-secondary">
+                    Detaylı Bilgi
+                </a>
+            </div>
         </div>
     </div>
 
@@ -456,6 +490,19 @@
     </footer>
 
     <script type="module" src="script.js"></script>
+
+    <div class="feedback-bubble" id="feedbackBubble">💬</div>
+
+    <div class="feedback-panel" id="feedbackPanel">
+        <h4>Şikayet & Öneri</h4>
+
+        <input type="text" id="fbPhone" placeholder="Telefon numaranız">
+        <input type="email" id="fbEmail" placeholder="E-posta adresiniz">
+        <textarea id="fbMessage" placeholder="Mesajınız"></textarea>
+
+        <button id="fbSend">Gönder</button>
+    </div>
+
     <div class="auth-modal" id="authModal">
         <div class="auth-backdrop"></div>
 
@@ -490,6 +537,9 @@
             </p>
         </div>
         <div class="toast" id="toast"></div>
+
+
+
 
 </body>
 
