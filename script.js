@@ -241,15 +241,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 🖼️ Kart slide tıklama → modal aç
   // içerisindeki DOMContentLoaded içindeki tıklama olayını güncelle:
+// script.js içindeki DOMContentLoaded bölümünde:
 document.querySelectorAll(".slide").forEach((slide) => {
   slide.addEventListener("click", () => {
     if (!slide.classList.contains("active")) return;
 
-    // dataset kısmına 'detail' ekledik
-    const { place, desc, map, detail } = slide.dataset;
-    if (place && desc && map) {
-      openModal(place, desc, map, detail); // detail parametresini gönderiyoruz
-    }
+    // 'detail' verisini de çekiyoruz
+    const { place, desc, map, detail } = slide.dataset; 
+    openModal(place, desc, map, detail);
   });
 });
   // 🗺️ Modal içindeki harita linki
