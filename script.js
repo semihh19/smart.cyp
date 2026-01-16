@@ -163,24 +163,22 @@ const modalMap = document.getElementById("modal-map")
 const modalClose = document.querySelector(".modal-close")
 const modalBackdrop = document.querySelector(".modal-backdrop")
 
-// içerisindeki modal fonksiyonunu bu şekilde güncelle:
+// script.js içinde bu fonksiyonu bul ve bu haliyle değiştir:
 function openModal(title, description, mapLink, detailLink) {
   if (modalTitle) modalTitle.textContent = title;
   if (modalDesc) modalDesc.textContent = description;
   if (modalMap) {
     modalMap.href = mapLink;
-    modalMap.setAttribute("target", "_blank");
-    modalMap.setAttribute("rel", "noopener noreferrer");
   }
 
-  // YENİ EKLEDİĞİMİZ KISIM: Detay Butonu
+  // Detay butonu için yeni kısım
   const modalDetails = document.getElementById("modal-details");
   if (modalDetails) {
     if (detailLink) {
-      modalDetails.href = detailLink;
-      modalDetails.style.display = "inline-flex"; // Link varsa göster
+      modalDetails.href = detailLink; // Burada detailLink'i küçük harf yazdığından emin ol
+      modalDetails.style.display = "inline-flex";
     } else {
-      modalDetails.style.display = "none"; // Link yoksa (örn: kafeler) gizle
+      modalDetails.style.display = "none";
     }
   }
 
