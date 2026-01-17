@@ -6,6 +6,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Sağ tarafa taşmaları ve gereksiz boşlukları keser */
+}
 
 :root {
   --color-primary: #1e3a5f;
@@ -79,7 +85,7 @@ body {
 }
 
 .nav-container {
-  max-width: 1280px;
+  max-width: 95%;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
   display: flex;
@@ -122,6 +128,7 @@ body {
 }
 
 .nav-menu {
+  font-size: 50px;
   display: flex;
   list-style: none;
   gap: var(--spacing-xs);
@@ -140,7 +147,7 @@ body {
   transition: all 0.3s ease;
   font-weight: 500;
   display: block;
-  font-size: var(--font-size-sm);
+  font-size: 17px;
 }
 
 .nav-link:hover,
@@ -198,7 +205,7 @@ body {
   height: auto;
   margin: 80px auto 0;
   padding: 0 var(--spacing-lg);
-  max-width: 1280px;
+  max-width: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -221,10 +228,11 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-2xl);
   align-items: center;
-  max-width: 1280px;
+  /* max-width: 1280px;  <-- BU SATIRI SİL VEYA YORUMA AL */
+  width: 100%;           /* Sayfanın tamamına yayılsın */
   margin-left: auto;
   margin-right: auto;
-  padding: var(--spacing-2xl) var(--spacing-lg);
+  padding: var(--spacing-2xl) 5%; /* %5 kenar boşluğu yeterli olur */
   min-height: calc(100vh - 70px);
 }
 
@@ -429,7 +437,7 @@ body {
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 95%;
   margin: 0 auto;
 }
 
@@ -487,7 +495,7 @@ body {
 }
 
 .haber-cerceve {
-  width: 370px;
+  width: 400px;
   height: 700px;
   overflow: hidden;
   border-radius: 12px;
@@ -503,7 +511,7 @@ body {
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-lg);
+  gap: 70px;
 }
 
 .card {
@@ -514,6 +522,9 @@ body {
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   height: 400px;
+ 
+  
+  
 }
 
 .card:hover {
@@ -935,6 +946,96 @@ body {
   border-radius: 10px;
   cursor: pointer;
 }
+/* Ana Konumlandırma */
+.hero-search-container {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 420px; /* Daha zarif bir genişlik */
+    z-index: 1000;
+    padding: 0 20px;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+}
+
+/* Arama İkonu */
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    z-index: 10;
+    font-size: 0.9rem;
+    pointer-events: none; /* Tıklamayı engellemez */
+}
+
+/* Arama Giriş Alanı (Net Beyaz) */
+#searchInput {
+    width: 100%;
+    padding: 12px 20px 12px 48px;
+    border-radius: 30px;
+    border: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+    outline: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+/* Üzerine gelince hafif parlama */
+#searchInput:focus {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 122, 255, 0.2);
+}
+
+/* Arama Sonuçları (Şeffaf Cam Efekti) */
+#searchResults {
+    display: none;
+    position: absolute;
+    top: 115%; /* Biraz boşluk bıraktık */
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15); /* Şeffaf */
+    backdrop-filter: blur(15px); /* Arkayı bulanıklaştırır */
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+/* Sonuç listesindeki her bir öğe için nazik stil (JS çıktısına göre) */
+#searchResults div {
+    padding: 12px 20px;
+    color: white; /* Arka plan şeffaf olduğu için beyaz yazı daha iyi durur */
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.2s;
+}
+
+#searchResults div:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.hero-search-container {
+    position: absolute;
+  
+    top: 30%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 420px; 
+    z-index: 1000;
+    padding: 0 20px;
+}
 
 
 /* ============================================
@@ -1059,8 +1160,8 @@ body {
     padding: 0;
     width: 100%;
     height: 50px;
-    min-height: 50px;
-    max-height: 50px;
+    min-height: 95%;
+    max-height: 95%;
     
     display: block;
   }
@@ -1477,4 +1578,5 @@ header h1,
     display: block;
   }
 }
+
 
