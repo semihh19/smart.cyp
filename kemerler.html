@@ -13,12 +13,11 @@
     <style>
         :root {
             --color-aqua: #007b83;
-            /* Su ve bakır pası tonu */
             --color-nature: #2d5a27;
-            /* Lefke'nin yeşili */
             --color-sand: #f4f1ea;
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
+            --footer-bg: #0f172a;
         }
 
         * {
@@ -62,7 +61,7 @@
             color: var(--color-aqua);
         }
 
-        /* --- HERO (AQUEDUCT) --- */
+        /* --- HERO --- */
         .hero {
             height: 70vh;
             display: flex;
@@ -81,8 +80,8 @@
             animation: slideInLeft 1.2s ease-out;
         }
 
-        /* --- İÇERİK --- */
-        .container {
+        /* --- ANA İÇERİK --- */
+        .main-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 80px 20px;
@@ -116,11 +115,11 @@
             display: block;
         }
 
-        /* --- DETAY KARTLARI --- */
         .water-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 50px;
         }
 
         .card {
@@ -140,7 +139,80 @@
             font-family: var(--font-heading);
         }
 
-        /* ANIMASYONLAR */
+        /* --- FOOTER STİLLERİ --- */
+        .footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 80px 0 30px 0;
+            font-family: var(--font-body);
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-column h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* --- ANIMASYONLAR --- */
         @keyframes slideInLeft {
             0% {
                 transform: translateX(-100px);
@@ -153,8 +225,19 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
             .split-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-links {
                 grid-template-columns: 1fr;
             }
 
@@ -181,7 +264,7 @@
         </div>
     </header>
 
-    <div class="container">
+    <main class="main-container">
         <section class="split-section">
             <div class="text-box">
                 <h2>Hayat Veren Kanallar</h2>
@@ -215,11 +298,49 @@
                     severler için eşsiz bir gezi rotası sunar.</p>
             </div>
         </div>
-    </div>
+    </main>
 
-    <footer
-        style="background: var(--color-aqua); color: white; padding: 60px 20px; text-align: center; margin-top: 50px;">
-        <p>Lefke Çevre ve Ekoloji Derneği &copy; 2026</p>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Lefke Çevre ve Ekoloji Derneği</h3>
+                    <p>Lefke'nin doğal ve tarihi mirasını korumak ve gelecek nesillere aktarmak için çalışıyoruz.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Keşfet</h4>
+                        <ul>
+                            <li><a href="#lefke">Lefke Rehberi</a></li>
+                            <li><a href="#tarih">Tarihi Yerler</a></li>
+                            <li><a href="#dogu">Ekolojik Rotalar</a></li>
+                            <li><a href="#galeri">Foto Galeri</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Sosyal Medya</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/lced.2025/" target="_blank">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Kurumsal</h4>
+                        <ul>
+                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a href="#">İletişim</a></li>
+                            <li><a href="#">Üyelik</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
     </footer>
 
 </body>
