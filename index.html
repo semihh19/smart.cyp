@@ -38,7 +38,9 @@
             <ul class="nav-menu">
                 <li><a href="#" class="nav-link active">Ana Sayfa</a></li>
                 <li><a href="#dernek-haberler" class="nav-link">Haberler</a></li>
-                <li><a href="#ara-baslik-kapsayici" class="nav-link">Keşfet</a></li>
+                <li><a href="#ara-baslik-kapsayici" class="nav-link">Keşfet</a>
+                <li><a href="galeri.html" data-place="Corner Kafe" class="nav-link">Galeri</a>
+                </li>
 
             </ul>
 
@@ -78,6 +80,17 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
+            <div class="hero-search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+
+                    <input type="text" id="searchInput" placeholder="Yer ara (Soli, Vuni...)" onkeyup="searchPlaces()"
+                        autocomplete="off">
+
+                    <div id="searchResults">
+                    </div>
+                </div>
+            </div>
             <span class="hero-badge">LCED.2025</span>
             <h2 class="hero-title">Akdeniz'in İncisini<br>Keşfedin</h2>
             <p class="hero-subtitle">"Akdeniz’in mavisiyle Trodos Dağları’nın yeşilinin kucaklaştığı Lefke,
@@ -92,6 +105,7 @@
                 bir hayat biçimidir.
                 Burada her gün güneş, adanın en bakir topraklarında doğar ve her köşe başında tarihin derin sessizliği
                 yankılanır."</p>
+
             <div class="hero-cta">
                 <a href="#lefke" class="btn btn-primary">Keşfet</a>
                 <a href="cıttaslow.html" class="btn btn-secondary">Cittaslow</a>
@@ -241,6 +255,24 @@
                                     alt="LEFKE SU KEMERLERİ">
                                 <div class="slide-overlay">
                                     <h3>LEFKE SU KEMERLERİ</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Kırmızı Liman" data-detail="liman.html"
+                                data-desc="Osmanlı döneminden kalma tarihi yapı."
+                                data-map="https://maps.app.goo.gl/rw2fSLfMaEsAHeGg8">
+                                <img src="https://kktcturizm.com/wp-content/uploads/2024/12/lefke-kirmizi-iskele.jpg"
+                                    alt="Kırmızı Liman">
+                                <div class="slide-overlay">
+                                    <h3>KIRMIZI LİMAN</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Cengiz Topel Anıtı" data-detail="cengiz.html"
+                                data-desc="Osmanlı döneminden kalma tarihi yapı."
+                                data-map="https://maps.app.goo.gl/rw2fSLfMaEsAHeGg8">
+                                <img src="https://cdnuploads.aa.com.tr/uploads/Contents/2020/08/07/thumbs_b_c_b4f5f37ed01a7dfc5f2795261bbcb23d.jpg?v=112532"
+                                    alt="Cengiz Topel Anıtı">
+                                <div class="slide-overlay">
+                                    <h3>Cengiz Topel Anıtı</h3>
                                 </div>
                             </div>
                         </div>
@@ -544,4 +576,3 @@
 </body>
 
 </html>
-
