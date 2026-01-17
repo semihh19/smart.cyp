@@ -163,22 +163,24 @@ const modalMap = document.getElementById("modal-map")
 const modalClose = document.querySelector(".modal-close")
 const modalBackdrop = document.querySelector(".modal-backdrop")
 
-// script.js içinde bu fonksiyonu bul ve bu haliyle değiştir:
+// içerisindeki modal fonksiyonunu bu şekilde güncelle:
 function openModal(title, description, mapLink, detailLink) {
   if (modalTitle) modalTitle.textContent = title;
   if (modalDesc) modalDesc.textContent = description;
   if (modalMap) {
     modalMap.href = mapLink;
+    modalMap.setAttribute("target", "_blank");
+    modalMap.setAttribute("rel", "noopener noreferrer");
   }
 
-  // Detay butonu için yeni kısım
+  // YENİ EKLEDİĞİMİZ KISIM: Detay Butonu
   const modalDetails = document.getElementById("modal-details");
   if (modalDetails) {
     if (detailLink) {
-      modalDetails.href = detailLink; // Burada detailLink'i küçük harf yazdığından emin ol
-      modalDetails.style.display = "inline-flex";
+      modalDetails.href = detailLink;
+      modalDetails.style.display = "inline-flex"; // Link varsa göster
     } else {
-      modalDetails.style.display = "none";
+      modalDetails.style.display = "none"; // Link yoksa (örn: kafeler) gizle
     }
   }
 
@@ -239,14 +241,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 🖼️ Kart slide tıklama → modal aç
   // içerisindeki DOMContentLoaded içindeki tıklama olayını güncelle:
-// script.js içindeki DOMContentLoaded bölümünde:
 document.querySelectorAll(".slide").forEach((slide) => {
   slide.addEventListener("click", () => {
     if (!slide.classList.contains("active")) return;
 
-    // 'detail' verisini de çekiyoruz
-    const { place, desc, map, detail } = slide.dataset; 
-    openModal(place, desc, map, detail);
+    // dataset kısmına 'detail' ekledik
+    const { place, desc, map, detail } = slide.dataset;
+    if (place && desc && map) {
+      openModal(place, desc, map, detail); // detail parametresini gönderiyoruz
+    }
   });
 });
   // 🗺️ Modal içindeki harita linki
@@ -531,8 +534,124 @@ const panel = document.getElementById("feedbackPanel");
 bubble.addEventListener("click", () => {
   panel.style.display = panel.style.display === "block" ? "none" : "block";
 });
+// script.js dosyasının en altına yapıştır
 
+// Dosyanın en altına bu YENİ kodu yapıştır (Eskisini sil):
+
+function searchPlaces() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let resultsBox = document.getElementById('searchResults');
+    let cards = document.querySelectorAll('.slide'); 
+    
+    resultsBox.innerHTML = "";
+
+    if (input.length === 0) {
+        resultsBox.style.display = "none";
+        return;
+    }
+
+    let found = false;
+
+    // --- MANUEL GALERİ EKLEME (Yazmaya başlandığında hep kontrol eder) ---
+    if ("galeri".includes(input)) {
+        found = true;
+        let galeriItem = document.createElement('a');
+        galeriItem.href = "galeri.html"; // Galeri sayfanın adı
+        galeriItem.style.cssText = "display: flex; align-items: center; padding: 10px 15px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; transition: background 0.2s;";
+        
+        galeriItem.onmouseover = function() { this.style.background = "#f5f5f5"; };
+        galeriItem.onmouseout = function() { this.style.background = "white"; };
+
+        galeriItem.innerHTML = `
+            <span style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 10px;">📸</span>
+            <span style="font-weight: 500;">Galeri</span>
+        `;
+        resultsBox.appendChild(galeriItem);
+    }
+    // -------------------------------------------------------------------
+
+    cards.forEach(card => {
+        let title = card.getAttribute('data-place');
+        let detailLink = card.getAttribute('data-detail');
+        let imageSrc = card.querySelector('img').src;
+
+        if (title && title.toLowerCase().includes(input)) {
+            found = true;
+            let item = document.createElement('a');
+            item.href = detailLink;
+            item.style.cssText = "display: flex; align-items: center; padding: 10px 15px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; transition: background 0.2s;";
+            
+            item.onmouseover = function() { this.style.background = "#f5f5f5"; };
+            item.onmouseout = function() { this.style.background = "white"; };
+
+            item.innerHTML = `
+                <img src="${imageSrc}" style="width: 40px; height: 40px; border-radius: 5px; object-fit: cover; margin-right: 10px;">
+                <span style="font-weight: 500;">${title}</span>
+            `;
+            resultsBox.appendChild(item);
+        }
+    });
+
+    if (found) {
+        resultsBox.style.display = "block";
+    } else {
+        resultsBox.style.display = "none";
+    }
+}
+// Modül hatasını önlemek için (Burası çok önemli)
+window.searchPlaces = searchPlaces;
 
 window.addEventListener('load', haberCek);
 window.addEventListener("scroll", updateActiveNavLink)
+// Şikayet ve Öneri Gönderme Fonksiyonu
+const feedbackBtn = document.getElementById("submitFeedback");
+const feedbackInput = document.getElementById("feedbackInput");
+
+// GÜNCEL VE HATASIZ FEEDBACK KODU
+if (feedbackBtn) {
+    feedbackBtn.addEventListener("click", async () => {
+        const message = feedbackInput.value.trim();
+
+        if (!message) {
+            alert("Lütfen bir şikayet veya öneri yazın.");
+            return;
+        }
+
+        // Giriş yapan kullanıcı kontrolü (Email elementini güvenli okuma)
+        let currentUserEmail = "Anonim";
+        const emailElement = document.getElementById("userEmail");
+        
+        if (emailElement && emailElement.innerText.trim() !== "" && emailElement.innerText !== "Giriş Yap") {
+            currentUserEmail = emailElement.innerText;
+        }
+
+        feedbackBtn.innerText = "Gönderiliyor...";
+        feedbackBtn.disabled = true;
+
+        try {
+            const { error } = await supabase
+                .from('feedback')
+                .insert([
+                    { 
+                        content: message, 
+                        email: currentUserEmail,
+                        created_at: new Date() 
+                    }
+                ]);
+
+            if (error) throw error;
+
+            alert("Öneriniz başarıyla alındı. Teşekkür ederiz!");
+            feedbackInput.value = ""; 
+
+        } catch (err) {
+            console.error("Gönderim hatası:", err);
+            // Eğer tablo yoksa veya izin yoksa burası çalışır
+            alert("Bir sorun oluştu. Supabase SQL izinlerini verdiğinizden emin olun.");
+        } finally {
+            feedbackBtn.innerText = "Gönder";
+            feedbackBtn.disabled = false;
+        }
+    });
+}
 
