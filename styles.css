@@ -884,69 +884,8 @@ body {
   text-align: center;
   color: rgba(255, 255, 255, 0.5);
 }
-/* FEEDBACK BALONU */
-.feedback-bubble {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #003366;
-  color: white;
-  font-size: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  z-index: 5000;
-}
 
-/* AÇILAN PANEL */
-.feedback-panel {
-  position: fixed;
-  right: 20px;
-  bottom: 90px;
-  width: 280px;
-  background: white;
-  border-radius: 16px;
-  padding: 14px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-  display: none;
-  z-index: 5000;
-}
 
-.feedback-panel h4 {
-  margin-bottom: 10px;
-  color: #003366;
-}
-
-.feedback-panel input,
-.feedback-panel textarea {
-  width: 100%;
-  margin-bottom: 8px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 14px;
-}
-
-.feedback-panel textarea {
-  resize: none;
-  height: 70px;
-}
-
-.feedback-panel button {
-  width: 100%;
-  background: #003366;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-/* Ana Konumlandırma */
 .hero-search-container {
     position: absolute;
     top: 25%;
@@ -1036,7 +975,110 @@ body {
     z-index: 1000;
     padding: 0 20px;
 }
+/* Feedback Butonu - Sağ Alt Sabit Görünüm */
+.feedback-trigger-btn {
+    position: fixed; /* Ekran hareket etse de sabit kalmasını sağlar */
+    bottom: 20px;    /* Alttan 20px boşluk */
+    right: 20px;     /* Sağdan 20px boşluk */
+    z-index: 999;    /* Diğer içeriklerin üstünde durması için */
+    
+    background-color: var(--color-primary);
+    color: #ffffff !important;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Gölgeyi biraz belirginleştirdik */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
+.feedback-trigger-btn:hover {
+    background-color: var(--color-primary-light);
+    transform: translateY(-5px); /* Üzerine gelince biraz daha yukarı zıplar */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Modal İçindeki Yazıların Rengini Sabitleyelim */
+.feedback-content {
+    background-color: #ffffff !important; /* Arka plan kesinlikle beyaz */
+    color: #1e293b !important; /* Yazılar koyu gri/siyah */
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.feedback-content h3 {
+    color: #0f172a !important; /* Başlık rengi */
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.feedback-content p {
+    color: #64748b !important; /* Açıklama yazısı rengi */
+    margin-bottom: 20px;
+}
+
+/* Form Elemanları */
+#feedbackMessage {
+    width: 100%;
+    height: 120px;
+    background-color: #f8fafc; /* Hafif gri arka plan */
+    border: 1px solid #e2e8f0;
+    color: #0f172a !important; /* İçine yazılan yazı koyu olsun */
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    
+}
+
+#submitFeedback {
+    background-color: #10b981; /* Yeşil gönder butonu */
+    color: white !important;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#submitFeedback:hover {
+    background-color: #059669;
+}
+
+/* Kapatma (X) Butonu */
+.close-feedback {
+    color: #94a3b8 !important;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+}
+
+.close-feedback:hover {
+    color: #ef4444 !important; /* Kapatırken kırmızı olsun */
+}
+.feedback-modal {
+    display: none; /* Başlangıçta gizli */
+    position: fixed;
+    z-index: 9999; /* Diğer her şeyin üstünde olsun */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* Arka planı karartır */
+    justify-content: center;
+    align-items: center;
+}
 
 /* ============================================
    TABLET RESPONSIVE
@@ -1578,5 +1620,4 @@ header h1,
     display: block;
   }
 }
-
 
