@@ -11,7 +11,86 @@ const userEmail = document.getElementById("userEmail")
 const nameInput = document.getElementById("authName")
 const surnameInput = document.getElementById("authSurname")
 const registerFields = document.getElementById("registerFields")
+// Modal Elementleri
+const feedbackModal = document.getElementById("feedbackModal");
+const openFeedbackBtn = document.getElementById("openFeedbackBtn");
+const closeFeedbackBtn = document.getElementById("closeFeedbackBtn");
+const feedbackForm = document.getElementById("feedbackForm");
 
+// --- Geri Bildirim Modalı Yönetimi ---
+
+// MODALI AÇMA
+if (openFeedbackBtn) {
+    openFeedbackBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const { data: { user } } = await supabase.auth.getUser();
+        
+        if (!user) {
+            alert("Şikayet ve öneri göndermek için lütfen giriş yapın.");
+            return;
+        }
+        feedbackModal.style.display = "flex";
+    });
+}
+
+// MODALI KAPATMA (Çarpı Butonu)
+if (closeFeedbackBtn) {
+    closeFeedbackBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Tıklamanın diğer elementlere yayılmasını durdurur
+        feedbackModal.style.display = "none";
+    });
+}
+
+// MODALIN DIŞINA TIKLAYINCA KAPATMA
+window.addEventListener("click", (e) => {
+    if (e.target === feedbackModal) {
+        feedbackModal.style.display = "none";
+    }
+});
+// Form Gönderimi
+feedbackForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const message = document.getElementById("feedbackMessage").value;
+    const submitBtn = document.getElementById("submitFeedback");
+    
+    // Kullanıcı bilgilerini al
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Gönderiliyor...";
+
+    // Supabase'e ekle
+    const { error } = await supabase
+        .from('feedbacks')
+        .insert([
+            { 
+                user_id: user.id, 
+                email: user.email, 
+                message: message 
+            }
+        ]);
+
+    if (error) {
+        alert("Hata oluştu: " + error.message);
+    } else {
+        alert("Geri bildiriminiz başarıyla iletildi. Teşekkür ederiz!");
+        feedbackForm.reset();
+        feedbackModal.style.display = "none";
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Gönder";
+});
+
+
+// Modül hatasını önlemek için (Burası çok önemli)
+window.searchPlaces = searchPlaces;
+
+window.addEventListener('load', haberCek);
+window.addEventListener("scroll", updateActiveNavLink)
 // Mobile Menu Toggle - GÜNCELLENMİŞ
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
 const navMenu = document.querySelector(".nav-menu")
@@ -528,8 +607,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-const bubble = document.getElementById("feedbackBubble");
-const panel = document.getElementById("feedbackPanel");
+
 
 bubble.addEventListener("click", () => {
   panel.style.display = panel.style.display === "block" ? "none" : "block";
@@ -598,60 +676,6 @@ function searchPlaces() {
         resultsBox.style.display = "none";
     }
 }
-// Modül hatasını önlemek için (Burası çok önemli)
-window.searchPlaces = searchPlaces;
 
-window.addEventListener('load', haberCek);
-window.addEventListener("scroll", updateActiveNavLink)
-// Şikayet ve Öneri Gönderme Fonksiyonu
-const feedbackBtn = document.getElementById("submitFeedback");
-const feedbackInput = document.getElementById("feedbackInput");
 
-// GÜNCEL VE HATASIZ FEEDBACK KODU
-if (feedbackBtn) {
-    feedbackBtn.addEventListener("click", async () => {
-        const message = feedbackInput.value.trim();
-
-        if (!message) {
-            alert("Lütfen bir şikayet veya öneri yazın.");
-            return;
-        }
-
-        // Giriş yapan kullanıcı kontrolü (Email elementini güvenli okuma)
-        let currentUserEmail = "Anonim";
-        const emailElement = document.getElementById("userEmail");
-        
-        if (emailElement && emailElement.innerText.trim() !== "" && emailElement.innerText !== "Giriş Yap") {
-            currentUserEmail = emailElement.innerText;
-        }
-
-        feedbackBtn.innerText = "Gönderiliyor...";
-        feedbackBtn.disabled = true;
-
-        try {
-            const { error } = await supabase
-                .from('feedback')
-                .insert([
-                    { 
-                        content: message, 
-                        email: currentUserEmail,
-                        created_at: new Date() 
-                    }
-                ]);
-
-            if (error) throw error;
-
-            alert("Öneriniz başarıyla alındı. Teşekkür ederiz!");
-            feedbackInput.value = ""; 
-
-        } catch (err) {
-            console.error("Gönderim hatası:", err);
-            // Eğer tablo yoksa veya izin yoksa burası çalışır
-            alert("Bir sorun oluştu. Supabase SQL izinlerini verdiğinizden emin olun.");
-        } finally {
-            feedbackBtn.innerText = "Gönder";
-            feedbackBtn.disabled = false;
-        }
-    });
-}
 
