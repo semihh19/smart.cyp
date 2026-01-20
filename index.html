@@ -467,7 +467,21 @@
             </div>
         </div>
     </section>
+    <footer class="site-footer">
+        <button id="openFeedbackBtn" class="feedback-trigger-btn">📩 Şikayet ve Öneri</button>
+    </footer>
 
+    <div id="feedbackModal" class="feedback-modal" style="display: none;">
+        <div class="feedback-content">
+            <span class="close-feedback">&times;</span>
+            <h3>Şikayet ve Öneri</h3>
+            <p>Görüşleriniz bizim için değerlidir.</p>
+            <form id="feedbackForm">
+                <textarea id="feedbackMessage" placeholder="Mesajınızı buraya yazın..." required></textarea>
+                <button type="submit" id="submitFeedback">Gönder</button>
+            </form>
+        </div>
+    </div>
 
     <div id="modal" class="modal">
         <div class="modal-backdrop"></div>
@@ -495,6 +509,7 @@
 
     <!-- Footer -->
     <footer class="footer">
+
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
@@ -536,17 +551,6 @@
 
     <script type="module" src="script.js"></script>
 
-    <div class="feedback-bubble" id="feedbackBubble">💬</div>
-
-    <div class="feedback-panel" id="feedbackPanel">
-        <h4>Şikayet & Öneri</h4>
-
-        <input type="text" id="fbPhone" placeholder="Telefon numaranız">
-        <input type="email" id="fbEmail" placeholder="E-posta adresiniz">
-        <textarea id="fbMessage" placeholder="Mesajınız"></textarea>
-
-        <button id="fbSend">Gönder</button>
-    </div>
 
     <div class="auth-modal" id="authModal">
         <div class="auth-backdrop"></div>
