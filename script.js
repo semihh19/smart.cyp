@@ -609,12 +609,7 @@ document.addEventListener('click', (e) => {
 
 
 
-bubble.addEventListener("click", () => {
-  panel.style.display = panel.style.display === "block" ? "none" : "block";
-});
-// script.js dosyasının en altına yapıştır
 
-// Dosyanın en altına bu YENİ kodu yapıştır (Eskisini sil):
 
 function searchPlaces() {
     let input = document.getElementById('searchInput').value.toLowerCase();
@@ -676,6 +671,26 @@ function searchPlaces() {
         resultsBox.style.display = "none";
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const mLogin = document.getElementById("mobileLoginBtn");
+    const mRegister = document.getElementById("mobileRegisterBtn");
+    const mMenu = document.querySelector(".mobile-auth-menu");
 
+    if (mLogin) {
+        mLogin.onclick = (e) => {
+            e.preventDefault();
+            openAuth(true); // Giriş modunda aç
+            if (mMenu) mMenu.style.display = "none"; // Menüyü kapat
+        };
+    }
+
+    if (mRegister) {
+        mRegister.onclick = (e) => {
+            e.preventDefault();
+            openAuth(false); // Kayıt modunda aç
+            if (mMenu) mMenu.style.display = "none"; // Menüyü kapat
+        };
+    }
+});
 
 
