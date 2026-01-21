@@ -57,8 +57,8 @@
             <div class="mobile-auth">
                 <button class="mobile-auth-btn">👤</button>
                 <div class="mobile-auth-menu">
-                    <button class="auth-btn login">Giriş Yap</button>
-                    <button class="auth-btn register">Kayıt Ol</button>
+                    <button class="auth-btn login" id="mobileLoginBtn">Giriş Yap</button>
+                    <button class="auth-btn register" id="mobileRegisterBtn">Kayıt Ol</button>
                 </div>
             </div>
 
@@ -182,6 +182,14 @@
                     <div class="card-badge">Kafeler</div>
                     <div class="card-slider">
                         <div class="slider-track">
+                            <div class="slide" data-place="Reklam"
+                                data-desc="Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme."
+                                data-map="https://maps.google.com/?q=Villa+Veranda+Lefke">
+                                <img src="reklam.jpeg" alt="Reklam">
+                                <div class="slide-overlay">
+                                    <h3>Reklam</h3>
+                                </div>
+                            </div>
                             <div class="slide active" data-place="Corner Kafe"
                                 data-desc="Lefke merkezde, tarihi doku içinde huzurlu bir mekan."
                                 data-map="https://maps.google.com/?q=Corner+Kafe+Lefke">
@@ -309,13 +317,12 @@
                     <div class="card-badge">Oteller</div>
                     <div class="card-slider">
                         <div class="slider-track">
-                            <div class="slide active" data-place="Lefke Gardens Hotel"
-                                data-desc="Geleneksel mimariyle restore edilmiş butik otel."
-                                data-map="https://maps.google.com/?q=Lefke+Gardens+Hotel">
-                                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Lefke Gardens Hotel">
+                            <div class="slide" data-place="Reklam"
+                                data-desc="Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme."
+                                data-map="https://maps.google.com/?q=Villa+Veranda+Lefke">
+                                <img src="reklam.jpeg" alt="Reklam">
                                 <div class="slide-overlay">
-                                    <h3>Lefke Gardens</h3>
+                                    <h3>Reklam</h3>
                                 </div>
                             </div>
                             <div class="slide active" data-place="VelMer Hotel"
@@ -592,23 +599,4 @@
 
 </body>
 
-
 </html>
-
-  <script>
-            // Sağ tıklamayı engeller
-            document.addEventListener('contextmenu', event => event.preventDefault());
-
-            // Klavye kısayollarını engeller (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
-            document.onkeydown = function (e) {
-                if (e.keyCode == 123) { // F12
-                    return false;
-                }
-                if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
-                    return false;
-                }
-                if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Kaynak kodunu görüntüle
-                    return false;
-                }
-            };
-        </script>
