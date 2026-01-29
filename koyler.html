@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lefke Köyleri | Detaylı Keşif Rehberi</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* SİTENİN ANA RENK PALETİ (styles.css ile uyumlu) */
+        :root {
+            --color-primary: #1e3a5f;
+            /* Ana Lacivert */
+            --color-primary-light: #2d5a8f;
+            --color-secondary: #f59e0b;
+            /* Vurgu Sarısı */
+            --color-aqua: #0ea5e9;
+            /* Açık Mavi */
+            --color-dark: #0f172a;
+            /* Footer ve Koyu Alanlar */
+            --color-text: #334155;
+            /* Metin Rengi */
+            --color-bg: #ffffff;
+            --color-bg-light: #f8fafc;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-light);
+            color: var(--color-text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--color-secondary);
+        }
+
+        /* Dropdown Menü */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            min-width: 240px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            display: none;
+            border-radius: 12px;
+            padding: 15px 0;
+            border: 1px solid #e2e8f0;
+            z-index: 9999;
+            margin-top: 15px;
+        }
+
+        /* Üçgen Ok */
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 20px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            transform: rotate(45deg);
+            border-left: 1px solid #e2e8f0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 25px;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background: #f8fafc;
+            color: var(--color-secondary);
+            padding-left: 30px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- HERO HEADER --- */
+        .page-header {
+            /* Daha sağlam bir görsel linki ve karartma efekti */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop') center/cover no-repeat;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 80px;
+            /* fixed bazen mobilde sorun çıkarır, scroll yapmak daha güvenlidir */
+            background-attachment: scroll;
+        }
+
+        .header-content h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e2e8f0;
+        }
+
+        /* --- KÖY KARTLARI (ZIGZAG) --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .village-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            margin-bottom: 140px;
+            align-items: center;
+        }
+
+        /* Zigzag Yapısı: Çift sayılarda yönü ters çevir */
+        .village-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .village-card:nth-child(even) .village-info {
+            direction: ltr;
+        }
+
+        .village-img-box {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            height: 500px;
+            transition: transform 0.4s ease;
+        }
+
+        .village-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .village-card:hover .village-img-box {
+            transform: translateY(-10px);
+        }
+
+        .village-card:hover .village-img-box img {
+            transform: scale(1.1);
+        }
+
+        .village-info h2 {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            color: var(--color-primary);
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .village-info h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 60px;
+            height: 4px;
+            background-color: var(--color-secondary);
+        }
+
+        .village-info p {
+            font-size: 1.05rem;
+            color: #475569;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Harita Butonu */
+        .btn-map {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background-color: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 58, 95, 0.3);
+        }
+
+        .btn-map:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+            color: var(--color-dark);
+        }
+
+        /* --- FOOTER (Style.css ile Uyumlu) --- */
+        footer {
+            background-color: var(--color-dark);
+            /* #0f172a */
+            color: #fff;
+            padding: 80px 0 20px;
+            margin-top: 100px;
+            border-top: 5px solid var(--color-secondary);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col p {
+            color: #94a3b8;
+            /* --color-text-light */
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--color-secondary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Mobil */
+        @media (max-width: 992px) {
+            .village-card {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 100px;
+            }
+
+            .village-card:nth-child(even) {
+                direction: ltr;
+            }
+
+            /* Mobilde zigzag iptal */
+            .village-img-box {
+                height: 350px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* --- MOBİL YAN YANA TASARIM (KESİN ÇÖZÜM) --- */
+        @media (max-width: 768px) {
+
+            /* Navbar'ın dışarı taşmasını ve alt satıra geçmesini engelle */
+            .nav-container {
+                width: 100%;
+                padding: 0 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+                /* Alt satıra geçmeyi kesinlikle yasaklar */
+            }
+
+            /* Logoyu küçült ve yanındaki boşluğu daralt */
+            .logo {
+                font-size: 0.9rem !important;
+                margin-right: 5px;
+                flex-shrink: 1;
+                /* Alan daralırsa logonun küçülmesine izin ver */
+                white-space: nowrap;
+            }
+
+            /* Menü listesini yan yana tut ve sıkıştır */
+            .nav-menu {
+                display: flex !important;
+                /* Her zaman yan yana tut */
+                flex-direction: row !important;
+                gap: 8px !important;
+                /* Linkler arasındaki boşluğu minimuma indir */
+                margin-left: auto;
+            }
+
+            /* Link yazılarını okunabilecek en küçük boyuta getir */
+            .nav-link {
+                font-size: 0.7rem !important;
+                padding: 2px 0;
+                white-space: nowrap;
+            }
+
+            /* Dropdown ok işaretini mobilde gizleyebilirsin (yer kazanmak için) */
+            .nav-link::after {
+                content: none;
+            }
+
+            /* --- İÇERİK DÜZENLEME --- */
+            /* Hero (Başlık) alanı */
+            .header-content h1 {
+                font-size: 1.6rem !important;
+            }
+
+            /* Köy Kartları: Mobilde alt alta gelmelerini engellemek istiyorsan burayı elleme, 
+       ama görsellerin çok büyük kalmaması için yüksekliği sabitleyelim */
+            .village-img-box {
+                height: 180px !important;
+            }
+
+            .village-info h2 {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Çok küçük ekranlar için (Örn: iPhone SE) ek daraltma */
+        @media (max-width: 360px) {
+            .nav-menu {
+                gap: 4px !important;
+            }
+
+            .logo {
+                font-size: 0.8rem !important;
+            }
+        }
+
+        /* --- MOBİL NAVİGASYON: KESİN VE TEMİZ DÜZENLEME --- */
+        @media (max-width: 768px) {
+            .navbar {
+                height: auto !important;
+                padding: 12px 0 !important;
+                position: fixed !important;
+                background: #ffffff !important;
+                display: block !important;
+                width: 100% !important;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+            }
+
+            .nav-container {
+                display: flex !important;
+                flex-direction: column !important;
+                /* Üst üste diz */
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 12px !important;
+                width: 100% !important;
+                padding: 0 10px !important;
+            }
+
+            .logo {
+                font-size: 0.95rem !important;
+                /* Yazı boyutunu hafif küçült */
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+                margin: 0 !important;
+                line-height: 1.3 !important;
+                white-space: normal !important;
+                /* Uzunsa iki satıra bölsün */
+            }
+
+            .nav-menu {
+                display: flex !important;
+                flex-direction: row !important;
+                /* Linkler yan yana */
+                justify-content: center !important;
+                flex-wrap: wrap !important;
+                /* Sığmazsa aşağı kaysın */
+                gap: 6px !important;
+                padding: 8px 0 0 0 !important;
+                margin: 0 !important;
+                border-top: 1px solid #f0f0f0 !important;
+                /* İnce ayırıcı çizgi */
+                width: 100% !important;
+            }
+
+            .nav-link {
+                font-size: 0.75rem !important;
+                /* Linkleri küçük tutalım ki sığsın */
+                padding: 5px 8px !important;
+                background: #f8fafc;
+                /* Hafif bir kutucuk efekti (isteğe bağlı) */
+                border-radius: 4px;
+            }
+
+            /* --- İÇERİK KAYMASINI ÖNLEYEN KRİTİK BOŞLUK --- */
+            .page-container {
+                margin-top: 130px !important;
+                /* Navbar iki katlı olduğu için boşluğu artırdık */
+                padding: 15px !important;
+            }
+
+            /* Görsellerin üzerindeki yazıların okunurluğu için */
+            header h1 {
+                font-size: 1.6rem !important;
+                margin-top: 10px !important;
+                line-height: 1.2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Lefke Çevre ve Ekoloji Derneği</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link" style="color:var(--color-secondary);">Köylerimiz ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#gaziveren">Gaziveren</a>
+                        <a href="#gemikonagi">Gemikonağı</a>
+                        <a href="#yesilirmak">Yeşilırmak</a>
+                        <a href="#yesilyurt">Yeşilyurt</a>
+                        <a href="#doganci">Doğancı</a>
+                        <a href="#taspinar">Taşpınar</a>
+                        <a href="#baglikoy">Bağlıköy</a>
+                        <a href="#camlikoy">Çamlıköy</a>
+                    </div>
+                </li>
+                <li><a href="index.html#iletisim" class="nav-link">İletişim</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-content">
+            <h1>Lefke'nin Kadim Köyleri</h1>
+            <p>Doğa, Tarih ve Kültürün Buluşma Noktaları</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="gaziveren" class="village-card">
+            <div class="village-info">
+                <h2>Gaziveren</h2>
+                <p><strong>Tarihsel Önemi:</strong> Gaziveren, Kıbrıs tarihinde direnişin sembollerinden biridir. 1964
+                    yılında yaşanan olaylar ve köy halkının gösterdiği kahramanca savunma, köy meydanındaki Gaziveren
+                    Şehitler Anıtı ile ölümsüzleştirilmiştir. Sahil şeridinde yer alan bu köy, hem tarımsal üretimi hem
+                    de stratejik konumuyla daima önemli bir yerleşim olmuştur.</p>
+                <p><strong>Doğa ve Tarım:</strong> Verimli alüvyon toprakları sayesinde Gaziveren, sebze ve narenciye
+                    üretiminde öncüdür. Ancak köyün asıl modern yüzü, uçsuz bucaksız sahil şerididir. Caretta Caretta
+                    kaplumbağalarının uğrak noktası olan kumsalları, günümüzde gelişen Kite Surf (Uçurtma Sörfü)
+                    okullarıyla spor turizmine açılmıştır.</p>
+                <p><strong>Günümüzdeki Durumu:</strong> Geleneksel köy yaşamı ile modern wellness turizmi burada iç
+                    içedir. Sahil boyunca yükselen yeni yaşam merkezleri, bölgeye uluslararası bir kimlik kazandırmış
+                    olsa da, köy kahvesindeki samimiyet ve yerel üreticilerin sıcaklığı hala ilk günkü gibi
+                    korunmaktadır.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Gaziveren+Lefke" target="_blank"
+                    class="btn-map">📍 Haritada Git</a>
+            </div>
+            <div class="village-img-box">
+                <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=800&auto=format&fit=crop"
+                    alt="Gaziveren Sahili ve Deniz">
+            </div>
+        </section>
+
+        <section id="gemikonagi" class="village-card">
+            <div class="village-info">
+                <h2>Gemikonağı (Xeros)</h2>
+                <p><strong>Sanayi Mirası:</strong> Gemikonağı, Kıbrıs'ın endüstriyel tarihindeki en önemli limanlardan
+                    biridir. 20. yüzyılın başlarında faaliyete geçen CMC (Cyprus Mines Corporation) maden şirketi,
+                    burayı dünyaya bakır ihraç eden bir merkez haline getirmiştir. Denizin içine uzanan paslı ama
+                    heybetli CMC iskelesi, o günlerin sessiz bir tanığı olarak hala ayaktadır.</p>
+                <p><strong>Eğitim ve Yaşam:</strong> Günümüzde Gemikonağı, Lefke Avrupa Üniversitesi (LAÜ) kampüsüne ev
+                    sahipliği yapmasıyla "Öğrenci Kenti" kimliği kazanmıştır. Sahil boyunca uzanan palmiye ağaçları,
+                    yürüyüş yolları, kafeler ve restoranlar, bölgeyi 7/24 yaşayan dinamik bir merkeze dönüştürmüştür.
+                </p>
+                <p><strong>Gezilecek Yerler:</strong> Karadağ'ın eteklerinden denize uzanan bu kasaba, Antik Soli
+                    Kenti'ne giden yolun başlangıcıdır. Gün batımında iskele çevresinde yürümek, balıkçı barınağında
+                    taze balık yemek ve tarihi İngiliz dönemi gümrük binalarını incelemek ziyaretçiler için
+                    vazgeçilmezdir.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Gemikonagi+Lefke" target="_blank"
+                    class="btn-map">📍 Haritada Git</a>
+            </div>
+            <div class="village-img-box">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Xeros_Pier.jpg/800px-Xeros_Pier.jpg"
+                    alt="Gemikonağı CMC İskelesi">
+            </div>
+        </section>
+
+        <section id="yesilirmak" class="village-card">
+            <div class="village-info">
+                <h2>Yeşilırmak (Limnitis)</h2>
+                <p><strong>Kıbrıs'ın Meyve Bahçesi:</strong> Adanın en batı ucunda, Dillirga bölgesinin kapısı olan
+                    Yeşilırmak, dağların denize dik indiği muazzam bir coğrafyaya sahiptir. Özel mikrokliması sayesinde
+                    muzdan çileğe, kolokastan verigo üzümüne kadar her şey burada yetişir. "Yeşilırmak Çileği" bir marka
+                    haline gelmiştir.</p>
+                <p><strong>Rekorlar Kitabı:</strong> Köy, Guinness Rekorlar Kitabı'na giren devasa asmasıyla ünlüdür. Bu
+                    asma tek bir kökten çıkarak geniş bir alanı gölgelemekte ve tonlarca üzüm vermektedir. Köy halkı,
+                    organik tarımı bir yaşam felsefesi olarak benimsemiştir.</p>
+                <p><strong>Turizm Potansiyeli:</strong> Vuni Sarayı'nın hemen yamacında yer alması, Petra Tou Limnidi
+                    (Yeşilırmak Kayalığı) adacığına bakan koyu ve tertemiz deniziyle yaz aylarının gözdesidir. Köy,
+                    Cittaslow (Sakin Şehir) ruhunu taşıyan, doğayla barışık işletmeleriyle bilinir.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Yesilirmak+Koyu+Kibris" target="_blank"
+                    class="btn-map">📍 Haritada Git</a>
+            </div>
+            <div class="village-img-box">
+                <img src="https://images.unsplash.com/photo-1595266947262-421733690d7e?q=80&w=800&auto=format&fit=crop"
+                    alt="Yeşilırmak Vadisi ve Doğası">
+            </div>
+        </section>
+
+        <section id="yesilyurt" class="village-card">
+            <div class="village-info">
+                <h2>Yeşilyurt (Pendaya)</h2>
+                <p><strong>Narenciye Başkenti:</strong> Yeşilyurt, ismini aldığı yeşil dokusunu, etrafını saran binlerce
+                    dönümlük portakal, limon ve mandalina bahçelerine borçludur. Kıbrıs'ın en büyük narenciye ihracat
+                    merkezlerinden biri olan köy, bahar aylarında tüm sokaklarını saran çiçek kokularıyla büyüleyicidir.
+                </p>
+                <p><strong>Tarihi Doku:</strong> Köyde Osmanlı ve İngiliz mimarisinin izlerini taşıyan yapılar bulunur.
+                    Özellikle İngiliz Sömürge Dönemi'nden kalma eski tren istasyonu yapıları ve su dağıtım sistemleri
+                    dikkat çeker. Köyün hemen yakınındaki "Mavi Köşk" (Kaçakçının Köşkü), turistlerin bölgeye
+                    gelmesindeki en büyük etkenlerden biridir.</p>
+                <p><strong>Sosyal Yaşam:</strong> Geniş caddeleri ve düzenli yerleşimiyle dikkat çeken Yeşilyurt, sakin
+                    ve huzurlu bir yaşam sunar. Cengiz Topel Hastanesi'nin de bu bölgede bulunması, köyü Lefke
+                    bölgesinin sağlık merkezi konumuna getirmiştir.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Yesilyurt+Koyu+Lefke" target="_blank"
+                    class="btn-map">📍 Haritada Git</a>
+            </div>
+            <div class="village-img-box">
+                <img src="https://images.unsplash.com/photo-1621960682245-e1150c95080c?q=80&w=800&auto=format&fit=crop"
+                    alt="Yeşilyurt Narenciye Bahçeleri">
+            </div>
+        </section>
+
+        <section id="doganci" class="village-card">
+            <div class="village-info">
+                <h2>Doğancı (Elye)</h2>
+                <p><strong>Üretimin Kalbi:</strong> Eski adıyla Elye olarak bilinen Doğancı, Lefke bölgesinin en geniş
+                    düzlüklerine sahiptir. Bu coğrafi avantaj, onu Kıbrıs'ın "karpuz ve sebze deposu" yapmıştır. Her yıl
+                    düzenlenen "Doğancı Karpuz Festivali", köyün kültürel mirasını ve üretim gücünü sergileyen büyük bir
+                    şölendir.</p>
+                <p><strong>Mimari ve Kültür:</strong> Doğancı, kerpiç mimarinin en güzel örneklerinin görülebileceği,
+                    geniş avlulu evleriyle ünlüdür. Köy sınırları içerisinde yer alan tarihi Roma dönemi su kemerleri,
+                    bölgenin binlerce yıldır tarım merkezi olduğunun kanıtıdır.</p>
+                <p><strong>Doğa:</strong> Elye Göleti, özellikle kış ve bahar aylarında göçmen kuşlara ev sahipliği
+                    yapar. Köy meydanındaki asırlık ağaçların altında içilen kahve ve köy halkının misafirperverliği,
+                    burayı ziyaret edenlerin hafızasında yer eder.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Doganci+Koyu+Lefke" target="_blank"
+                    class="btn-map">📍 Haritada Git</a>
+            </div>
+            <div class="village-img-box">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop"
+                    alt="Doğancı Tarlaları ve Kırsal">
+            </div>
+        </section>
+
+        <section id="taspinar" class="village-card">
+            <div class="village-info">
+                <h2>Taşpınar (Angolemi)</h2>
+                <p><strong>Dağın Eteğindeki Huzur:</strong> Taşpınar, Lefke'nin güneyindeki dağ yamaçlarına sırtını
+                    yaslamış, sakinliği ve temiz havasıyla bilinen bir köydür. Eski adı Angolemi olan köy, Lüzinyan
+                    döneminden kalma isminin köklü geçmişini taşır. Konumu itibariyle Lefke ovasına hakim bir manzarası
+                    vardır.</p>
+                <p><strong>El Sanatları:</strong> Taşpınar, Kıbrıs kültürünün önemli bir parçası olan dokumacılık ve el
+                    işçiliğinin yaşatıldığı nadir yerlerdendir. Köy kadınlarının ürettiği geleneksel motifli el işleri,
+                    kültürel mirasın devamlılığını sağlar.</p>
+                <p><strong>Ekoloji:</strong> Köy çevresi, çam ormanları ve maki bitki örtüsüyle kaplıdır. Doğa
+                    yürüyüşçüleri için harika rotalar sunan Taşpınar, özellikle bahar aylarında açan siklamenler ve
+                    lalelerle renk cümbüşüne döner. Şehir gürültüsünden uzaklaşmak isteyenler için mükemmel bir kaçış
+                    noktasıdır.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Taspinar+Koyu+Kibris" target="_blank"
+                    class="btn-map">📍 Haritada Git</a>
+            </div>
+            <div class="village-img-box">
+                <img src="https://images.unsplash.com/photo-1572957723979-583344b15093?q=80&w=800&auto=format&fit=crop"
+                    alt="Taşpınar Köy Manzarası">
+            </div>
+        </section>
+
+        <section id="baglikoy" class="village-card">
+            <div class="village-info">
+                <h2>Bağlıköy (Ampeligu)</h2>
+                <p><strong>Tescilli Eko-Köy:</strong> Bağlıköy, Kıbrıs'ın ilk ve en önemli Eko-Köy projelerinden
+                    biridir. Adını bir zamanlar etrafını saran üzüm bağlarından alan (Ampeligu) köy, bugün restore
+                    edilen taş binaları, butik konaklama yerleri ve çiçeklerle süslü dar sokaklarıyla adeta bir açık
+                    hava müzesidir.</p>
+                <p><strong>Kültürel Etkinlikler:</strong> Bağlıköy Ekoloji Derneği tarafından düzenlenen "Eko Günler",
+                    köyün geleneksel ürünlerinin (paluze, sucuk, zivaniya, hellim) tanıtıldığı ve satışa sunulduğu
+                    önemli etkinliklerdir. Köy, sürdürülebilir turizmin Kıbrıs'taki öncüsüdür.</p>
+                <p><strong>Doğa ve Tarih:</strong> Köyün üst kısımlarında yer alan manastır kalıntıları ve doğa yürüyüş
+                    parkurları, ziyaretçilere hem tarihi keşif hem de spor imkanı sunar. Kuş gözlemciliği için de uygun
+                    olan bölge, endemik bitki türleri açısından oldukça zengindir.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Baglikoy+Lefke" target="_blank"
+                    class="btn-map">📍 Haritada Git</a>
+            </div>
+            <div class="village-img-box">
+                <img src="https://images.unsplash.com/photo-1549643276-fbc2bd5f1646?q=80&w=800&auto=format&fit=crop"
+                    alt="Bağlıköy Taş Evleri">
+            </div>
+        </section>
+
+        <section id="camlikoy" class="village-card">
+            <div class="village-info">
+                <h2>Çamlıköy</h2>
+                <p><strong>Su ve Orman:</strong> Lefke Barajı'nın hemen kıyısında yer alan Çamlıköy, adını bölgeyi
+                    kucaklayan çam ormanlarından alır. Suyun bereketi, köyün tarımsal verimliliğini artırmış ve köyü her
+                    daim yeşil kılmıştır. Baraj gölü manzarası, köye ayrı bir dinginlik katar.</p>
+                <p><strong>Tarihi Değirmenler:</strong> Bölgedeki su kaynaklarının bolluğu, geçmişte birçok su
+                    değirmeninin burada kurulmasını sağlamıştır. Bu değirmenlerin kalıntıları, köyün endüstriyel
+                    arkeolojisi açısından önemlidir. Ayrıca köyde bulunan Osmanlı ve İngiliz dönemi su kemerleri de
+                    görülmeye değerdir.</p>
+                <p><strong>Yaşam Tarzı:</strong> Çamlıköy, geleneksel Kıbrıs köy yaşamının modern olanaklarla
+                    harmanlandığı sakin bir yerleşimdir. Köy halkı, organik sebze yetiştiriciliği ve hayvancılıkla
+                    uğraşır. Baraj çevresindeki piknik alanları, hafta sonları doğaseverlerin uğrak noktasıdır.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Camlikoy+Lefke" target="_blank"
+                    class="btn-map">📍 Haritada Git</a>
+            </div>
+            <div class="village-img-box">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop"
+                    alt="Çamlıköy ve Baraj Çevresi">
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="color:white; display:block; margin-bottom:15px;">LCED</a>
+                <p>Lefke Çevre ve Ekoloji Derneği, Lefke'nin eşsiz doğasını, tarihi mirasını ve kültürel zenginliklerini
+                    koruyarak gelecek nesillere aktarmayı hedefleyen bir sivil toplum kuruluşudur.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Keşfet</h4>
+                <ul>
+                    <li><a href="#lefke">Lefke</a></li>
+                    <li><a href="#tarih">Magusa</a></li>
+                    <li><a href="#dogu">Girne</a></li>
+                    <li><a href="#galeri">Lefkoşa</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sosyal Medya</h4>
+                <ul>
+                    <li><a href="https://www.instagram.com/lced.2025/" target="_blank">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>İletişim</h4>
+                <ul>
+                    <li><a href="#">Hakkımızda</a></li>
+                    <li><a href="#">İletişim</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scroll & Header Offset Fix
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100, // Navbar yüksekliğini düşür
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Güvenlik: Sağ Tık Engelleme
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Görünürlük Animasyonu (Scroll Reveal)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Kartlara başlangıç stili ver ve gözlemle
+        document.querySelectorAll('.village-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.8s ease-out';
+            observer.observe(card);
+        });
+    </script>
+
+</body>
+
+</html>

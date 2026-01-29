@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lefke Çevre ve Ekoloji Derneği- Lefke'yi Keşfedin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header id="ust-kisim">
+    </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="welcome-text" id="welcomeText" style="display:none;">
+                    Hoş geldin, <strong id="welcomeEmail"></strong>
+                </div>
+                <a href="#" class="logo-container">
+                    <img src="lefkeçevre.jepg.jpg" alt="Cyprus Travel Logo" class="nav-logo">
+                    <span class="logo-text">Lefke Çevre ve Ekoloji Derneği</span>
+                </a>
+
+
+
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active">Ana Sayfa</a></li>
+                <li><a href="#dernek-haberler" class="nav-link">Haberler</a></li>
+                <li><a href="#ara-baslik-kapsayici" class="nav-link">Keşfet</a>
+                <li><a href="galeri.html" data-place="Galeri" class="nav-link">Galeri</a>
+                <li><a href="yonetici.html" data-place="Kadro" class="nav-link">Kadromuz</a>
+                </li>
+
+            </ul>
+
+
+            <div class="auth-area" id="authButtons">
+                <button class="auth-btn login" id="openLogin">Giriş Yap</button>
+                <button class="auth-btn register" id="openRegister">Kayıt Ol</button>
+            </div>
+
+            <div class="user-info" id="userInfo" style="display:none;">
+
+                <button class="auth-btn logout" id="logoutBtn">Çıkış</button>
+            </div>
+            <div class="mobile-auth">
+                <button class="mobile-auth-btn">👤</button>
+                <div class="mobile-auth-menu">
+                    <button class="auth-btn login" id="mobileLoginBtn">Giriş Yap</button>
+                    <button class="auth-btn register" id="mobileRegisterBtn">Kayıt Ol</button>
+                </div>
+            </div>
+
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="havadurumu">
+        <a class="weatherwidget-io" href="https://forecast7.com/tr/35d1032d84/lefka/" data-label_1="LEFKE"
+            data-label_2="HAVA DURUMU" data-theme="original">LEFKE HAVA DURUMU</a>
+        <script>
+            !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+        </script>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+
+                    <input type="text" id="searchInput" placeholder="Yer ara (Soli, Vuni...)" onkeyup="searchPlaces()"
+                        autocomplete="off">
+
+                    <div id="searchResults">
+                    </div>
+                </div>
+            </div>
+            <span class="hero-badge">LCED.2025</span>
+            <h2 class="hero-title">Akdeniz'in İncisini<br>Keşfedin</h2>
+            <p class="hero-subtitle">"Akdeniz’in mavisiyle Trodos Dağları’nın yeşilinin kucaklaştığı Lefke,
+                Kıbrıs’ın zamana direnen en saf ve en huzurlu köşesidir. Tarihi Soli Antik Kenti’nden Vuni Sarayı’na
+                uzanan kadim mirasıyla geçmişin izlerini taşıyan şehir, bugün 'Cittaslow' unvanıyla sakin yaşamın
+                dünyadaki
+                seçkin temsilcilerinden biridir. Yafa portakalının kokusuyla yıkanan sokakları, bin yıllık zeytin
+                ağaçları ve
+                misafirperver halkıyla burası, modern dünyanın gürültüsünden uzaklaşmak isteyenler için bir sığınaktır.
+                Doğanın ritmiyle
+                nefes alan Lefke, sadece bir yerleşim yeri değil; korunmuş kültürü ve sürdürülebilir yaşam felsefesiyle
+                bir hayat biçimidir.
+                Burada her gün güneş, adanın en bakir topraklarında doğar ve her köşe başında tarihin derin sessizliği
+                yankılanır."</p>
+
+            <div class="hero-cta">
+                <a href="#lefke" class="btn btn-primary">Keşfet</a>
+                <a href="cıttaslow.html" class="btn btn-secondary">Cittaslow</a>
+                <a href="lefke.html" class="btn btn-secondary">Lefke'nin Tarihi</a>
+            </div>
+        </div>
+        <!-- Converting single image to auto-playing slider with 5 Cyprus images -->
+        <div class="hero-image">
+            <div class="hero-slider">
+                <div class="hero-slide active">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/ba/83/00/girne-kalesi-kiyida-tekneden.jpg?w=1400&h=800&s=1"
+                        alt="Girne Kalesi">
+                    <div class="hero-slide-caption">Girne Kalesi</div>
+                </div>
+                <div class="hero-slide">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/e2/14/88/ncyprus-trip-tour-salamis.jpg?w=1400&h=800&s=1"
+                        alt="Salamis Antik Kenti">
+                    <div class="hero-slide-caption">Salamis Antik Kenti</div>
+                </div>
+                <div class="hero-slide">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/56/5c/35/caption.jpg?w=1100&h=600&s=1"
+                        alt="Bellapais Manastırı">
+                    <div class="hero-slide-caption">Bellapais Manastırı</div>
+                </div>
+                <div class="hero-slide">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/b6/40/8b/kyrenia-gate.jpg?w=1400&h=800&s=1"
+                        alt="Mağusa Surları">
+                    <div class="hero-slide-caption">Girne Kapısı</div>
+                </div>
+                <div class="hero-slide">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/7a/66/ed/machairas-monastery.jpg?w=600&h=600&s=1"
+                        alt="Lefkoşa">
+                    <div class="hero-slide-caption">Lefkoşa Panorama</div>
+                </div>
+
+
+            </div>
+            <!-- Adding slider indicators for manual navigation -->
+            <div class="hero-slider-indicators">
+                <button class="indicator active" data-slide="0" aria-label="Slide 1"></button>
+                <button class="indicator" data-slide="1" aria-label="Slide 2"></button>
+                <button class="indicator" data-slide="2" aria-label="Slide 3"></button>
+                <button class="indicator" data-slide="3" aria-label="Slide 4"></button>
+                <button class="indicator" data-slide="4" aria-label="Slide 5"></button>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- City Section - Lefke -->
+    <section id="lefke" class="city-section">
+        <div class="container">
+            <section id="dernek-haberler">
+                <h2 class="section-title">GÜNCEL HABERLER</h2>
+                <div class="title-underline"></div>
+
+                <div id="haber-alani">
+                </div>
+            </section>
+
+            ...
+            <section id="ara-baslik-kapsayici"></section>
+
+            <div class="ara-baslik-kapsayici ">
+                <h2 class="ara-baslik">Lefke'yi Keşfedin</h2>
+                <div class="ara-baslik-cizgi"></div>
+            </div>
+
+            <script async src="//www.instagram.com/embed.js"></script>
+            <div class="cards-grid" section id="cards-grid">
+
+                <!-- Card 1: Cafes -->
+                <div class="card">
+                    <div class="card-badge">Kafeler</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+                            <div class="slide" data-place="Reklam"
+                                data-desc="Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme."
+                                data-map="https://maps.google.com/?q=Villa+Veranda+Lefke">
+                                <img src="reklam.jpeg" alt="Reklam">
+                                <div class="slide-overlay">
+                                    <h3>Reklam</h3>
+                                </div>
+                            </div>
+                            <div class="slide active" data-place="Corner Kafe"
+                                data-desc="Lefke merkezde, tarihi doku içinde huzurlu bir mekan."
+                                data-map="https://maps.google.com/?q=Corner+Kafe+Lefke">
+                                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Corner Kafe">
+                                <div class="slide-overlay">
+                                    <h3>Corner Kafe</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Reklam"
+                                data-desc="Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme."
+                                data-map="https://maps.google.com/?q=Villa+Veranda+Lefke">
+                                <img src="reklam.jpeg" alt="Reklam">
+                                <div class="slide-overlay">
+                                    <h3>Reklam</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="slider-btn next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Historical Places -->
+                <div class="card">
+                    <div class="card-badge">Tarihi Yerler</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+                            <div class="slide active" data-place="Soli Antik Kenti" data-detail="soli.html"
+                                data-desc="M.Ö. 11. yüzyılda kurulan, eşsiz 'Kuğu Mozaiği' ve Roma Tiyatrosu ile ünlü antik liman kenti."
+                                data-map="https://goo.gl/maps/soli-link">
+                                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/5b/fc/4c/soli-s-amphitheatre-with.jpg?w=600&h=400&s=1"
+                                    alt="Soli Antik Kenti">
+                                <div class="slide-overlay">
+                                    <h3>Soli Antik Kenti</h3>
+                                </div>
+                            </div>
+                            <div class="slide" data-place="Muflon Heykeli" data-detail="muflon.html"
+                                data-desc="Lefke'nin girişinde bir nöbetçi gibi yükselen Muflon Heykeli, Kıbrıs'ın dağlarındaki özgür ruhu kasabanın sokaklarına taşıyor. Bu asil duruş, sadece bir yaban hayatı simgesi değil, aynı zamanda adanın bozulmamış doğasına açılan bir kapıdır."
+                                data-map=" https://goo.gl/maps/vuni-link">
+                                <img src="https://lefketurizm.org/wp-content/uploads/2021/09/foto2.jpg"
+                                    alt="Muflon Heykeli">
+                                <div class="slide-overlay">
+                                    <h3>Muflon Heykeli</h3>
+                                </div>
+                            </div>
+
+                            <div class="slide" data-place="Vuni Sarayı" data-detail="vuni.html"
+                                data-desc="Denizden 250 metre yüksekte, M.Ö. 5. yüzyılda Pers sempatizanı Marion Kralı tarafından inşa edilmiş, muazzam manzaralı saray kalıntıları."
+                                data-map="https://goo.gl/maps/vuni-link">
+                                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/c4/34/5a/teilansicht.jpg?w=1200&h=800&s=1"
+                                    alt="Vuni Sarayı">
+                                <div class="slide-overlay">
+                                    <h3>Vuni Sarayı</h3>
+                                </div>
+                            </div>
+
+                            <div class="slide" data-place="Tarihi Lefke Konakları" data-detail="konaklar.html"
+                                data-desc="Osmanlı mimarisinin en zarif örneklerini yansıtan, cumbalı ve geniş avlulu tarihi evler."
+                                data-map="https://goo.gl/maps/konaklar-link">
+                                <img src="https://www.lefkebelediyesi.com//media/k2/galleries/18/lefke140a.jpg"
+                                    alt="Tarihi Lefke Konakları">
+                                <div class="slide-overlay">
+                                    <h3>Tarihi Lefke Konakları</h3>
+                                </div>
+                            </div>
+
+                            <div class="slide" data-place="Lefke Su Kemerleri" data-detail="kemerler.html"
+                                data-desc="Trodos dağlarından gelen suyu verimli Lefke bahçelerine taşıyan, Osmanlı ve Venedik döneminden kalma mühendislik harikaları."
+                                data-map="https://goo.gl/maps/kemerler-link">
+                                <img src="https://www.lefkebelediyesi.com//media/k2/galleries/19/101694013.jpg"
+                                    alt="Lefke Su Kemerleri">
+                                <div class="slide-overlay">
+                                    <h3>Lefke Su Kemerleri</h3>
+                                </div>
+                            </div>
+
+                            <div class="slide" data-place="Kırmızı Liman (CMC İskelesi)" data-detail="liman.html"
+                                data-desc="Bir zamanlar bakır madeni ihracatının kalbi olan, endüstriyel mirasın simgesi tarihi iskele."
+                                data-map="https://goo.gl/maps/liman-link">
+                                <img src="https://kktcturizm.com/wp-content/uploads/2024/12/lefke-kirmizi-iskele.jpg"
+                                    alt="Kırmızı Liman">
+                                <div class="slide-overlay">
+                                    <h3>Kırmızı Liman</h3>
+                                </div>
+                            </div>
+
+                            <div class="slide" data-place="Şehit Cengiz Topel Anıtı" data-detail="cengiz.html"
+                                data-desc="1964 yılında Kıbrıs Türk halkının varoluş mücadelesinde şehit düşen Yüzbaşı Cengiz Topel anısına dikilen anıt."
+                                data-map="https://goo.gl/maps/cengiz-link">
+                                <img src="https://cdnuploads.aa.com.tr/uploads/Contents/2020/08/07/thumbs_b_c_b4f5f37ed01a7dfc5f2795261bbcb23d.jpg?v=112532"
+                                    alt="Cengiz Topel Anıtı">
+                                <div class="slide-overlay">
+                                    <h3>Şehit Cengiz Topel Anıtı</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="slider-btn next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Hotels -->
+                <div class="card">
+                    <div class="card-badge">Oteller</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+                            <div class="slide" data-place="Reklam"
+                                data-desc="Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme."
+                                data-map="https://maps.google.com/?q=Villa+Veranda+Lefke">
+                                <img src="reklam.jpeg" alt="Reklam">
+                                <div class="slide-overlay">
+                                    <h3>Reklam</h3>
+                                </div>
+                            </div>
+                            <div class="slide active" data-place="VelMer Hotel"
+                                data-desc="Geleneksel mimariyle restore edilmiş butik otel."
+                                data-map="https://maps.google.com/?q=Lefke+Gardens+Hotel">
+                                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/d3/f4/08/velmer-hotel.jpg?w=1400&h=800&s=1"
+                                    alt="VeLMer Hotel">
+                                <div class="slide-overlay">
+                                    <h3>VelMer Hotel</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="slider-btn next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 4: Schools -->
+                <div class="card">
+                    <div class="card-badge">Okullar</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+                            <div class="slide active" data-place="Lefke Avrupa Üniversitesi" data-desc="Bölgenin uluslararası eğitim merkezi.
+                                Detaylı Bilgi: https://www.eul.edu.tr/tr/"
+                                data-map="https://maps.google.com/?q=European+University+of+Lefke">
+                                <img src="https://cyprus-faq.com/site/assets/files/37228/european-university-of-lefke.800x0-is.webp"
+                                    alt="Lefke Avrupa Üniversitesi">
+                                <div class="slide-overlay">
+                                    <h3>L.A.Ü.</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slider-btn prev" aria-label="Previous">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="slider-btn next" aria-label="Next">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-badge">Köyler</div>
+                    <div class="card-slider">
+                        <div class="slider-track">
+
+                            <div class="slide active" data-place="köyler" data-detail="koyler.html"
+                                data-desc="Ekolojik yaşamın merkezi..." style="cursor: pointer; position: relative;"
+                                onclick="window.location.href='koyler.html'">
+
+                                <img src="https://www.lefkebelediyesi.com//media/k2/galleries/19/101694013.jpg"
+                                    alt="köyler">
+
+                                <div class="slide-overlay">
+                                    <h3>KEŞFET</h3>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+    </section>
+    <footer class="site-footer">
+        <button id="openFeedbackBtn" class="feedback-trigger-btn">📩 Şikayet ve Öneri</button>
+    </footer>
+
+    <div id="feedbackModal" class="feedback-modal" style="display: none;">
+        <div class="feedback-content">
+            <span class="close-feedback">&times;</span>
+            <h3>Şikayet ve Öneri</h3>
+            <p>Görüşleriniz bizim için değerlidir.</p>
+            <form id="feedbackForm">
+                <textarea id="feedbackMessage" placeholder="Mesajınızı buraya yazın..." required></textarea>
+                <button type="submit" id="submitFeedback">Gönder</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h2 id="modal-title">Başlık</h2>
+            <p id="modal-desc">Açıklama</p>
+
+            <div class="modal-buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                <a id="modal-map" href="#" target="_blank" class="btn btn-primary">
+                    Haritada Gör
+                </a>
+
+                <a id="modal-details" href="#" class="btn btn-secondary">
+                    Detaylı Bilgi
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Lefke Çevre ve Ekoloji Derneği</h3>
+                    <p>Lefke'nin güzelliklerini keşfedin.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Keşfet</h4>
+                        <ul>
+                            <li><a href="#lefke">Lefke</a></li>
+                            <li><a href="#magusa">Mağusa</a></li>
+                            <li><a href="#girne">Girne</a></li>
+                            <li><a href="#lefkosa">Lefkoşa</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column" id="footer">
+                        <h4>Sosyal Medya</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/lced.2025/" target="_blank">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>İletişim</h4>
+                        <ul>
+                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a href="#">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+
+
+    <div class="auth-modal" id="authModal">
+        <div class="auth-backdrop"></div>
+
+        <div class="auth-box">
+            <p class="auth-info" id="authInfo" style="display:none;">
+                📩 Email adresine doğrulama linki gönderdik.<br />
+                Lütfen mailini kontrol et.
+            </p>
+
+            <button class="auth-close" id="closeAuth">×</button>
+
+            <h2 id="authTitle">Giriş Yap</h2>
+
+            <div id="registerFields" style="display: none; flex-direction: column; gap: 10px; margin-bottom: 10px;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="authName" placeholder="Adınız">
+                    <input type="text" id="authSurname" placeholder="Soyadınız">
+                </div>
+
+                <input type="tel" id="authPhone" placeholder="Telefon (05xx...)" maxlength="11"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <small style="color: #7f8c8d; font-size: 0.7rem; margin-top: -5px;"></small>
+            </div>
+
+            <input type="email" id="authEmail" placeholder="Email adresiniz">
+            <input type="password" id="authPassword" placeholder="Şifreniz">
+
+            <button class="auth-submit" id="authSubmit">Devam Et</button>
+
+            <p class="auth-switch" id="authSwitch">
+                Hesabın yok mu? <span>Kayıt Ol</span>
+            </p>
+        </div>
+        <div class="toast" id="toast"></div>
+
+
+
+
+</body>
+
+</html>

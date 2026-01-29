@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kırmızı Liman | Bakırın Denize Açılan Kapısı</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --color-navy: #003366;
+            /* Lefke Kurumsal Mavi */
+            --color-rust: #a04000;
+            /* Kırmızı Liman ve Bakır Tonu */
+            --color-gold: #c5a059;
+            /* Detay Tonu */
+            --color-light: #fdfcfb;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-light);
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- SOL ÜST SABİT NAVİGASYON (SOLI KONSEPTİ) --- */
+        .back-nav {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 9999;
+        }
+
+        .home-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-link:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--color-navy);
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO SECTION (PARALLAX) --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0, 51, 102, 0.4), rgba(160, 64, 0, 0.3)),
+                url('https://kktcturizm.com/wp-content/uploads/2024/12/lefke-kirmizi-iskele.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideInLeft 1.5s ease-out forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 300;
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        /* --- DETAYLI İÇERİK ALANI --- */
+        .section-details {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: flex-start;
+            margin-bottom: 120px;
+        }
+
+        .text-content h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--color-navy);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .text-content h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--color-rust);
+            margin-top: 15px;
+        }
+
+        .text-content p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .stat-box {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            border-left: 2px solid var(--color-rust);
+            padding-left: 20px;
+        }
+
+        .stat-item span {
+            display: block;
+            font-weight: 800;
+            color: var(--color-navy);
+            font-size: 1.5rem;
+        }
+
+        /* --- GÖRSEL KARTI --- */
+        .image-stack {
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .image-stack img {
+            width: 100%;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .image-stack:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- MİRAS KARTLARI --- */
+        .legacy-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--color-navy);
+            margin-bottom: 60px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .legacy-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 2px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            border-top: 4px solid transparent;
+        }
+
+        .legacy-card:hover {
+            transform: translateY(-15px);
+            border-top-color: var(--color-rust);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.08);
+        }
+
+        .legacy-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-navy);
+            margin-bottom: 20px;
+        }
+
+        .legacy-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* --- ANIMASYONLAR --- */
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-150px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* MOBİL UYUMLULUK */
+        @media (max-width: 968px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-details {
+                padding: 60px 20px;
+            }
+
+            .back-nav {
+                top: 15px;
+                left: 15px;
+            }
+
+            .home-link .text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!DOCTYPE html>
+    <html lang="tr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lefke Derneği - Master Navbar</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+            rel="stylesheet">
+
+        <style>
+            /* CSS SIFIRLAMA VE DEĞİŞKENLER */
+            :root {
+                --color-primary: #1e3a5f;
+                --color-dark: #0f172a;
+                --font-main: 'Inter', sans-serif;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: var(--font-main);
+                background-color: #f8fafc;
+            }
+
+            /* --- NAVBAR TASARIMI --- */
+            .navbar {
+                background: #ffffff;
+                height: 70px;
+                display: flex;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .nav-container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            /* Sol: Logo ve Hoşgeldin */
+            .nav-brand {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .logo {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.5rem;
+                font-weight: 800;
+                color: var(--color-primary);
+                text-decoration: none;
+                letter-spacing: -0.5px;
+            }
+
+            .welcome-text {
+                font-size: 0.75rem;
+                color: #64748b;
+            }
+
+            /* Orta: Menü Linkleri */
+            .nav-menu {
+                display: flex;
+                list-style: none;
+                gap: 5px;
+                /* Menü elemanları arası temel boşluk */
+                margin: 0;
+                padding: 0;
+            }
+
+            .nav-link {
+                text-decoration: none;
+                color: var(--color-dark);
+                font-weight: 500;
+                font-size: 0.95rem;
+                padding: 8px 15px;
+                transition: all 0.3s;
+            }
+
+            .nav-link:hover {
+                color: var(--color-primary);
+            }
+
+            /* --- NARİN DROPDOWN AYARLARI --- */
+            .nav-item.dropdown {
+                position: relative;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(10px);
+                background: white;
+                min-width: 160px;
+                padding: 5px 0;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                border: 1px solid #f0f0f0;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.2s ease;
+                list-style: none;
+            }
+
+            /* Mouse üzerine gelince kutu açılır */
+            .nav-item.dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(5px);
+            }
+
+            /* SIKI LİSTE AYARI: Aradaki boşluğu öldüren kısım */
+            .dropdown-menu li {
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100%;
+            }
+
+            .dropdown-menu li a {
+                display: block;
+                padding: 10px 15px;
+                font-size: 14px;
+                color: #444;
+                text-decoration: none;
+                transition: background 0.2s;
+                text-align: center;
+                border-radius: 4px;
+                margin: 0 5px;
+            }
+
+            .dropdown-menu li a:hover {
+                background-color: #f8fafc;
+                color: var(--color-primary);
+            }
+
+            .arrow {
+                font-size: 9px;
+                margin-left: 4px;
+                color: #bbb;
+            }
+
+            /* Sağ: Butonlar */
+            .nav-actions {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .btn {
+                padding: 8px 18px;
+                border-radius: 6px;
+                font-weight: 600;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                border: none;
+            }
+
+            .btn-outline {
+                background: transparent;
+                border: 1.5px solid var(--color-primary);
+                color: var(--color-primary);
+            }
+
+            .btn-primary {
+                background: var(--color-primary);
+                color: white;
+            }
+
+            .btn:hover {
+                opacity: 0.9;
+                transform: translateY(-1px);
+            }
+
+            /* Mobil Menü Gizleme (Desktop görünümü için) */
+            .mobile-menu-toggle {
+                display: none;
+            }
+
+            @media (max-width: 768px) {
+                .nav-menu {
+                    display: none;
+                }
+
+                .mobile-menu-toggle {
+                    display: block;
+                }
+            }
+
+            /* Mobil Uyumluluk Güncellemesi - Hamburger Menü Yok */
+            @media (max-width: 768px) {
+                .navbar {
+                    height: auto;
+                    /* İçerik arttıkça yüksekliğin artması için */
+                    padding: 10px 0;
+                }
+
+                .nav-container {
+                    flex-direction: column;
+                    /* Logo üstte, menü altta */
+                    gap: 15px;
+                }
+
+                .nav-menu {
+                    display: flex !important;
+                    /* Gizlemeyi kaldırıyoruz */
+                    flex-wrap: wrap;
+                    /* Sığmazsa aşağı kayması için */
+                    justify-content: center;
+                    gap: 5px;
+                    width: 100%;
+                }
+
+                .nav-link {
+                    font-size: 0.85rem;
+                    /* Mobilde biraz daha küçük puntolar */
+                    padding: 5px 10px;
+                }
+
+                /* Dropdown mobilde tıklandığında görünmesi için basit ayar */
+                .nav-item.dropdown:hover .dropdown-menu {
+                    position: absolute;
+                    /* İçeriğin kaymaması için */
+                    transform: translateX(-50%) translateY(0);
+                }
+
+                .mobile-menu-toggle {
+                    display: none !important;
+                    /* Hamburger düğmesini tamamen kapat */
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html" class="logo">Lefke Çevre ve Ekoloji Derneği</a>
+                </div>
+
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">Keşfet <span class="arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="cittaslow.html">Cittaslow</a></li>
+                            <li><a href="lefke.html">Lefke'nin Tarihi</a></li>
+                            <li><a href="galeri.html">Galeri</a></li>
+                            <li><a href="muflon.html">Muflon Heykeli</a></li>
+                            <li><a href="cengiz.html">Cengiz Topel Anıtı</a></li>
+                            <li><a href="kemerler.html">Lefke Su Kemerleri</a></li>
+                            <li><a href="konaklar.html">Lefke Tarihi Konaklar</a></li>
+                            <li><a href="liman.html">Lefke Antik Liman</a></li>
+                            <li><a href="soli.html">Soli Antik Kenti</a></li>
+                            <li><a href="vuni.html">Vuni Sarayı</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="index.html#projeler" class="nav-link">Projeler</a></li>
+
+                </ul>
+        </nav>
+        <script>
+            // Sağ tıklamayı engeller
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // Klavye kısayollarını engeller (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
+            document.onkeydown = function (e) {
+                if (e.keyCode == 123) { // F12
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
+                    return false;
+                }
+                if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Kaynak kodunu görüntüle
+                    return false;
+                }
+            };
+        </script>
+    </body>
+
+    </html>
+
+    <header class="hero">
+        <div class="hero-content">
+            <p>CMC Maden Mirası ve Deniz</p>
+            <h1>Kırmızı Liman</h1>
+        </div>
+    </header>
+
+    <div class="section-details">
+        <div class="info-grid">
+            <div class="text-content">
+                <h2>Karavostasi'nin Endüstriyel Ruhu</h2>
+                <p>Kırmızı Liman, Lefke’nin ve Kıbrıs’ın yakın tarihinde çok önemli bir yere sahip olan CMC (Cyprus
+                    Mines Corporation) maden şirketinin dünyaya açılan kapısıydı. Adını, yüklenen bakır madeninin
+                    tozlarından dolayı denizin ve sahilin aldığı kızıl tondan almıştır.</p>
+                <p>Bugün devasa iskele kalıntıları ve deniz içindeki paslanmış yapılar, bölgeye dramatik ve büyüleyici
+                    bir atmosfer katmaktadır. Burası sadece bir sahil değil, bir dönemin ekonomik devriminin sessiz
+                    tanığıdır.</p>
+
+                <div class="stat-box">
+                    <div class="stat-item">
+                        <span>1916</span>
+                        <p>CMC Kuruluş</p>
+                    </div>
+                    <div class="stat-item">
+                        <span>Liman</span>
+                        <p>Stratejik Nokta</p>
+                    </div>
+                </div>
+            </div>
+            <div class="image-stack">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/K%C4%B1rm%C4%B1z%C4%B1_Liman.jpg"
+                    alt="Kırmızı Liman İskele">
+            </div>
+        </div>
+
+        <h2 class="legacy-title">Kültürel ve Tarihi Dokular</h2>
+        <div class="cards-container">
+            <div class="legacy-card">
+                <h3>🏗️ Tarihi İskeleler</h3>
+                <p>Denizin içine uzanan dev metal ayaklar, bir zamanlar tonlarca madenin dev gemilere yüklendiği muazzam
+                    bir mühendislik harikasıydı.</p>
+            </div>
+            <div class="legacy-card">
+                <h3>🌊 Kızıl Sahil</h3>
+                <p>Bakır sülfat ve minerallerin etkisiyle karakter kazanan sahil şeridi, gün batımında eşsiz bir görsel
+                    şölen sunar.</p>
+            </div>
+            <div class="legacy-card">
+                <h3>🏚️ Endüstriyel Miras</h3>
+                <p>Çevredeki eski maden binaları ve lojmanlar, Lefke’nin "Cittaslow" kimliği içinde korunan önemli
+                    endüstriyel arkeoloji alanlarıdır.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Lefke Çevre ve Ekoloji Derneği</h3>
+                    <p>Lefke'nin güzelliklerini keşfedin.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Keşfet</h4>
+                        <ul>
+                            <li><a href="#lefke">Lefke</a></li>
+                            <li><a href="#magusa">Mağusa</a></li>
+                            <li><a href="#girne">Girne</a></li>
+                            <li><a href="#lefkosa">Lefkoşa</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column" id="footer-social">
+                        <h4>Sosyal Medya</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/lced.2025/" target="_blank">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>İletişim</h4>
+                        <ul>
+                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a href="#">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+    <style>
+        /* FOOTER CSS BAŞLANGIÇ */
+        .footer {
+            background: #0f172a;
+            /* Görseldeki koyu lacivert tonu */
+            color: white;
+            padding: 60px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* FOOTER CSS BİTİŞ */
+    </style>
+
+</body>
+
+</html>
