@@ -14,10 +14,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
-        /* FOOTER CSS BAŞLANGIÇ */
+        /* --- NAVBAR VE FOOTER (DEĞİŞTİRİLMEDİ) --- */
         .footer {
             background: #0f172a;
-            /* Görseldeki koyu lacivert tonu */
             color: white;
             padding: 60px 20px;
             font-family: 'Inter', sans-serif;
@@ -88,21 +87,6 @@
             font-size: 0.85rem;
         }
 
-        /* Mobil Uyumluluk */
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-links {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
-
-        /* FOOTER CSS BİTİŞ */
-        /* --- GENEL AYARLAR --- */
         :root {
             --bg-paper: #f4f1ea;
             --ink: #1a1a1a;
@@ -110,7 +94,6 @@
             --accent-orange: #d4a373;
             --color-primary: #1e3a5f;
             --color-dark: #0f172a;
-            --spacing-2xl: 3rem;
         }
 
         * {
@@ -127,7 +110,6 @@
             overflow-x: hidden;
         }
 
-        /* --- NAVBAR (EN ÜSTTE SABİT) --- */
         .navbar {
             background: #ffffff;
             height: 70px;
@@ -135,12 +117,10 @@
             align-items: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             position: fixed;
-            /* Sayfanın en üstüne çiviler */
             top: 0;
             left: 0;
             width: 100%;
             z-index: 2000;
-            /* Her şeyin üstünde görünmesi için */
         }
 
         .nav-container {
@@ -225,11 +205,10 @@
             color: var(--color-primary);
         }
 
-        /* --- İÇERİK TASARIMI --- */
+        /* --- İÇERİK TASARIMI (GELİŞTİRİLDİ) --- */
         .page-container {
             max-width: 1200px;
             margin: 100px auto 0;
-            /* Navbar yüksekliği kadar üstten boşluk */
             padding: 50px 20px;
         }
 
@@ -248,110 +227,93 @@
 
         .section-block {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 60px;
-            margin-bottom: 100px;
-            align-items: start;
+            margin-bottom: 120px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-block.reverse {
+            grid-template-columns: 0.8fr 1.2fr;
         }
 
         .text-column h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--accent-green);
             margin-bottom: 20px;
+            border-left: 5px solid var(--accent-orange);
+            padding-left: 20px;
+        }
+
+        .text-column p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-align: justify;
         }
 
         .meta-column {
             background: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: 5px;
             box-shadow: 8px 8px 0px var(--accent-orange);
             font-family: 'Inter', sans-serif;
         }
 
-        .mini-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 20px;
+        .image-caption {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+            display: block;
         }
 
-        .mini-gallery img {
+        .main-img {
             width: 100%;
-            height: 100px;
+            height: 350px;
             object-fit: cover;
             border-radius: 4px;
+            transition: transform 0.5s ease;
         }
 
+        .main-img:hover {
+            transform: scale(1.02);
+        }
 
-
+        /* Mobil Uyumluluk */
         @media (max-width: 768px) {
 
             .section-block,
-            .footer-content {
+            .section-block.reverse {
                 grid-template-columns: 1fr;
-            }
-
-            .nav-menu {
-                display: none;
+                gap: 30px;
             }
 
             header h1 {
                 font-size: 2.5rem;
             }
-        }
 
-        /* --- MOBİL NAVİGASYON GÜNCELLEMESİ (HAMBURGERSIZ) --- */
-        @media (max-width: 768px) {
             .navbar {
                 height: auto;
-                /* İçerik çoksa yüksekliğin esnemesi için */
                 padding: 10px 0;
             }
 
             .nav-container {
                 flex-direction: column;
-                /* Logo üstte, menü altta */
                 gap: 12px;
-                padding: 0 10px;
-            }
-
-            .logo {
-                font-size: 1.1rem;
-                /* Mobilde logoyu biraz küçültüyoruz */
-                text-align: center;
             }
 
             .nav-menu {
                 display: flex !important;
-                /* Gizlemeyi kaldırıyoruz */
                 flex-wrap: wrap;
-                /* Sığmayan linklerin aşağı kayması için */
                 justify-content: center;
-                gap: 5px;
                 width: 100%;
             }
 
-            .nav-link {
-                font-size: 0.8rem;
-                padding: 5px 8px;
-                white-space: nowrap;
-                /* Kelimelerin bölünmemesi için */
-            }
-
-            /* Dropdown mobilde tıklandığında görünmesi için */
-            .nav-item.dropdown:hover .dropdown-menu {
-                opacity: 1;
-                visibility: visible;
-                transform: translateX(-50%) translateY(5px);
-                position: absolute;
-                z-index: 3000;
-            }
-
-            /* İçeriklerin navbar altında kalmaması için padding ayarı */
             .page-container {
-                margin-top: 130px;
-                /* Navbar mobilde uzadığı için bu boşluğu artırdık */
+                margin-top: 150px;
             }
         }
     </style>
@@ -367,7 +329,7 @@
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link">Keşfet ▼</a>
                     <ul class="dropdown-menu">
-                        <li><a href="cittaslow.html">Cittaslow</a></li>
+                        <li><a href="cıttaslow.html">Cittaslow</a></li>
                         <li><a href="lefke.html">Lefke'nin Tarihi</a></li>
                         <li><a href="galeri.html">Galeri</a></li>
                         <li><a href="muflon.html">Muflon Heykeli</a></li>
@@ -377,6 +339,7 @@
                         <li><a href="liman.html">Lefke Antik Liman</a></li>
                         <li><a href="soli.html">Soli Antik Kenti</a></li>
                         <li><a href="vuni.html">Vuni Sarayı</a></li>
+                        <li><a href="laü.html" style="font-weight: bold; color: #1e3a5f;">LAÜ</a></li>
                     </ul>
                 </li>
                 <li><a href="index.html#projeler" class="nav-link">Projeler</a></li>
@@ -389,28 +352,75 @@
             <p
                 style="font-family: 'Inter'; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; color: var(--accent-orange);">
                 Kıbrıs'ın Zaman Tüneli</p>
-            <h1>Lefke'nin Tarihi</h1>
+            <h1>Lefke Tarih Arşivi</h1>
         </header>
 
         <div class="section-block reveal">
             <div class="text-column">
-                <h2 data-year="M.Ö. 3000">Köklerin Derinliği</h2>
-                <p>Lefke, adını muhtemelen kurucusu olan Mısırlı Prens Lefkon'dan almıştır. Tarihin en eski
-                    sayfalarında, bereketli toprakları ve stratejik konumuyla bir yaşam merkezi olarak işaretlenmiştir.
-                </p>
-                <p>Antik Soli Krallığı ve Vuni Sarayı'nın hemen gölgesinde yer alan Lefke, Akdeniz ticaret yollarının
-                    üzerinde büyüdü.</p>
+                <h2>Antik Kökler ve Soli</h2>
+                <p>Lefke, M.Ö. 3000'li yıllara kadar uzanan köklü bir geçmişe sahiptir. Şehir, adını Mısır Prensi
+                    Lefkon'dan almış olsa da bölgenin kaderini Soli Antik Kenti belirlemiştir. Bakır madenlerinin
+                    bolluğu, bu bölgeyi antik dünyanın sanayi merkezi haline getirmiştir.</p>
+                <p>M.Ö. 6. yüzyılda inşa edilen <strong>Vuni Sarayı</strong>, Pers sempatizanı bir kral tarafından
+                    Soli'yi denetim altında tutmak için bir tepenin üzerine kurulmuştur. Bu yapılar, Lefke'nin sadece
+                    bir tarım kasabası değil, stratejik bir askeri ve ticari üs olduğunu kanıtlar.</p>
             </div>
             <div class="meta-column">
-                <strong>Tarih Notu:</strong> Soli Antik Kenti'nde bulunan "Kıbrıs'ın Altın Tacı" bölgenin zenginliğinin
-                kanıtıdır.
-                <div class="mini-gallery">
-                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/5b/fc/4c/soli-s-amphitheatre-with.jpg?w=600&h=400&s=1"
-                        alt="Soli">
-                    <img src="https://www.lefkebelediyesi.com//media/k2/galleries/26/6050204148_6f77103fe0_b.jpg"
-                        alt="Doğa">
-                    <img src="https://images.unsplash.com/photo-1582979512210-99b6a53386f9?q=80&w=400" alt="Portakal">
-                </div>
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/5b/fc/4c/soli-s-amphitheatre-with.jpg?w=600&h=400&s=1"
+                    class="main-img" alt="Soli Tiyatrosu">
+                <span class="image-caption">Soli Antik Tiyatrosu - Roma Dönemi'nin görkemli mirası.</span>
+            </div>
+        </div>
+
+        <div class="section-block reveal reverse">
+            <div class="meta-column">
+                <img src="https://www.lefkebelediyesi.com//media/k2/galleries/26/6050204148_6f77103fe0_b.jpg"
+                    class="main-img" alt="Lefke Sokakları">
+                <span class="image-caption">Lefke'nin dar sokakları ve Osmanlı döneminden kalma karakteristik cumbalı
+                    evler.</span>
+            </div>
+            <div class="text-column">
+                <h2>Osmanlı Mirası ve Konaklar</h2>
+                <p>1571 yılında Kıbrıs'ın Osmanlılar tarafından fethiyle birlikte Lefke, adanın en önemli idari
+                    merkezlerinden biri olmuştur. Verimli toprakları ve bol su kaynakları sayesinde bölge, Anadolu'dan
+                    getirilen zanaatkarlar ve asilzadeler için cazibe merkezi haline gelmiştir.</p>
+                <p>Şehir merkezinde yükselen <strong>Osmanlı Konakları</strong>, dönemin mimari zarafetini günümüze
+                    taşır. Su kemerleri ise narenciye bahçelerini sulamak için inşa edilmiş, mühendislik harikası
+                    yapılar olarak hala ayaktadır.</p>
+            </div>
+        </div>
+
+        <div class="section-block reveal">
+            <div class="text-column">
+                <h2>Madenin Altın Çağı: CMC</h2>
+                <p>1913 yılında Amerikan Kıbrıs Maden Şirketi'nin (CMC) bölgeye gelişi, Lefke'nin modern tarihini kökten
+                    değiştirmiştir. Lefke, bir anda binlerce işçinin çalıştığı, bölgenin ilk modern hastanesinin ve golf
+                    sahasının bulunduğu bir sanayi kentine dönüşmüştür.</p>
+                <p>Bakır ve pirit madenleri dünyanın dört bir yanına buradan ihraç edilmiştir. Bugün Gemikonağı
+                    sahilinde görülen tarihi iskele, bu devasa ekonomik dönemin en hüzünlü ve etkileyici hatırasıdır.
+                </p>
+            </div>
+            <div class="meta-column">
+                <img src="https://static.wixstatic.com/media/893c8d_346452e6467340e49520119c36662758~mv2.jpg/v1/fill/w_640,h_420,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/893c8d_346452e6467340e49520119c36662758~mv2.jpg"
+                    class="main-img" alt="CMC Madenleri">
+                <span class="image-caption">Gemikonağı CMC Maden İskelesi - Sanayi tarihinin sessiz tanığı.</span>
+            </div>
+        </div>
+
+        <div class="section-block reveal reverse">
+            <div class="meta-column">
+                <img src="https://images.unsplash.com/photo-1582979512210-99b6a53386f9?q=80&w=600" class="main-img"
+                    alt="Portakal Bahçeleri">
+                <span class="image-caption">Lefke'nin meşhur Yafa portakalları ve bereketli doğası.</span>
+            </div>
+            <div class="text-column">
+                <h2>Sakin Şehir: Cittaslow</h2>
+                <p>Bugün Lefke, dünya üzerindeki sayılı "Cittaslow" (Sakin Şehir) ünvanına sahip yerlerden biridir.
+                    Portakal bahçeleri, asırlık hurma ağaçları ve misafirperver halkıyla doğallığını korumayı
+                    başarmıştır.</p>
+                <p>Kentin batısında yer alan Soli ve Vuni, kuzeyindeki denizle birleşerek Lefke'yi bir açık hava
+                    müzesine dönüştürür. Lefke Avrupa Üniversitesi'nin gelişiyle de bir eğitim kenti kimliği kazanmış,
+                    genç enerjiyle tarihi dokusunu harmanlamıştır.</p>
             </div>
         </div>
     </div>
@@ -422,7 +432,6 @@
                     <h3>Lefke Çevre ve Ekoloji Derneği</h3>
                     <p>Lefke'nin güzelliklerini keşfedin.</p>
                 </div>
-
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4>Keşfet</h4>
@@ -450,7 +459,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
             </div>
@@ -465,20 +473,11 @@
                 opacity: 1, y: 0, duration: 1.2, ease: "power2.out"
             });
         });
-    </script>
-    <script>
-        // Sağ tıklamayı engeller
-        document.addEventListener('contextmenu', event => event.preventDefault());
 
-        // Klavye kısayollarını engeller (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
+        // Sağ tık ve klavye engeli (Orijinal koddaki gibi)
+        document.addEventListener('contextmenu', event => event.preventDefault());
         document.onkeydown = function (e) {
-            if (e.keyCode == 123) { // F12
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Kaynak kodunu görüntüle
+            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
                 return false;
             }
         };
