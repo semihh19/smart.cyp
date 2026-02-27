@@ -489,22 +489,45 @@ body {
    ============================================ */
 #haber-alani {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;   /* ALT SATIRA DÜŞMESİN */
+  overflow-x: auto;    /* YANA KAYDIRMA AKTİF */
+  scroll-behavior: smooth;
   gap: 20px;
+  padding: 20px 10px;
+  cursor: grab;
 }
 
-.haber-cerceve {
-  width: 400px;
-  height: 700px;
-  overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background: #fff;
-  margin-bottom: 100px;
+/* Scroll bar gizle */
+#haber-alani::-webkit-scrollbar {
+  display: none;
+}
+#haber-alani {
+    display: flex;
+    flex-wrap: nowrap; /* Kartların alt alta geçmesini engeller */
+    overflow-x: auto;  /* Yan kaydırmayı açar */
+    gap: 20px;
+    padding: 20px 10px;
+    scroll-behavior: smooth; /* Butonla kayarken yumuşak geçiş yapar */
+    scrollbar-width: none;   /* Firefox'ta scrollbar'ı gizler */
+    -ms-overflow-style: none; /* IE'de scrollbar'ı gizler */
+    cursor: grab;
+    -webkit-overflow-scrolling: touch; /* Mobilde parmakla kaydırmayı akıcı yapar */
 }
 
+/* Chrome ve Safari'de scrollbar'ı gizler */
+#haber-alani::-webkit-scrollbar {
+    display: none;
+}
+
+/* Kartların genişliğini mobilde sabit tutalım ki yan yana dizilsinler */
+.haber-kart {
+    flex: 0 0 300px; /* Kartlar küçülmez, hep 300px genişliğinde kalır */
+    max-width: 300px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 /* ============================================
    CARDS GRID
    ============================================ */
@@ -1404,22 +1427,35 @@ body {
   }
 
   /* HABER ALANI MOBİL */
-  #haber-alani {
+ #haber-alani {
     display: flex;
-    flex-direction: column;
+    flex-wrap: nowrap; /* Kartların alt satıra geçmesini kesin olarak engeller */
+    overflow-x: auto;  /* Yatay kaydırmayı etkinleştirir */
     gap: 20px;
-    padding: 0;
-    align-items: center;
-  }
+    scroll-behavior: smooth; /* Butonla kayarken yumuşak geçiş yapar */
+    -webkit-overflow-scrolling: touch; /* Mobilde parmakla kaydırmayı akıcı yapar */
+    
+    /* Scrollbar'ı gizlemek istersen (isteğe bağlı) */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
 
-  .haber-cerceve {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    max-height: 600px;
-    margin-bottom: 20px;
-  }
+#haber-alani::-webkit-scrollbar {
+    display: none; /* Chrome/Safari'de scrollbar gizle */
+}
 
+/* Kartların mobilde de yan yana durması için genişliğini sabitleyelim */
+.haber-kart, .haber-cerceve {
+    flex: 0 0 85%; /* Mobilde ekranın %85'ini kaplasın (yandaki kart azıcık görünsün) */
+    max-width: 350px; /* Bilgisayarda çok devasa olmasın */
+}
+
+/* Bilgisayar ekranları için (Masaüstünde eski haline dönsün) */
+@media (min-width: 1024px) {
+    .haber-kart, .haber-cerceve {
+        flex: 0 0 300px; /* PC'de sabit genişlik */
+    }
+}
   /* FOOTER MOBİL */
   .footer {
     padding: 32px 16px;
@@ -1621,3 +1657,157 @@ header h1,
   }
 }
 
+@media screen and (max-width: 768px) {
+    .auth-buttons {
+        display: none !important;
+    }
+}
+
+/* Başlangıç durumları */
+.user-only {
+    display: none !important;
+}
+
+.guest-only {
+    display: block !important;
+}
+
+/* Kullanıcı giriş yaptığında (Body'de class varken) */
+body.user-logged-in .guest-only {
+    display: none !important;
+}
+
+body.user-logged-in .user-only {
+    display: block !important;
+}
+
+/* Masaüstü butonları için de aynısını yapabiliriz */
+body.user-logged-in #authButtons {
+    display: none !important;
+}
+
+body.user-logged-in #userInfo {
+    display: flex !important;
+}
+/* Mobil menü içindeki karşılama metnini gizle */
+.mobile-auth-menu #mobileWelcomeText {
+    display: none !important;
+}
+
+/* Eğer masaüstündeki "Hoş geldin" yazısını da mobildeyken gizlemek istersen */
+@media (max-width: 768px) {
+    #welcomeText {
+        display: none !important;
+    }
+}
+/* Mobilde navbar içindeki (soldaki) kullanıcı bilgilerini ve çıkış butonunu tamamen gizle */
+@media (max-width: 768px) {
+    #userInfo, 
+    #logoutBtn, 
+    .welcome-text {
+        display: none !important;
+    }
+    
+}
+/* DESKTOP: ekranda 4 kart */
+@media (min-width: 1024px) {
+  .haber-cerceve {
+    min-width: calc((100% - 60px) / 4);
+    flex: 0 0 auto;
+  }
+}
+/* Slider Sarmalayıcı */
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px;
+}
+
+/* Buton Stilleri */
+.slider-btn {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 5;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* Butonların küçülmesini engeller */
+}
+
+.slider-btn:hover {
+    background-color: var(--color-secondary);
+    transform: scale(1.1);
+}
+
+/* Mobil uyum: Mobilde butonları gizleyip sadece kaydırmaya izin verebilirsin */
+@media (max-width: 768px) {
+    .slider-btn {
+        display: none; 
+    }
+    .slider-wrapper {
+        padding: 0;
+    }
+}
+/* Mobil Görünümde Butonları Genişletme */
+@media (max-width: 768px) {
+    /* Menü içindeki butonların kapsayıcısını genişlet */
+    .mobile-auth-menu .guest-only {
+        display: flex !important;
+        flex-direction: column !important; /* Alt alta daha geniş durmaları için */
+        gap: 12px !important;
+        width: 100% !important;
+        padding: 10px !important;
+    }
+
+    /* Giriş ve Kayıt butonlarını tam genişlik yap */
+    #mobileLoginBtn, 
+    #mobileRegisterBtn,
+    .auth-btn.login,
+    .auth-btn.register {
+        width: 100% !important; /* Yanlara doğru tam genişler */
+        display: block !important;
+        padding: 15px 0 !important; /* Tıklama alanını dikeyde büyütür */
+        text-align: center !important;
+        font-size: 16px !important; /* Okunabilirliği artırır */
+        min-width: 200px !important; /* Çok küçük kalmalarını engeller */
+    }
+}
+/* PC Görünümü: Hoş geldin yazısını Çıkış Yap butonunun yanına al */
+@media (min-width: 769px) {
+    .nav-brand {
+        display: flex !important;
+        flex-direction: row !important; /* Yan yana diz */
+        align-items: center !important;
+        gap: 15px !important; /* Yazı ile buton arasındaki boşluk */
+    }
+
+    #welcomeText {
+        display: block !important;
+        margin: 0 !important;
+        white-space: nowrap !important; /* Yazının kırılmasını önle */
+    }
+
+    /* Eğer buton ve yazı kapsayıcı içindeyse onları hizala */
+    #userInfo {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+}
+
+/* Telefon Görünümü: Yazı gizli kalsın demiştin */
+@media (max-width: 768px) {
+    #welcomeText {
+        display: none !important;
+    }
+}
