@@ -1172,9 +1172,7 @@ body {
     flex-shrink: 0;
   }
 
-  .welcome-text {
-    display: none !important;
-  }
+  
 
   .nav-menu {
     position: fixed;
