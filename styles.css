@@ -1780,25 +1780,31 @@ body.user-logged-in #userInfo {
     }
 }
 /* PC Görünümü: Hoş geldin yazısını Çıkış Yap butonunun yanına al */
+/* PC Görünümü Düzenlemesi */
 @media (min-width: 769px) {
+    #userInfo {
+        display: none; /* Varsayılan gizli, JS ile açılacak */
+        align-items: center;
+        gap: 15px;
+    }
+
+    #authButtons {
+        display: flex; /* Giriş yapmamışsa görünür */
+        gap: 10px;
+    }
+
+    /* Yazıyı Çıkış Yap butonunun yanına hizala */
     .nav-brand {
         display: flex !important;
-        flex-direction: row !important; /* Yan yana diz */
         align-items: center !important;
-        gap: 15px !important; /* Yazı ile buton arasındaki boşluk */
+        gap: 15px !important;
     }
+}
 
-    #welcomeText {
-        display: block !important;
-        margin: 0 !important;
-        white-space: nowrap !important; /* Yazının kırılmasını önle */
-    }
-
-    /* Eğer buton ve yazı kapsayıcı içindeyse onları hizala */
-    #userInfo {
-        display: flex !important;
-        align-items: center !important;
-        gap: 10px !important;
+/* Telefon Görünümü Düzenlemesi */
+@media (max-width: 768px) {
+    #userInfo, #welcomeText {
+        display: none !important; /* Mobilde isme gerek yok demiştin */
     }
 }
 
@@ -1808,3 +1814,21 @@ body.user-logged-in #userInfo {
         display: none !important;
     }
 }
+/* PC Görünümü: Sadece Yazıyı Geri Getir ve Hizala */
+@media (min-width: 769px) {
+    /* Yazının kapsayıcısını ve kendisini görünür yap */
+    #welcomeText, .welcome-text {
+        display: block !important; /* Gizlemeyi zorla kaldırır */
+        visibility: visible !important;
+        opacity: 1 !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+        color: var(--color-primary) !important; /* Okunabilir renk */
+        font-weight: 600 !important;
+    }
+  }
+
+   
+
+   
+
