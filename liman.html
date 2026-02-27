@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kırmızı Liman | Bakırın Denize Açılan Kapısı</title>
+    <title>Kırmızı Liman ve CMC | Bakırın Denize Açılan Kapısı</title>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <style>
+        /* CSS SIFIRLAMA VE DEĞİŞKENLER */
         :root {
+            --color-primary: #1e3a5f;
             --color-navy: #003366;
-            /* Lefke Kurumsal Mavi */
             --color-rust: #a04000;
-            /* Kırmızı Liman ve Bakır Tonu */
             --color-gold: #c5a059;
-            /* Detay Tonu */
             --color-light: #fdfcfb;
+            --color-dark: #0f172a;
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -38,55 +38,174 @@
             scroll-behavior: smooth;
         }
 
-        /* --- SOL ÜST SABİT NAVİGASYON (SOLI KONSEPTİ) --- */
-        .back-nav {
-            position: fixed;
-            top: 25px;
-            left: 25px;
-            z-index: 9999;
-        }
-
-        .home-link {
+        /* --- NAVBAR TASARIMI (DOKUNULMADI) --- */
+        .navbar {
+            background: #ffffff;
+            height: 70px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-primary);
             text-decoration: none;
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            letter-spacing: -0.5px;
         }
 
-        .home-link:hover {
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--color-navy);
-            transform: translateY(-2px);
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
         }
 
-        /* --- HERO SECTION (PARALLAX) --- */
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 15px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-item.dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: white;
+            min-width: 160px;
+            padding: 5px 0;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f0f0f0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            list-style: none;
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(5px);
+        }
+
+        .dropdown-menu li {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #444;
+            text-decoration: none;
+            transition: background 0.2s;
+            text-align: center;
+            border-radius: 4px;
+            margin: 0 5px;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f8fafc;
+            color: var(--color-primary);
+        }
+
+        .arrow {
+            font-size: 9px;
+            margin-left: 4px;
+            color: #bbb;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: auto;
+                padding: 10px 0;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+                width: 100%;
+            }
+
+            .nav-link {
+                font-size: 0.85rem;
+                padding: 5px 10px;
+            }
+
+            .nav-item.dropdown:hover .dropdown-menu {
+                position: absolute;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .mobile-menu-toggle {
+                display: none !important;
+            }
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
             position: relative;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            background: linear-gradient(rgba(0, 51, 102, 0.4), rgba(160, 64, 0, 0.3)),
+            background: linear-gradient(rgba(0, 51, 102, 0.6), rgba(160, 64, 0, 0.5)),
                 url('https://kktcturizm.com/wp-content/uploads/2024/12/lefke-kirmizi-iskele.jpg') center/cover no-repeat;
             background-attachment: fixed;
         }
 
         .hero-content h1 {
             font-family: var(--font-heading);
-            font-size: clamp(3rem, 10vw, 6rem);
+            font-size: clamp(3rem, 8vw, 5rem);
             margin-bottom: 20px;
             text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             animation: slideInLeft 1.5s ease-out forwards;
@@ -102,38 +221,37 @@
 
         /* --- DETAYLI İÇERİK ALANI --- */
         .section-details {
-            padding: 100px 5%;
-            max-width: 1400px;
+            padding: 80px 5%;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: flex-start;
-            margin-bottom: 120px;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
         }
 
         .text-content h2 {
             font-family: var(--font-heading);
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--color-navy);
-            margin-bottom: 30px;
-            position: relative;
+            margin-bottom: 20px;
         }
 
         .text-content h2::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 60px;
             height: 4px;
             background: var(--color-rust);
             margin-top: 15px;
         }
 
         .text-content p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 20px;
             color: #555;
@@ -142,12 +260,12 @@
         .stat-box {
             display: flex;
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         .stat-item {
             border-left: 2px solid var(--color-rust);
-            padding-left: 20px;
+            padding-left: 15px;
         }
 
         .stat-item span {
@@ -157,518 +275,116 @@
             font-size: 1.5rem;
         }
 
-        /* --- GÖRSEL KARTI --- */
-        .image-stack {
-            position: relative;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
         .image-stack img {
             width: 100%;
-            display: block;
-            transition: transform 0.6s ease;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .image-stack:hover img {
-            transform: scale(1.05);
+        /* --- YENİ EKLENEN CMC İÇERİK BÖLÜMLERİ --- */
+        .cmc-history-card {
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+            margin-bottom: 80px;
+            border-top: 5px solid var(--color-navy);
+        }
+
+        .cmc-quote {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-rust);
+            font-style: italic;
+            border-left: 4px solid var(--color-gold);
+            padding-left: 20px;
+            margin: 30px 0;
+            line-height: 1.6;
+        }
+
+        .cmc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .cmc-box {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+            border-bottom: 4px solid transparent;
+            transition: var(--transition);
+        }
+
+        .cmc-box:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--color-rust);
+        }
+
+        .cmc-box h3 {
+            color: var(--color-navy);
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+        }
+
+        .anecdote-section {
+            background: #f4f7f9;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 40px;
+            border: 1px dashed var(--color-primary);
+        }
+
+        .anecdote-section h3 {
+            color: var(--color-rust);
+            margin-bottom: 15px;
         }
 
         /* --- MİRAS KARTLARI --- */
         .legacy-title {
             text-align: center;
             font-family: var(--font-heading);
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--color-navy);
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 80px;
         }
 
         .legacy-card {
             background: white;
-            padding: 50px 40px;
-            border-radius: 2px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-            transition: var(--transition);
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
             border-top: 4px solid transparent;
+            transition: var(--transition);
+            text-align: center;
         }
 
         .legacy-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-10px);
             border-top-color: var(--color-rust);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
         .legacy-card h3 {
             font-family: var(--font-heading);
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--color-navy);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .legacy-card p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        /* --- ANIMASYONLAR --- */
-        @keyframes slideInLeft {
-            0% {
-                transform: translateX(-150px);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* MOBİL UYUMLULUK */
-        @media (max-width: 968px) {
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .hero-content h1 {
-                font-size: 3.5rem;
-            }
-
-            .section-details {
-                padding: 60px 20px;
-            }
-
-            .back-nav {
-                top: 15px;
-                left: 15px;
-            }
-
-            .home-link .text {
-                display: none;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <!DOCTYPE html>
-    <html lang="tr">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lefke Derneği - Master Navbar</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
-            rel="stylesheet">
-
-        <style>
-            /* CSS SIFIRLAMA VE DEĞİŞKENLER */
-            :root {
-                --color-primary: #1e3a5f;
-                --color-dark: #0f172a;
-                --font-main: 'Inter', sans-serif;
-            }
-
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                font-family: var(--font-main);
-                background-color: #f8fafc;
-            }
-
-            /* --- NAVBAR TASARIMI --- */
-            .navbar {
-                background: #ffffff;
-                height: 70px;
-                display: flex;
-                align-items: center;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-                position: sticky;
-                top: 0;
-                z-index: 1000;
-            }
-
-            .nav-container {
-                width: 100%;
-                max-width: 1200px;
-                margin: 0 auto;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0 20px;
-            }
-
-            /* Sol: Logo ve Hoşgeldin */
-            .nav-brand {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .logo {
-                font-family: 'Playfair Display', serif;
-                font-size: 1.5rem;
-                font-weight: 800;
-                color: var(--color-primary);
-                text-decoration: none;
-                letter-spacing: -0.5px;
-            }
-
-            .welcome-text {
-                font-size: 0.75rem;
-                color: #64748b;
-            }
-
-            /* Orta: Menü Linkleri */
-            .nav-menu {
-                display: flex;
-                list-style: none;
-                gap: 5px;
-                /* Menü elemanları arası temel boşluk */
-                margin: 0;
-                padding: 0;
-            }
-
-            .nav-link {
-                text-decoration: none;
-                color: var(--color-dark);
-                font-weight: 500;
-                font-size: 0.95rem;
-                padding: 8px 15px;
-                transition: all 0.3s;
-            }
-
-            .nav-link:hover {
-                color: var(--color-primary);
-            }
-
-            /* --- NARİN DROPDOWN AYARLARI --- */
-            .nav-item.dropdown {
-                position: relative;
-            }
-
-            .dropdown-menu {
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                transform: translateX(-50%) translateY(10px);
-                background: white;
-                min-width: 160px;
-                padding: 5px 0;
-                border-radius: 8px;
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-                border: 1px solid #f0f0f0;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.2s ease;
-                list-style: none;
-            }
-
-            /* Mouse üzerine gelince kutu açılır */
-            .nav-item.dropdown:hover .dropdown-menu {
-                opacity: 1;
-                visibility: visible;
-                transform: translateX(-50%) translateY(5px);
-            }
-
-            /* SIKI LİSTE AYARI: Aradaki boşluğu öldüren kısım */
-            .dropdown-menu li {
-                margin: 0 !important;
-                padding: 0 !important;
-                width: 100%;
-            }
-
-            .dropdown-menu li a {
-                display: block;
-                padding: 10px 15px;
-                font-size: 14px;
-                color: #444;
-                text-decoration: none;
-                transition: background 0.2s;
-                text-align: center;
-                border-radius: 4px;
-                margin: 0 5px;
-            }
-
-            .dropdown-menu li a:hover {
-                background-color: #f8fafc;
-                color: var(--color-primary);
-            }
-
-            .arrow {
-                font-size: 9px;
-                margin-left: 4px;
-                color: #bbb;
-            }
-
-            /* Sağ: Butonlar */
-            .nav-actions {
-                display: flex;
-                gap: 10px;
-                align-items: center;
-            }
-
-            .btn {
-                padding: 8px 18px;
-                border-radius: 6px;
-                font-weight: 600;
-                font-size: 0.9rem;
-                cursor: pointer;
-                transition: all 0.3s;
-                border: none;
-            }
-
-            .btn-outline {
-                background: transparent;
-                border: 1.5px solid var(--color-primary);
-                color: var(--color-primary);
-            }
-
-            .btn-primary {
-                background: var(--color-primary);
-                color: white;
-            }
-
-            .btn:hover {
-                opacity: 0.9;
-                transform: translateY(-1px);
-            }
-
-            /* Mobil Menü Gizleme (Desktop görünümü için) */
-            .mobile-menu-toggle {
-                display: none;
-            }
-
-            @media (max-width: 768px) {
-                .nav-menu {
-                    display: none;
-                }
-
-                .mobile-menu-toggle {
-                    display: block;
-                }
-            }
-
-            /* Mobil Uyumluluk Güncellemesi - Hamburger Menü Yok */
-            @media (max-width: 768px) {
-                .navbar {
-                    height: auto;
-                    /* İçerik arttıkça yüksekliğin artması için */
-                    padding: 10px 0;
-                }
-
-                .nav-container {
-                    flex-direction: column;
-                    /* Logo üstte, menü altta */
-                    gap: 15px;
-                }
-
-                .nav-menu {
-                    display: flex !important;
-                    /* Gizlemeyi kaldırıyoruz */
-                    flex-wrap: wrap;
-                    /* Sığmazsa aşağı kayması için */
-                    justify-content: center;
-                    gap: 5px;
-                    width: 100%;
-                }
-
-                .nav-link {
-                    font-size: 0.85rem;
-                    /* Mobilde biraz daha küçük puntolar */
-                    padding: 5px 10px;
-                }
-
-                /* Dropdown mobilde tıklandığında görünmesi için basit ayar */
-                .nav-item.dropdown:hover .dropdown-menu {
-                    position: absolute;
-                    /* İçeriğin kaymaması için */
-                    transform: translateX(-50%) translateY(0);
-                }
-
-                .mobile-menu-toggle {
-                    display: none !important;
-                    /* Hamburger düğmesini tamamen kapat */
-                }
-            }
-        </style>
-    </head>
-
-    <body>
-
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    <a href="index.html" class="logo">Lefke Çevre ve Ekoloji Derneği</a>
-                </div>
-
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
-
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">Keşfet <span class="arrow">▼</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="cıttaslow.html">Cittaslow</a></li>
-                            <li><a href="lefke.html">Lefke'nin Tarihi</a></li>
-                            <li><a href="galeri.html">Galeri</a></li>
-                            <li><a href="muflon.html">Muflon Heykeli</a></li>
-                            <li><a href="cengiz.html">Cengiz Topel Anıtı</a></li>
-                            <li><a href="kemerler.html">Lefke Su Kemerleri</a></li>
-                            <li><a href="konaklar.html">Lefke Tarihi Konaklar</a></li>
-                            <li><a href="liman.html">Lefke Antik Liman</a></li>
-                            <li><a href="soli.html">Soli Antik Kenti</a></li>
-                            <li><a href="vuni.html">Vuni Sarayı</a></li>
-                            <li><a href="laü.html" style="font-weight: bold; color: #1e3a5f;">LAÜ</a></li>
-                    </li>
-
-                    <li><a href="index.html#projeler" class="nav-link">Projeler</a></li>
-
-                </ul>
-        </nav>
-        <script>
-            // Sağ tıklamayı engeller
-            document.addEventListener('contextmenu', event => event.preventDefault());
-
-            // Klavye kısayollarını engeller (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
-            document.onkeydown = function (e) {
-                if (e.keyCode == 123) { // F12
-                    return false;
-                }
-                if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
-                    return false;
-                }
-                if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Kaynak kodunu görüntüle
-                    return false;
-                }
-            };
-        </script>
-    </body>
-
-    </html>
-
-    <header class="hero">
-        <div class="hero-content">
-            <p>CMC Maden Mirası ve Deniz</p>
-            <h1>Kırmızı Liman</h1>
-        </div>
-    </header>
-
-    <div class="section-details">
-        <div class="info-grid">
-            <div class="text-content">
-                <h2>Karavostasi'nin Endüstriyel Ruhu</h2>
-                <p>Kırmızı Liman, Lefke’nin ve Kıbrıs’ın yakın tarihinde çok önemli bir yere sahip olan CMC (Cyprus
-                    Mines Corporation) maden şirketinin dünyaya açılan kapısıydı. Adını, yüklenen bakır madeninin
-                    tozlarından dolayı denizin ve sahilin aldığı kızıl tondan almıştır.</p>
-                <p>Bugün devasa iskele kalıntıları ve deniz içindeki paslanmış yapılar, bölgeye dramatik ve büyüleyici
-                    bir atmosfer katmaktadır. Burası sadece bir sahil değil, bir dönemin ekonomik devriminin sessiz
-                    tanığıdır.</p>
-
-                <div class="stat-box">
-                    <div class="stat-item">
-                        <span>1916</span>
-                        <p>CMC Kuruluş</p>
-                    </div>
-                    <div class="stat-item">
-                        <span>Liman</span>
-                        <p>Stratejik Nokta</p>
-                    </div>
-                </div>
-            </div>
-            <div class="image-stack">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/K%C4%B1rm%C4%B1z%C4%B1_Liman.jpg"
-                    alt="Kırmızı Liman İskele">
-            </div>
-        </div>
-
-        <h2 class="legacy-title">Kültürel ve Tarihi Dokular</h2>
-        <div class="cards-container">
-            <div class="legacy-card">
-                <h3>🏗️ Tarihi İskeleler</h3>
-                <p>Denizin içine uzanan dev metal ayaklar, bir zamanlar tonlarca madenin dev gemilere yüklendiği muazzam
-                    bir mühendislik harikasıydı.</p>
-            </div>
-            <div class="legacy-card">
-                <h3>🌊 Kızıl Sahil</h3>
-                <p>Bakır sülfat ve minerallerin etkisiyle karakter kazanan sahil şeridi, gün batımında eşsiz bir görsel
-                    şölen sunar.</p>
-            </div>
-            <div class="legacy-card">
-                <h3>🏚️ Endüstriyel Miras</h3>
-                <p>Çevredeki eski maden binaları ve lojmanlar, Lefke’nin "Cittaslow" kimliği içinde korunan önemli
-                    endüstriyel arkeoloji alanlarıdır.</p>
-            </div>
-        </div>
-    </div>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>Lefke Çevre ve Ekoloji Derneği</h3>
-                    <p>Lefke'nin güzelliklerini keşfedin.</p>
-                </div>
-
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Keşfet</h4>
-                        <ul>
-                            <li><a href="#lefke">Lefke</a></li>
-                            <li><a href="#magusa">Mağusa</a></li>
-                            <li><a href="#girne">Girne</a></li>
-                            <li><a href="#lefkosa">Lefkoşa</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column" id="footer-social">
-                        <h4>Sosyal Medya</h4>
-                        <ul>
-                            <li><a href="https://www.instagram.com/lced.2025/" target="_blank">Instagram</a></li>
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Twitter</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>İletişim</h4>
-                        <ul>
-                            <li><a href="#">Hakkımızda</a></li>
-                            <li><a href="#">İletişim</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
-            </div>
-        </div>
-    </footer>
-    <style>
-        /* FOOTER CSS BAŞLANGIÇ */
+        /* FOOTER CSS (DOKUNULMADI) */
         .footer {
             background: #0f172a;
-            /* Görseldeki koyu lacivert tonu */
             color: white;
             padding: 60px 20px;
             font-family: 'Inter', sans-serif;
@@ -739,8 +455,42 @@
             font-size: 0.85rem;
         }
 
-        /* Mobil Uyumluluk */
-        @media (max-width: 768px) {
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .section-details {
+                padding: 50px 20px;
+            }
+
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -751,10 +501,224 @@
                 gap: 20px;
             }
         }
-
-        /* FOOTER CSS BİTİŞ */
     </style>
+</head>
 
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">Lefke Çevre ve Ekoloji Derneği</a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">Keşfet <span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="cıttaslow.html">Cittaslow</a></li>
+                        <li><a href="lefke.html">Lefke'nin Tarihi</a></li>
+                        <li><a href="galeri.html">Galeri</a></li>
+                        <li><a href="muflon.html">Muflon Heykeli</a></li>
+                        <li><a href="cengiz.html">Cengiz Topel Anıtı</a></li>
+                        <li><a href="kemerler.html">Lefke Su Kemerleri</a></li>
+                        <li><a href="konaklar.html">Lefke Tarihi Konaklar</a></li>
+                        <li><a href="liman.html">Lefke Antik Liman</a></li>
+                        <li><a href="soli.html">Soli Antik Kenti</a></li>
+                        <li><a href="vuni.html">Vuni Sarayı</a></li>
+                        <li><a href="laü.html" style="font-weight: bold; color: #1e3a5f;">LAÜ</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="index.html#projeler" class="nav-link">Projeler</a></li>
+
+            </ul>
+        </div>
+    </nav>
+    <script>
+        // Sağ tıklamayı engeller
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Klavye kısayollarını engeller (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123) { // F12
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Kaynak kodunu görüntüle
+                return false;
+            }
+        };
+    </script>
+    <header class="hero">
+        <div class="hero-content">
+            <p>Bir Dönemin Endüstriyel Kalbi</p>
+            <h1>Kırmızı Liman & CMC Efsanesi</h1>
+        </div>
+    </header>
+
+    <main class="section-details">
+
+        <div class="info-grid">
+            <div class="text-content">
+                <h2>Karavostasi'nin Endüstriyel Ruhu</h2>
+                <p>Kırmızı Liman, Lefke’nin ve Kıbrıs’ın yakın tarihinde çok önemli bir yere sahip olan CMC (Cyprus
+                    Mines Corporation) maden şirketinin dünyaya açılan kapısıydı. Adını, yüklenen bakır madeninin
+                    tozlarından dolayı denizin ve sahilin aldığı kızıl tondan almıştır.</p>
+                <p>Bugün devasa iskele kalıntıları ve deniz içindeki paslanmış yapılar, bölgeye dramatik ve büyüleyici
+                    bir atmosfer katmaktadır. Burası sadece bir sahil değil, bir dönemin ekonomik devriminin sessiz
+                    tanığıdır.</p>
+
+                <div class="stat-box">
+                    <div class="stat-item">
+                        <span>1913</span>
+                        <p>CMC'nin Adaya Gelişi</p>
+                    </div>
+                    <div class="stat-item">
+                        <span>62 Yıl</span>
+                        <p>Aralıksız Faaliyet</p>
+                    </div>
+                </div>
+            </div>
+            <div class="image-stack">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/K%C4%B1rm%C4%B1z%C4%B1_Liman.jpg"
+                    alt="Kırmızı Liman İskele">
+            </div>
+        </div>
+
+        <div class="cmc-history-card">
+            <h2>Adeta "Mini Bir Hükümet": CMC'nin Tarihçesi</h2>
+            <div class="cmc-quote">
+                "Adamıza damgasını vuran efsane bir şirketti CMC, adeta mini bir hükümet idi." - [cite_start]Cemal
+                (Blaki) Anıl [cite: 2]
+            </div>
+            [cite_start]<p>Kıbrıslı Türkler ve Rumların bakır madeni ile tanışması, bir Amerikan şirketi olan Cyprus
+                Mines Corporation'un (CMC) İngiliz Koloni İdaresi döneminde 1913 yılında Kıbrıs'a gelmesiyle
+                başlar[cite: 8]. [cite_start]Şirket, arama faaliyetlerini ilk olarak Fugasa köyünde, ardından küçük bir
+                Türk kasabası olan Lefke'de (Karadağ) tesisler kurarak sürdürmüştür[cite: 9]. [cite_start]İkinci Dünya
+                Savaşı yıllarında mecburi bir ara verilse de, şirket yaklaşık 62 yıl boyunca Kıbrıs'taki faaliyetlerine
+                devam etmiştir[cite: 9, 15]. [cite_start]Bu dönemde CMC, binlerce Kıbrıslı Türk için ekmek kapısı
+                olmuştur[cite: 5].</p>
+        </div>
+
+        <div class="cmc-grid">
+            <div class="cmc-box">
+                <h3>Lefke'nin Altın Yılları</h3>
+                [cite_start]<p>1950'li ve 60'lı yıllar, Lefke bölgesinin altın yıllarıydı[cite: 43]. [cite_start]Adanın
+                    dört bir yanından yaklaşık 7.000 kişi CMC'de görev yapmaktaydı[cite: 44]. [cite_start]Ödeme
+                    günlerinde çarşıda büyük bir hareketlilik yaşanır, bölgeye çok sayıda tüccar gelerek Lefke'yi bir
+                    panayır alanına çevirirdi[cite: 46, 47]. [cite_start]Bu büyük ekonomik canlanma sayesinde Lefke'nin
+                    nüfusu o dönemde 10.000 kişiye kadar yükselmişti (günümüzde bu sayı yaklaşık 4.000'dir)[cite: 48].
+                </p>
+            </div>
+            <div class="cmc-box">
+                <h3>Zorlu Şartlar ve Liman Yolculuğu</h3>
+                [cite_start]<p>Maden ocaklarında çalışanların koşulları oldukça ağırdı; temiz hava almadan ve güneş
+                    ışığı görmeden tünellerde çalışmak hiç kolay değildi[cite: 53]. [cite_start]İşçiler için Karadağ'da
+                    özel CMC hamamları inşa edilmişti[cite: 54]. [cite_start]Çıkarılan bu madenler (bakır, kükürt, pirit
+                    ve az miktarda altın [cite: 51][cite_start]), tren rayları üzerindeki vagonlara yüklenerek
+                    Gemikonağı Limanı'na getiriliyor ve buradan dev gemilerle dünyaya ihraç ediliyordu[cite: 55].</p>
+            </div>
+        </div>
+
+        <div class="cmc-history-card" style="border-top-color: var(--color-gold);">
+            <h2>Eşsiz Bir Sosyal Ağ</h2>
+            <p>Disiplinli idaresiyle tanınan şirket, çalışanlarına sunduğu sosyal imkanlarla da öne çıkıyordu.
+                [cite_start]CMC Hastanesi, Dr. Rose ve Dr. Taylor gibi isimlerin hizmet verdiği, Ortadoğu'nun en
+                gelişmiş sağlık merkezi konumundaydı[cite: 58, 59]. [cite_start]Yönetici kadrosu için 18 delikli bir
+                golf sahası bulunurken, 10-15 yaş arası işçi çocukları için Bladanya'da iki haftalık kapsamlı yaz
+                kampları (yüzme, spor, kamp ateşi etkinlikleri) düzenleniyordu[cite: 57, 58].</p>
+
+            <div class="anecdote-section">
+                <h3>Biraz da Gülelim: Turkey (Hindi) Mi, Turkey (Türkiye) Mi?</h3>
+                [cite_start]<p>1962'den 1974'e kadar CMC'de görev yapan Cemal Anıl'ın unutulmaz anılarından biri oldukça
+                    eğlencelidir[cite: 40, 72]. [cite_start]Eski dönemlerde Rum ve Türk bekçiler dini bayramlarda
+                    birbirlerinin yerine nöbet tutardı[cite: 74]. [cite_start]Bir Noel arifesinde, İngiliz ustabaşı
+                    Christmas yemeği için Mehmet Ali isimli Türk ustabaşından İngilizce olarak <strong>"5 strong
+                        turkeys" (5 güçlü hindi)</strong> ister[cite: 75, 77].</p>
+                [cite_start]<p>Ancak Mehmet Ali bunu, tatilde Rumların yerine çalışacak <strong>"5 güçlü Türk
+                        işçi"</strong> olarak anlar ve ertesi gün İngiliz yetkilinin karşısına 5 kuvvetli Türk
+                    arkadaşıyla çıkar[cite: 79, 80]. İngiliz yetkili hayretler içinde kalır: <em>"No Mehmetali No. I
+                        want Turkeys not Turkish workers!" (Hayır Mehmetali, ben hindi istedim Türk çalışan
+                        değil!)[cite_start]</em>[cite: 81].</p>
+            </div>
+        </div>
+
+        <div class="text-content" style="text-align: center; margin-bottom: 60px;">
+            <h2>Efsanenin Hazin Sonu</h2>
+            [cite_start]<p>Maden hammaddesinin bulunduğu bölgelerin güneyde, tesislerin ise kuzeyde kalması gibi siyasi
+                sebeplerden dolayı CMC, 31 Mart 1975 tarihinde faaliyetlerine son vererek adadan ayrılmıştır[cite: 61].
+                [cite_start]Bugün arkasında konuşulan bir çevre kirliliği bırakmış olsa da, sistematik çalışma düzeni ve
+                bölgeye katkısıyla Kıbrıs tarihinde adeta efsane bir şirket olarak yerini almıştır[cite: 42, 63].</p>
+        </div>
+
+        <h2 class="legacy-title">Kültürel ve Tarihi Dokular</h2>
+        <div class="cards-container">
+            <div class="legacy-card">
+                <h3>🏗️ Tarihi İskeleler</h3>
+                <p>Denizin içine uzanan dev metal ayaklar, bir zamanlar tonlarca madenin dev gemilere yüklendiği muazzam
+                    bir mühendislik harikasıydı.</p>
+            </div>
+            <div class="legacy-card">
+                <h3>🌊 Kızıl Sahil</h3>
+                <p>Bakır sülfat ve minerallerin etkisiyle karakter kazanan sahil şeridi, gün batımında eşsiz bir görsel
+                    şölen sunar.</p>
+            </div>
+            <div class="legacy-card">
+                <h3>🏚️ Endüstriyel Miras</h3>
+                <p>Çevredeki eski maden binaları ve lojmanlar, Lefke’nin "Cittaslow" kimliği içinde korunan önemli
+                    endüstriyel arkeoloji alanlarıdır.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Lefke Çevre ve Ekoloji Derneği</h3>
+                    <p>Lefke'nin güzelliklerini keşfedin.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Keşfet</h4>
+                        <ul>
+                            <li><a href="#lefke">Lefke</a></li>
+                            <li><a href="#magusa">Mağusa</a></li>
+                            <li><a href="#girne">Girne</a></li>
+                            <li><a href="#lefkosa">Lefkoşa</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column" id="footer-social">
+                        <h4>Sosyal Medya</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/lced.2023?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                    target="_blank">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>İletişim</h4>
+                        <ul>
+                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a href="#">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
