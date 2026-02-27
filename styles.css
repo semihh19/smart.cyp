@@ -1750,14 +1750,11 @@ body.user-logged-in #userInfo {
 }
 
 /* Mobil uyum: Mobilde butonları gizleyip sadece kaydırmaya izin verebilirsin */
-@media (max-width: 768px) {
-    .slider-btn {
-        display: none; 
-    }
+
     .slider-wrapper {
         padding: 0;
     }
-}
+
 /* Mobil Görünümde Butonları Genişletme */
 @media (max-width: 768px) {
     /* Menü içindeki butonların kapsayıcısını genişlet */
