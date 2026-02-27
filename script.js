@@ -348,35 +348,34 @@ document.querySelectorAll(".slide").forEach((slide) => {
 
 
 
-// OTURUM KONTROL
 async function checkUser() {
-  const { data } = await supabase.auth.getUser()
+  const { data } = await supabase.auth.getUser();
 
   if (data?.user) {
-    authButtons.style.display = "none"
-    userInfo.style.display = "flex"
-
-    // Metadata'dan isim çekme
-    // checkUser fonksiyonunun içindeki ilgili kısmı şöyle güncelle:
-const firstName = data.user.user_metadata?.first_name || "";
-const lastName = data.user.user_metadata?.last_name || "";
-
-// Baş harfleri büyüten fonksiyon
-const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-
-const fullName = firstName && lastName 
-    ? `${capitalize(firstName)} ${capitalize(lastName)}` 
-    : data.user.email;
-
-document.getElementById("welcomeEmail").textContent = fullName;
+    document.body.classList.add("user-logged-in");
     
-    document.getElementById("welcomeText").style.display = "block"
+    // İsim yazdırma işlemi (Aynı kalıyor)
+    const firstName = data.user.user_metadata?.first_name || "";
+    const lastName = data.user.user_metadata?.last_name || "";
+    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    const fullName = firstName && lastName ? `${capitalize(firstName)} ${capitalize(lastName)}` : data.user.email;
+    
+    document.getElementById("welcomeEmail").textContent = fullName;
+    // Eğer mobilde de isim görünsün istersen:
+    const mobileWelcome = document.getElementById("mobileWelcomeText");
+    if(mobileWelcome) mobileWelcome.textContent = fullName;
   } else {
-    authButtons.style.display = "flex"
-    userInfo.style.display = "none"
-    document.getElementById("welcomeText").style.display = "none"
+    document.body.classList.remove("user-logged-in");
   }
 }
+
+// Mobil Çıkış Yap Butonuna Fonksiyon Ata
+document.addEventListener("click", async (e) => {
+    if(e.target && e.target.id === "mobileLogoutBtn") {
+        await supabase.auth.signOut();
+        window.location.reload();
+    }
+});
 
 
 
@@ -571,7 +570,7 @@ async function haberCek() {
         if (container) {
             container.innerHTML = ""; 
 
-            satirlar.slice(0, 3).forEach(link => {
+            satirlar.forEach(link => {
                 const wrap = document.createElement('div');
                 wrap.className = 'haber-cerceve'; // CSS'te yazdığımız sınıfı ekledik
 
@@ -694,3 +693,60 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// ===============================
+// HABER ALANI DRAG SLIDER
+// ===============================
+
+const slider = document.getElementById("haber-alani");
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener("mousedown", (e) => {
+  isDown = true;
+  slider.style.cursor = "grabbing";
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener("mouseleave", () => {
+  isDown = false;
+  slider.style.cursor = "grab";
+});
+
+slider.addEventListener("mouseup", () => {
+  isDown = false;
+  slider.style.cursor = "grab";
+});
+
+slider.addEventListener("mousemove", (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 1.5;
+  slider.scrollLeft = scrollLeft - walk;
+});
+// Slider Buton Kontrolleri
+const haberAlani = document.getElementById("haber-alani");
+const prevBtn = document.getElementById("slidePrev");
+const nextBtn = document.getElementById("slideNext");
+
+if (haberAlani && prevBtn && nextBtn) {
+    // Her tıklamada ne kadar kayacağını belirle (bir kart genişliği kadar)
+    const scrollAmount = 350; 
+
+    nextBtn.onclick = () => {
+        haberAlani.scrollBy({
+            left: scrollAmount,
+            behavior: "smooth"
+        });
+    };
+
+    prevBtn.onclick = () => {
+        haberAlani.scrollBy({
+            left: -scrollAmount,
+            behavior: "smooth"
+        });
+    };
+}
