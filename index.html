@@ -58,8 +58,15 @@
             <div class="mobile-auth">
                 <button class="mobile-auth-btn">👤</button>
                 <div class="mobile-auth-menu">
-                    <button class="auth-btn login" id="mobileLoginBtn">Giriş Yap</button>
-                    <button class="auth-btn register" id="mobileRegisterBtn">Kayıt Ol</button>
+                    <div class="guest-only">
+                        <button id="mobileLoginBtn">Giriş Yap</button>
+                        <button id="mobileRegisterBtn">Kayıt Ol</button>
+                    </div>
+
+                    <div class="user-only">
+                        <p id="mobileWelcomeText" style="font-weight:bold; margin-bottom:10px;"></p>
+                        <button id="mobileLogoutBtn" style="background:#e74c3c; color:white;">Çıkış Yap</button>
+                    </div>
                 </div>
             </div>
 
@@ -137,9 +144,8 @@
                     <div class="hero-slide-caption">Girne Kapısı</div>
                 </div>
                 <div class="hero-slide">
-                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/7a/66/ed/machairas-monastery.jpg?w=600&h=600&s=1"
-                        alt="Lefkoşa">
-                    <div class="hero-slide-caption">Lefkoşa Panorama</div>
+                    <img src="LEFKEGORSEL.jpeg" alt="Lefkoşa">
+                    <div class="hero-slide-caption">Lefke Sahil Yolu</div>
                 </div>
 
 
@@ -163,7 +169,13 @@
                 <h2 class="section-title">GÜNCEL HABERLER</h2>
                 <div class="title-underline"></div>
 
-                <div id="haber-alani">
+                <div class="slider-wrapper">
+                    <button class="slider-btn prev" id="slidePrev">❮</button>
+
+                    <div id="haber-alani">
+                    </div>
+
+                    <button class="slider-btn next" id="slideNext">❯</button>
                 </div>
             </section>
 
@@ -183,44 +195,16 @@
                     <div class="card-badge">Kafeler</div>
                     <div class="card-slider">
                         <div class="slider-track">
-                            <div class="slide" data-place="Reklam"
-                                data-desc="Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme."
-                                data-map="https://maps.google.com/?q=Villa+Veranda+Lefke">
-                                <img src="reklam.jpeg" alt="Reklam">
-                                <div class="slide-overlay">
-                                    <h3>Reklam</h3>
-                                </div>
-                            </div>
-                            <div class="slide active" data-place="Corner Kafe"
-                                data-desc="Lefke merkezde, tarihi doku içinde huzurlu bir mekan."
-                                data-map="https://maps.google.com/?q=Corner+Kafe+Lefke">
-                                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Corner Kafe">
-                                <div class="slide-overlay">
-                                    <h3>Corner Kafe</h3>
-                                </div>
-                            </div>
-                            <div class="slide" data-place="Reklam"
-                                data-desc="Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme."
-                                data-map="https://maps.google.com/?q=Villa+Veranda+Lefke">
-                                <img src="reklam.jpeg" alt="Reklam">
-                                <div class="slide-overlay">
-                                    <h3>Reklam</h3>
+                            <div class="slide active">
+                                <img src="reklam.jpg" alt="Reklam">
+                                <div class="reklam-overlay">
+                                    <h3>REKLAM VE İŞBİRLİĞİ İÇİN</h3>
+                                    <p>Instagram: lced.2023</p>
                                 </div>
                             </div>
                         </div>
-                        <button class="slider-btn prev" aria-label="Previous">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-                        <button class="slider-btn next" aria-label="Next">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
+                        <button class="slider-btn prev">❮</button>
+                        <button class="slider-btn next">❯</button>
                     </div>
                 </div>
 
@@ -318,36 +302,16 @@
                     <div class="card-badge">Oteller</div>
                     <div class="card-slider">
                         <div class="slider-track">
-                            <div class="slide" data-place="Reklam"
-                                data-desc="Muhteşem bahçesi ve ev yapımı tatlılarıyla ünlü işletme."
-                                data-map="https://maps.google.com/?q=Villa+Veranda+Lefke">
-                                <img src="reklam.jpeg" alt="Reklam">
-                                <div class="slide-overlay">
-                                    <h3>Reklam</h3>
-                                </div>
-                            </div>
-                            <div class="slide active" data-place="VelMer Hotel"
-                                data-desc="Geleneksel mimariyle restore edilmiş butik otel."
-                                data-map="https://maps.google.com/?q=Lefke+Gardens+Hotel">
-                                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/d3/f4/08/velmer-hotel.jpg?w=1400&h=800&s=1"
-                                    alt="VeLMer Hotel">
-                                <div class="slide-overlay">
-                                    <h3>VelMer Hotel</h3>
+                            <div class="slide active">
+                                <img src="reklam.jpg" alt="Reklam">
+                                <div class="reklam-overlay">
+                                    <h3>REKLAM VE İŞBİRLİĞİ İÇİN</h3>
+                                    <p>Instagram: lced.2023</p>
                                 </div>
                             </div>
                         </div>
-                        <button class="slider-btn prev" aria-label="Previous">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-                        <button class="slider-btn next" aria-label="Next">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
+                        <button class="slider-btn prev">❮</button>
+                        <button class="slider-btn next">❯</button>
                     </div>
                 </div>
 
@@ -357,7 +321,7 @@
                     <div class="card-slider">
                         <div class="slider-track">
                             <div class="slide active" data-place="Lefke Avrupa Üniversitesi" data-desc="Bölgenin uluslararası eğitim merkezi.
-                                Detaylı Bilgi: https://www.eul.edu.tr/tr/"
+                                    Detaylı Bilgi: https://www.eul.edu.tr/tr/"
                                 data-map="https://maps.google.com/?q=European+University+of+Lefke"
                                 data-detail="laü.html">
                                 <img src="https://cyprus-faq.com/site/assets/files/37228/european-university-of-lefke.800x0-is.webp"
@@ -464,7 +428,8 @@
                     <div class="footer-column" id="footer">
                         <h4>Sosyal Medya</h4>
                         <ul>
-                            <li><a href="https://www.instagram.com/lced.2025/" target="_blank">Instagram</a></li>
+                            <li><a href="https://www.instagram.com/lced.2023?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                    target="_blank">Instagram</a></li>
                             <li><a href="#">Facebook</a></li>
                             <li><a href="#">Twitter</a></li>
                         </ul>
