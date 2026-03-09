@@ -1830,3 +1830,41 @@ body.user-logged-in #userInfo {
 
    
 
+/* HABER KARTLARINI SABİTLEME */
+.haber-cerceve {
+    flex: 0 0 320px; /* Her kartın genişliği sabit 320px */
+    height: 550px;  /* TÜM KARTLARIN BOYU ARTIK AYNI */
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow-y: auto; /* İçerik uzunsa kartın içinde kaydırılsın, dışarı taşmasın */
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.haber-cerceve:hover {
+    transform: translateY(-5px); /* Üstüne gelince hafif yukarı kalksın */
+}
+
+/* Facebook ve Instagram için Ortak Ayarlar */
+.haber-cerceve iframe, 
+.haber-cerceve blockquote {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* Kart içi kaydırma çubuğunu şık yapalım */
+.haber-cerceve::-webkit-scrollbar {
+    width: 5px;
+}
+.haber-cerceve::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
+}
